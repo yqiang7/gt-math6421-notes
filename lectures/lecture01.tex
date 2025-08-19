@@ -1,0 +1,280 @@
+\chapter{Aug.~19 --- Affine Varieties}
+
+\section{Motivation for Algebraic Geometry}
+
+\begin{remark}
+  Why study algebraic geometry? Algebraic
+  geometry connects to many fields of math.
+\end{remark}
+
+\begin{example}
+  Consider a plane curve
+  $\{f(z_1, z_2) = 0\} \subseteq \C^2$, e.g.
+  an elliptic curve
+  $z_2^2 - z_1^3 + z_1 - 1 = 0$.
+  If we compactify and set $C$ to be
+  the closure of $C^0$ in $\C \PP^2$, then
+  $d = \deg f$. There are connections in
+  \begin{enumerate}
+    \item Topology: $H^1(C, \C) \cong \C^{2g}$,
+      where $g = (d - 1)(d - 2) / 12$;
+    \item Arithmetic: the number of
+      $\Q$-points is finite if $d > 3$;
+    \item Complex geometry:
+      We have $C \cong \C \PP^2$ for
+      $d = 1, 2$, $C \cong \C / \Lambda$
+      for $d = 3$,
+      and $C \cong \mathbb{H} / \Gamma$
+      for $d > 3$.
+  \end{enumerate}
+\end{example}
+
+\section{Affine Varieties}
+
+Fix an algebraically closed field $k$ (e.g.
+$\C$, $\overline{\Q}$, $\overline{\F}_p$,
+etc.).
+
+\begin{definition}
+  \emph{Affine space} is the set
+  $\Affine^n = \Affine^n_k = \{\vec{a} = (a_1, \dots, a_n) : a_i \in k\}$.
+\end{definition}
+
+\begin{remark}
+  Note the following:
+  \begin{enumerate}
+    \item $\Affine^n_k$ is the same set
+      as $k^n$, but forgetting the vector
+      space structure;
+    \item $f \in k[x_1, \dots, x_n]$
+      gives a polynomial function
+      $\Affine^n_k \to k$ by evaluation:
+      $a \mapsto f(a)$.
+  \end{enumerate}
+\end{remark}
+
+\begin{definition}
+  For a subset $S \subseteq k[x_1, \dots, x_n]$,
+  its \emph{vanishing set} is
+  \[
+    V(S) = \{
+      a \in \Affine^n : f(a) = 0 \text{ for all } f \in S
+    \}.
+  \]
+  An \emph{affine variety} is a subset of
+  $\Affine^n_k$ of this form.
+\end{definition}
+
+\begin{example}
+  Consider the following:
+  \begin{enumerate}
+    \item $\Affine^n = V(\varnothing) = V(\{0\})$;
+    \item $\varnothing = V(1) = V(k[x_1, \dots, x_n])$;
+    \item a point $a = (a_1, \dots, a_n)$
+      is an affine variety:
+      $V(\{x_1 - a_1, \dots, x_n - a_n\}) = \{a\}$;
+    \item a linear space
+      $L \subseteq \Affine^n$ (it is the
+      kernel of some matrix);
+    \item plane curves $V(f(x, y)) \subseteq \Affine^2_{x, y}$;
+    \item $\mathrm{SL}_n(k) \subseteq \Affine^{n \times n}$ is an
+      affine variety: $\mathrm{SL}_n(k) = V(\det([x_{i, j}]) - 1)$;
+    \item $\mathrm{GL}_n(k)$ (as a set) is an
+      affine variety in $\Affine^{n \times n + 1}$:
+      $\GL_n(k) = V(\det([x_{i, j}])y - 1)$;
+    \item if $X \subseteq \Affine^m$ and
+      $Y \subseteq \Affine^n$ are affine
+      varieties, then $X \times Y \subseteq \Affine^{m + n}$
+      is an affine variety;
+    \item the affine varieties
+      $X \subseteq \Affine^1_k$ are of
+      the form: finite set of points,
+      $\varnothing$, or $\Affine^1_k$.
+  \end{enumerate}
+\end{example}
+
+\begin{prop}[Relation to ideals]
+  If $S \subseteq k[x_1, \dots, x_n]$, then
+  $V(S) = V(\langle S \rangle)$, where
+  $\langle S \rangle$ is the ideal generated
+  by $S$.
+\end{prop}
+
+\begin{proof}
+  Since $S \subseteq \langle S \rangle$,
+  we have $V(\langle S \rangle) \subseteq V(S)$.
+  Conversely, if $f, g \in S$ and
+  $h \in k[x_1, \dots, x_n]$, then
+  $f + g$ and $hf$ vanish on $V(S)$, so
+  we see that
+  $V(S) \subseteq V(\langle S \rangle)$.
+\end{proof}
+
+\begin{remark}
+  The statement implies that if
+  $f_1, \dots, f_r \in k[x_1, \dots, x_n]$,
+  then $V(f_1, \dots, f_r) = V((f_1, \dots, f_n))$.
+  The following are some further
+  applications of the statement:
+  \begin{enumerate}
+    \item affine varities are vanishing
+      loci of ideals;
+    \item if $X \subseteq \Affine^n$ is an
+      affine variety, then $X$ is cut out
+      by finitely many polynomial
+      equations.
+  \end{enumerate}
+  To see the second statement, note that
+  $X = V(I)$ for some ideal $I \le k[x_1, \dots, x_n]$.
+  By the Hilbert basis theorem that
+  $k[x_1, \dots, x_n]$ is Noetherian,
+  there are finitely many
+  $f_1, \dots, f_r \in k[x_1, \dots, x_n]$
+  such that $I = (f_1, \dots, f_r)$.
+  So $X = V(I) = V(f_1, \dots, f_r)$.
+\end{remark}
+
+\begin{prop}[Properties of the vanishing set]
+  For ideals $I, J$ of $k[x_1, \dots, x_n]$,
+  \begin{enumerate}
+    \item if $I \subseteq J$, then
+      $V(J) \subseteq V(I)$;
+    \item $V(I) \cap V(J) = V(I + J)$;
+    \item $V(I) \cup V(J) = V(IJ) = V(I \cap J)$.
+  \end{enumerate}
+\end{prop}
+
+\begin{proof}
+  $(1)$ This follows from definitions
+  and actually holds for general subsets.
+
+  $(2)$ Note that
+  $V(I) \cap V(J) = V(I \cap J) = V(\langle I \cup J \rangle) = V(I + J)$.
+
+  $(3)$
+  We only prove the first equality, the
+  second is similar.
+  Recall that $IJ = \big\{{\sum_{i = 1}^r f_i g_i : f_i \in I, g_i \in J}\big\}$.
+  We have the forwards inclusion
+  $V(I) \cup V(J) \subseteq V(IJ)$ from
+  definitions. For the reverse inclusion,
+  consider a point $x \notin V(I) \cup V(J)$.
+  So there exists $f \in I$ and
+  $g \in J$ such that $f(x), g(x) \ne 0$.
+  So $f(x)g(x) \ne 0$, which implies
+  that $x \notin V(IJ)$. Thus
+  $V(IJ) \subseteq V(I) \cup V(J)$ as well.
+\end{proof}
+
+\begin{remark}
+  The above implies that if $X$ and $Y$
+  are affine varieties in $\Affine^n_k$,
+  then so are $X \cup Y$ and $X \cap Y$.
+\end{remark}
+
+\begin{example}
+  Consider $V(y^2 - x^2, y^2 + x^2) \subseteq \Affine^2$.
+  Note that $(y^2 - x^2, y^2 + x^2) = (x^2, y^2)$,
+  from which we can easily see that
+  $V(y^2 - x^2, y^2 + x^2) = V(x^2, y^2) = \{0\}$.
+\end{example}
+
+\section{Correspondence with Ideals}
+
+\begin{remark}
+  Our goal is to build a correspondence
+  between affine varieties in $\Affine^n_k$
+  and ideals of $k[x_1, \dots, x_n]$.
+\end{remark}
+
+\begin{definition}
+  For a subset $X \subseteq \Affine^n_k$,
+  define
+  \[
+    I(X) = \{f \in k[x_1, \dots, x_n] : f(a) = 0
+      \text{ for all } a \in X\}.
+  \]
+\end{definition}
+
+\begin{remark}
+  Note that $I(X)$ is in fact an ideal of
+  $k[x_1, \dots, x_n]$.
+\end{remark}
+
+\begin{example}
+  Consider the following:
+  \begin{enumerate}
+    \item $I(\varnothing) = k[x_1, \dots, x_n]$;
+    \item $I(\Affine^n_k) = \{0\}$, this
+      will follow from the
+      Hilbert nullstellensatz and
+      relies on $k = \overline{k}$ (for
+      $k = \R$, the polynomial $x^2 + y^2 + 1$ is
+      always nonzero and thus lies in
+      $I(\Affine^n_\R)$);
+    \item for $n = 1$, if
+      $S \subseteq \Affine^1_k$ be an
+      infinite set, then $I(S) = (0)$.
+    \item for $n = 1$, we have
+      $I(V(x^2)) = I(\{0\}) = (x)$.
+  \end{enumerate}
+\end{example}
+
+\begin{remark}
+  What properties does $I(X)$ satisfy?
+\end{remark}
+
+\begin{definition}
+  Let $R$ be a ring.
+  The \emph{radical} of an ideal
+  $J \le R$ is
+  \[
+    \sqrt{J} = \{
+      f \in R : f^n \in J \text{ for some }
+      n > 0
+    \}.
+  \]
+  An ideal $J$ is \emph{radical} if
+  $J = \sqrt{J}$.
+\end{definition}
+
+\begin{exercise}
+  Check the following:
+  \begin{enumerate}
+    \item $\sqrt{J}$ is always an ideal.
+    \item $\sqrt{\sqrt{J}} = \sqrt{J}$.
+    \item An ideal $J \le R$ is radical
+      if and only if $R / J$ is
+      reduced.\footnote{Recall that a ring $R$ is \emph{reduced} if for all nonzero $f \in R$ and positive integers $n$, we have $f^n \ne 0$. It is immediate that an integral domain is reduced.}
+  \end{enumerate}
+\end{exercise}
+
+\begin{prop}
+  If $X \subseteq \Affine^n_k$ is a subset
+  (not necessarily an affine variety),
+  then $I(X)$ is radical.
+\end{prop}
+
+\begin{proof}
+  Fix $f \in k[x_1, \dots, x_n]$. If
+  $f^n \in I(X)$, then $f^n(x) = 0$ for
+  all $x \in X$. This implies
+  $f(x) = 0$ for all $x \in X$, so
+  $f \in I(X)$. Thus we see that
+  $I(X) = \sqrt{I(X)}$.
+\end{proof}
+
+\begin{theorem}[Hilbert's nullstellensatz]
+  \label{thm:hilbert-nullstellensatz}
+  If $J \le k[x_1, \dots, x_n]$ is an
+  ideal, then $I(V(J)) = \sqrt{J}$.
+\end{theorem}
+
+\begin{example}
+  Let $n = 1$, so that $k[x]$ is a PID. Let $f = (x - a_1)^{m_1} \cdots (x - a_r)^{m_r}$.
+  Then
+  \[
+    I(V(f)) = I(\{a_1, \dots, a_r\})
+    = ((x - a_1)^{m_1} \cdots (x - a_r)^{m_r}).
+  \]
+\end{example}
