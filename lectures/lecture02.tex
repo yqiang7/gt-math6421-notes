@@ -1,0 +1,207 @@
+\chapter{Aug.~21 --- Hilbert's Nullstellensatz}
+
+\section{Applications of Hilbert's Nullstellensatz}
+
+\begin{corollary}[Weak nullstellensatz]
+  If $J \le k[x_1, \dots, x_n]$ is an
+  ideal with $J \ne (1)$, then
+  $V(J) \ne \varnothing$. Equivalently,
+  if $f_1, \dots, f_r \in k[x_1, \dots, x_n]$
+  have no common zeros, then there
+  exist $g_1, \dots, g_r \in k[x_1, \dots, x_n]$
+  such that $\sum_{i = 1}^r f_i g_i = 1$.
+\end{corollary}
+
+\begin{proof}
+  Assume otherwise that $V(J) = \varnothing$.
+  Then
+  $I(V(J)) = I(\varnothing) = (1)$,
+  so by Hilbert's nullstellensatz,
+  we have $\sqrt{J} = (1)$. Then
+  $1^n \in J$ for some $n > 0$, so
+  $1 \in J$, i.e. $J = (1)$.
+\end{proof}
+
+\begin{remark}
+  We need
+  $k$ to be algebraically closed.
+  Note that $(1) \ne (x^2 + 1) \le \R[x]$
+  but $V(x^2 + 1) = \varnothing$.
+\end{remark}
+
+\begin{corollary}
+  There is an inclusion-reversing bijection
+  between radical ideals $J \le k[x_1, \dots, x_n]$ and
+  affine varieties $X \subseteq \Affine_k^n$
+  given by $J \mapsto V(J)$ and $X \mapsto I(X)$.
+\end{corollary}
+
+\begin{proof}
+  It suffices to show that these maps
+  are inverses. For $J \le k[x_1, \dots, x_n]$
+  a radical ideal, we have
+  \[
+    I(V(J)) = \sqrt{J} = J
+  \]
+  by Hilbert's nullstellensatz. For
+  $X \subseteq \Affine_k^n$ an affine
+  variety, we clearly have
+  $X \subseteq V(I(X)) X$. For the
+  reverse inclusion, choose
+  an ideal $J \le k[x_1, \dots, x_n]$
+  such that $V(J) = X$. Then
+  $J \subseteq I(X)$, so we have
+  $V(I(X)) \subseteq V(J) = X$.
+  Thus we also get $V(I(X)) = X$.
+\end{proof}
+
+\begin{remark}
+  This implies that maximal ideals in
+  $k[x_1, \dots, x_n]$ correspond to
+  points in $\Affine_k^n$, since
+  maximal ideals correspond to minimal
+  varieties under this bijection.
+\end{remark}
+
+\begin{corollary}
+  If $X_1, X_2$ are affine varieties
+  in $\Affine_k^n$, then
+  \begin{enumerate}
+    \item $I(X_1 \cup X_2) = I(X_1) \cap I(X_2)$;
+    \item $I(X_1 \cap X_2) = \sqrt{I(X_1) + I(X_2)}$.
+  \end{enumerate}
+\end{corollary}
+
+\begin{proof}
+  (1) This follows from definitions.
+
+  (2) Write $I(X_1 \cap X_2) = I(V(I(X_1)) \cap V(I(X_2))) = I(V(I(X_1) + I(X_2))) = \sqrt{I(X_1) + I(X_2)}$.
+\end{proof}
+
+\begin{example}
+  The radical in (2) is necessary. Consider
+  $X_1 = V(y)$ and $X_2 = V(y - x^2)$
+  in $\Affine_k^2$. Then
+  $X_1 \cap X_2 = \{(0, 0)\} \subseteq \Affine_k^2$,
+  so $I(X_1 \cap X_2) = (x, y)$.
+  However, $I(X_1) + I(X_2) = (y) + (y - x^2) = (y, x^2)$.
+
+  Note that it is sometimes better to
+  consider $(y, x^2)$ anyway as
+  it tracks multiplicities.
+  In particular, we can see the multiplicity
+  in the dimension of
+  $k[x, y] / (x, y^2) \cong \overline{1} k \oplus \overline{y} k$
+  as a $k$-vector space.
+\end{example}
+
+\section{Proof of Hilbert's Nullstellensatz}
+
+We will assume the following result
+from commutative algebra without proof:
+\begin{theorem}[Noether normalization]
+  Let $A$ be a finitely generated algebra
+  over a field $k$ with $A$ a domain.
+  Then there is an injective $k$-algebra
+  homomorphism
+  $k[z_1, \dots, z_n] \hookrightarrow A$
+  that is finite, i.e. $A$ is a
+  finitely generated
+  $k[z_1, \dots, z_n]$-module.
+\end{theorem}
+
+\begin{corollary}
+  \label{cor:finite-extension}
+  If $K \subseteq L$ is a field extension
+  and $L$ is a finitely generated $K$-algebra,
+  then $K \subseteq L$ is a finite field
+  extension. In particular,
+  if in addition $K = \overline{K}$, then
+  $K = L$.
+\end{corollary}
+
+\begin{proof}
+  By Noether normalization,
+  there exists a $k$-algebra homomorphism
+  $K[z_1, \dots, z_n] \to L$
+  that is finite. Then by a result from
+  commutative algebra, $L$ is
+  integral over $K[z_1, \dots, z_n]$,
+  which implies that $K[z_1, \dots, z_n]$
+  must also be a field since $L$ is.
+  Thus $n = 0$, so $K \subseteq L$ is
+  a finite extension.
+\end{proof}
+
+\begin{prop}\label{prop:in-maximal-ideal}
+  If $(1) \ne J \le R$ is an ideal, then
+  $J$ is contained in some maximal ideal.
+\end{prop}
+
+\begin{proof}
+  Consider the set $P = \{I \le R : J \subseteq I, I \ne (1)\}$
+  with the partial order given by inclusion.
+  Note that $P \ne \varnothing$ since
+  $J \in P$. Furthermore,
+  every chain in $P$ has an upper bound
+  (for $\{I_\alpha : \alpha \in A\}$ a
+  chain $P$, we can take $\bigcup_{\alpha \in A} I_\alpha$, which one can
+  check is indeed
+  an ideal that lies in $P$; note
+  that $1 \notin I_\alpha$ implies
+  $1 \notin \bigcup_{\alpha \in A} I_\alpha$).
+  So Zorn's lemma implies there is a
+  maximal element in $P$, which is a
+  maximal ideal.
+\end{proof}
+
+\begin{proof}[Proof of Theorem \ref{thm:hilbert-nullstellensatz}]
+  We will proceed in the following
+  steps:
+  \begin{enumerate}
+    \item Show that the maximal ideals
+      of $k[x_1, \dots, x_n]$ are
+      of the form $(x_1 - a_1, \dots, x_n - a_n)$
+      for $a_i \in k$.
+    \item Prove the weak nullstellensatz:
+      If $1 \ne J \le k[x_1, \dots, x_n]$,
+      is an ideal, then $V(J) \ne \varnothing$.
+    \item Prove the (strong) nullstellensatz:
+      $I(V(J)) = \sqrt{J}$
+      for $J \le k[x_1, \dots, x_n]$.
+  \end{enumerate}
+  The most difficult part is the first step
+  and is where we need $k$ to be
+  algebraically closed.\footnote{The statement is false when $k$ is not algebraically closed: $(x^2 + 1)$ is maximal in $\R[x]$.}
+
+  (1) For $a_1, \dots, a_n \in k$, the
+  ideal $(x_1 - a_1, \dots, x_n - a_n)$
+  is maximal (the quotient is $k$, which
+  is a field). Conversely, fix a maximal
+  ideal $\m \in k[x_1, \dots, x_n]$.
+  Since
+  \[
+    k \overset{\phi}{\longrightarrow}
+    k[x_1, \dots, x_n] / \m = L
+  \]
+  is a finitely generated $k$-algebra and
+  $k$ is algebraically closed,
+  $\phi$ is an isomorphism by
+  Corollary \ref{cor:finite-extension}.
+  Choose $a_i \in k$ such that
+  $\phi(a_i) = \overline{x}_i$, so
+  $\overline{x_i - a_i} = 0$ in $L$
+  Then $(x_1 - a_1, \dots, x_n - a_n) \subseteq \m$, so they
+  must be equal since both the left and
+  right hand sides are maximal ideals.
+
+  (2) By Proposition \ref{prop:in-maximal-ideal},
+  $J$ is contained in some maximal ideal
+  $\m$. By (1), $\m = (x_1 - a_1, \dots, x_n - a_n)$
+  for some $a_1, \dots, a_n \in k$.
+  Since $J \subseteq \m$, we have
+  $V(J) \supseteq V(\m) \supseteq \{(a_1, \dots, a_n)\}$, so
+  $J \ne \varnothing$.
+
+  $(3)$ We will prove this next class.
+\end{proof}
