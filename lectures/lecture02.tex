@@ -203,5 +203,40 @@ from commutative algebra without proof:
   $V(J) \supseteq V(\m) \supseteq \{(a_1, \dots, a_n)\}$, so
   $J \ne \varnothing$.
 
-  $(3)$ We will prove this next class.
+  $(3)$ The reverse inclusion follows
+  from definitions. For the forward
+  inclusion, fix $f \in I(V(J))$, and
+  we want to show that $f^n \in J$ for
+  some $n > 0$. Add a new variable $y$
+  and consider
+  \[
+    J_1 = (J, fy - 1) \le k[x_1, \dots, x_n, y].
+  \]
+  Now $V(J_1) = \{(a, b) = (a_1, \dots, a_n, b) \in \Affine_k^{n + 1} : a \in V(J), f(a) b = 1\} = \varnothing$
+  since $f$ vanishes on $V(J)$, so
+  $f(a) b = 0$ for any $b$. Thus by the
+  weak nullstellensatz, $J_1 = (1)$, so
+  $1 = \sum_{i = 1}^r g_i f_i + g_0(fy - 1)$
+  with $f_1, \dots, f_r \in J$
+  and $g_0, \dots, g_r \in k[x_1, \dots, x_n, y]$. Let $N$ be the maximal power
+  of $y$ in the $g_i$. Multiplying by
+  $f^N$, we get
+  \[
+    f^N = \sum_{i = 1}^r G_i(x_1, \dots, x_n, fy) f_i + G_0(x_1, \dots, x_n, fy)(fy - 1)
+  \]
+  with $G_i \in k[x_1, \dots, x_n, fy]$.
+  So if we set $fy = 1$, then we have
+  \[
+    f^N = \sum_{i = 1}^r G_i(x_1, \dots, x_n, 1) f_i + 0 \in J,
+  \]
+  which gives $f \in \sqrt{J}$. To
+  justify this substitution, we can
+  consider the quotient
+  $k[x_1, \dots, x_n, y] / (fy - 1)$.
+  We have a map
+  $k[x_1, \dots, x_n] \to k[x_1, \dots, x_n, y] / (fy - 1)$,
+  which is injective since $(fy - 1)$
+  does not lie in $k[x_1, \dots, x_n]$,
+  so an equality in the quotient implies
+  an equality in $k[x_1, \dots, x_n]$.
 \end{proof}

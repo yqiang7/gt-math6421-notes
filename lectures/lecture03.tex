@@ -1,0 +1,239 @@
+\chapter{Aug.~26 --- The Zariski Topology}
+
+\section{Polynomial Functions and Subvarieties}
+
+\begin{remark}
+  Recall that a polynomial
+  $f \in k[x_1, \dots, x_n]$
+  gives a function
+  $\Affine_k^n \to k$ by
+  $a \mapsto f(a)$.
+\end{remark}
+
+\begin{prop}
+  If $f, g \in k[x_1, \dots, x_n]$
+  give the same function
+  $\Affine_k^n \to k$, then
+  $f = g$ in $k[x_1, \dots, x_n]$.
+\end{prop}
+
+\begin{proof}
+  Assume $f = g$ as polynomial functions.
+  Then $V(f - g) = \Affine_k^n$, so
+  $\sqrt{(f - g)} = I(\Affine_k^n) = (0)$
+  by Hilbert's nullstellensatz (note that
+  we can also prove $I(\Affine_k^n) = (0)$
+  directly, it is enough to have $k$ be an infinite field for this part). Thus
+  $f - g = 0$, so $f = g$ in $k[x_1, \dots, x_n]$.
+\end{proof}
+
+\begin{remark}
+  In the above proposition, we need
+  $k$ to be an infinite field (e.g.
+  if $k = \overline{k}$): Otherwise,
+  there are only finitely many functions
+  $\Affine_k^n \to k$, but infinitely
+  many polynomials in $k[x_1, \dots, x_n]$.
+\end{remark}
+
+\begin{remark}
+  The set of polynomials functions
+  $\Affine_k^n \to k$ form a ring, and
+  the above proposition implies that this
+  ring is isomorphic to $k[x_1, \dots, x_n]$.
+\end{remark}
+
+\begin{definition}
+  A \emph{polynomial function} on an
+  affine variety $X \subseteq \Affine_k^n$
+  is a function $\varphi : X \to k$ such
+  that there exists $f \in k[x_1, \dots, x_n]$
+  with $\varphi(a) = f(a)$ for
+  every $a \in X$.
+\end{definition}
+
+\begin{definition}
+  The \emph{coordinate ring} of $X$ is
+  $A(X) = \{f : X \to k : f \text{ is a polynomial function}\}$,
+  which is a ring under pointwise addition
+  and multiplication.
+\end{definition}
+
+\begin{remark}
+  Observe that there exists a surjective
+  ring homomorphism
+  \begin{align*}
+    k[x_1, \dots, x_n] &\longrightarrow A(X) \\
+    f &\longmapsto (a \mapsto f(a))
+  \end{align*}
+  with kernel $I(X)$. Thus we have
+  $A(X) \cong k[x_1, \dots, x_n] / I(X)$.
+\end{remark}
+
+\begin{remark}
+  We can now replace $\Affine_k^n$ and
+  $k[x_1, \dots, x_n]$
+  by $X$ and $A(X)$ to study
+  \emph{subvarieties} of $X$.
+\end{remark}
+
+\begin{definition}
+  Let $X \subseteq \Affine_k^n$
+  be an affine variety.
+  If $S \subseteq A(X)$
+  is a subset, then define
+  \[
+    V_X(S) = \{a \in X : f(a) = 0 \text{ for all } f \in S\}.
+  \]
+  A subset of $X$ of this form is called
+  an \emph{affine subvariety} of $X$.
+  (Equivalently, these are the same as
+  an affine variety $Y \subseteq \Affine_k^n$
+  such that $Y \subseteq X$.) For $Y \subseteq X$ a
+  subvariety, define
+  \[
+    I_X(Y) = \{f \in A(X) : f(a) = 0 \text{ for all } a \in Y\}.
+  \]
+\end{definition}
+
+\begin{prop}
+  There is a bijective correspondence
+  between radical ideals in $A(X)$ and
+  affine subvarieties of $X$
+  given by $J \mapsto V_X(J)$ and
+  $Y \mapsto I_X(Y)$.
+\end{prop}
+
+\begin{proof}
+  See Homework 2.
+\end{proof}
+
+\section{The Zariski Topology}
+
+\begin{definition}
+  The \emph{Zariski topology} on
+  $\Affine_k^n$ is the topology with
+  closed sets $V(I) \subseteq \Affine_k^n$,
+  where $I$ is an ideal in
+  $k[x_1, \dots, x_n]$. (Equivalently,
+  the closed sets are the affine varieties
+  in $\Affine_k^n$.)
+\end{definition}
+
+\begin{remark}
+  Note the following:
+  \begin{enumerate}
+    \item On $\Affine_k^1$, the closed
+      sets are of the form: $\varnothing$,
+      $\Affine_k^1$, or finite collections
+      of points.
+    \item When $k = \C$, then
+      $X \subseteq \Affine_\C^n$ being
+      Zariski closed implies that
+      $X$ is closed in the analytic
+      topology on $\Affine_\C^n$.
+      In particular, the Zariski topology
+      is coarser than the analytic topology.
+    \item On $\Affine_k^2$, the closed
+      sets are of the form:
+      $\varnothing$, $\Affine_k^2$,
+      finite collections of points, plane
+      curves, and their finite unions.
+  \end{enumerate}
+\end{remark}
+
+\begin{prop}
+  The Zariski topology on $\Affine_k^n$
+  is indeed a topology.
+\end{prop}
+
+\begin{proof}
+  First note that $\varnothing = V((1))$ and
+  $\Affine_k^n = V((0))$ are closed.
+  For arbitrary intersections, note
+  that $\bigcap_\alpha V(I_\alpha) = V(\sum_\alpha I_\alpha)$, and
+  for finite unions, note that
+  $\bigcup_{i = 1}^r V(I_i) = V(I_1 \cdots I_r)$.
+\end{proof}
+
+\begin{definition}
+  If $X \subseteq \Affine_k^n$ is
+  an affine variety, then we can define the
+  \emph{Zariski topology} on $X$ in
+  the following two equivalent ways:
+  \begin{enumerate}
+    \item take the subspace topology
+      from the Zariski topology on
+      $\Affine_k^n$;
+    \item take the closed
+      sets of $X$ to be of the form
+      $V_X(I)$ for some ideal $I \le A(X)$.
+  \end{enumerate}
+  This is because an affine subvariety
+  of $X$ is precisely the
+  intersection of $X$ with an affine
+  variety in $\Affine_k^n$.
+\end{definition}
+
+\begin{remark}
+  Our goal now is to relate properties
+  of the Zariski topology on $X$ to the
+  ring $A(X)$,
+  and then to the ideal $I(X) \le k[x_1, \dots, x_n]$.
+\end{remark}
+
+\begin{definition}
+  A topological space $X$ is \emph{reducible}
+  if we can write $X = X_1 \cup X_2$
+  for some closed sets $X_1, X_2 \subsetneq X$.
+  Otherwise, $X$ is called \emph{irreducible}.
+\end{definition}
+
+\begin{example}
+  The plane curve
+  $X = V(y^2 - x^2y) = V(y) \cup V(y - x^2)$
+  is reducible.
+\end{example}
+
+\begin{remark}
+  Note the following:
+  \begin{enumerate}
+    \item A disconnected topological space
+      is reducible.
+    \item Many topologies are reducible,
+      e.g. $\C^n$, $\R^n$ with the analytic
+      topology.
+    \item If $X$ is irreducible and
+      $U \subseteq X$ is a nonempty open
+      set, then $\overline{U} = X$ (we have
+      $\overline{U} \cup (X \setminus U) = X$).
+  \end{enumerate}
+\end{remark}
+
+\begin{prop}
+  Let $X \subseteq \Affine^n$ be an
+  affine variety. Then the following are equivalent:
+  \begin{enumerate}
+    \item $X$ is irreducible;
+    \item $I(X) \le k[x_1, \dots, x_n]$
+      is a prime ideal;
+    \item the coordinate ring $A(X)$
+      is an integral domain.
+  \end{enumerate}
+\end{prop}
+
+\begin{example}
+  We have the following:
+  \begin{enumerate}
+    \item $\Affine_k^n$ is irreducible
+      as $A(\Affine_k^n) = k[x_1, \dots, x_n]$,
+      which is an integral domain.
+    \item A \emph{hypersurface}
+      $X \subseteq \Affine_k^n$ is
+      an affine variety with $I(X) = (f)$
+      for some $f \in k[x_1, \dots, x_n]$.
+      Then $A$ is irreducible if and only
+      if $(f)$ is prime, if and only if
+      $f$ is irreducible.\footnote{Note that any prime ideal is radical.}
+  \end{enumerate}
+\end{example}
