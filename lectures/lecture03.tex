@@ -156,6 +156,20 @@
   $\bigcup_{i = 1}^r V(I_i) = V(I_1 \cdots I_r)$.
 \end{proof}
 
+\begin{example}
+  The Zariski topology on
+  $\Affine_k^{n + m}$ is in general
+  \emph{not} the product topology
+  of the Zariski topologies on
+  $\Affine_k^n$ and $\Affine_k^m$.
+  Consider $V(y - x^2) \subseteq \Affine_k^2$,
+  which is a closed set in the Zariski
+  topology, but the only closed
+  sets in $\Affine_k^1$ are either
+  $\varnothing$, $\Affine_k^1$,
+  or finite.
+\end{example}
+
 \begin{definition}
   If $X \subseteq \Affine_k^n$ is
   an affine variety, then we can define the
@@ -209,31 +223,3 @@
       $\overline{U} \cup (X \setminus U) = X$).
   \end{enumerate}
 \end{remark}
-
-\begin{prop}
-  Let $X \subseteq \Affine^n$ be an
-  affine variety. Then the following are equivalent:
-  \begin{enumerate}
-    \item $X$ is irreducible;
-    \item $I(X) \le k[x_1, \dots, x_n]$
-      is a prime ideal;
-    \item the coordinate ring $A(X)$
-      is an integral domain.
-  \end{enumerate}
-\end{prop}
-
-\begin{example}
-  We have the following:
-  \begin{enumerate}
-    \item $\Affine_k^n$ is irreducible
-      as $A(\Affine_k^n) = k[x_1, \dots, x_n]$,
-      which is an integral domain.
-    \item A \emph{hypersurface}
-      $X \subseteq \Affine_k^n$ is
-      an affine variety with $I(X) = (f)$
-      for some $f \in k[x_1, \dots, x_n]$.
-      Then $A$ is irreducible if and only
-      if $(f)$ is prime, if and only if
-      $f$ is irreducible.\footnote{Note that any prime ideal is radical.}
-  \end{enumerate}
-\end{example}
