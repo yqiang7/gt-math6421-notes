@@ -1,0 +1,278 @@
+\chapter{Sept.~2 --- Dimension}
+
+\section{More on Dimension}
+
+\begin{remark}
+  Recall the following correspondence
+  from before:
+  If $X \subseteq \Affine_k^n$ is an
+  affine variety, then there exists a
+  bijection between the
+  irreducible closed subsets
+  $Y \subseteq X$ and the prime ideals
+  $\p \le A(X)$.
+\end{remark}
+
+\begin{definition}
+  For a ring $A$, the \emph{(Krull) dimension}
+  of $A$, denoted $\dim A$, is the
+  supremum of the $n$ such that there
+  exists a chain of prime ideals
+  \[
+    A \supseteq \p_0 \supsetneq \p_1 \supsetneq \cdots \supsetneq \p_n.
+  \]
+  For a prime ideal $\q \le A$, the
+  \emph{height} of $\q$, denoted
+  $\height \q$, is the supremum of the
+  $n$ as above with $\p_0 = \q$.
+\end{definition}
+
+\begin{remark}
+  If $X$ is an affine variety, then
+  we have the following:
+  \begin{enumerate}
+    \item $\dim X = \dim A(X)$;
+    \item for $Y \subseteq X$ a
+      closed irreducible subset,
+      $\codim_X Y = \height I_X(Y)$.
+  \end{enumerate}
+  These properties follow from the
+  inclusion-reversing correspondence.
+\end{remark}
+
+\begin{definition}
+  Let $K \subseteq L$ be a field extension.
+  \begin{enumerate}
+    \item A collection of elements
+      $\{z_i : i \in I\} \subseteq L$
+      is a \emph{transcendence basis}
+      of $K \subseteq L$ if
+      the $z_i$ are algebraically
+      independent (i.e. $K(x_i : i \in I) \xrightarrow{\cong} K(z_i : i \in I)$ by $x_i \mapsto z_i$)
+      and $K(z_i : i \in I) \subseteq L$
+      is algebraic.
+    \item The \emph{transcendence degree}
+      $\trdeg_K L$ is the cardinality
+      of a transcendence basis.
+  \end{enumerate}
+\end{definition}
+
+\begin{theorem}[Dimension theory]
+  Let $A$ be a finitely generated
+  $k$-algebra that is a domain.
+  Then
+  \begin{enumerate}
+    \item $\dim A = \trdeg_k \Frac(A)$;
+    \item for any prime ideal
+      $\p \le A$, we have
+      $\height \p + \dim A / \p = \dim A$;
+    \item all maximal chains of
+      prime ideals
+      $A \supseteq \p_0 \supsetneq \p_1 \supsetneq \cdots \supsetneq \p_n$
+      are of the same length.
+  \end{enumerate}
+\end{theorem}
+
+\begin{remark}
+  The following are consequences of the
+  above result from commutative algebra:
+  \begin{enumerate}
+    \item $\dim_k \Affine_k^n = \dim k[x_1, \dots, x_n] = \trdeg_k k(x_1, \dots, x_n) = n$.
+    \item If $X$ is irreducible, then
+      $A(X)$ is a domain, so for
+      $x \in X$, we have
+      \[
+        \codim_X \{x\}
+        = \height I(\{x\})
+        = \dim A(X) - \dim A(X) / I(\{x\})
+        = \dim A(X) = \dim X,
+      \]
+      where we note that $A(X) / I(\{x\}) \cong k$
+      is a field.
+    \item If $X$ is an irreducible affine
+      variety and $U \subseteq X$ is a
+      nonempty open subset, then
+      \[
+        \dim U = \sup_{x \in U} \codim_U \{x\}
+        = \sup_{x \in U} \codim_X \{x\}
+        = \dim X.
+      \]
+      This follows since we can
+      pass from a chain in $U$ to a
+      chain in $X$ by taking closures.
+    \item If $X$ is an irreducible
+      affine variety and $Z \subseteq X$
+      is an irreducible closed subset, then
+      \[
+        \dim Z = \dim X - \codim_X Z.
+      \]
+  \end{enumerate}
+  Note that (2)-(4) can be false if
+  $X$ is not irreducible. To contradict
+  (4),
+  let $X = V(x, y) \cup V(z) \subseteq \Affine_k^3$ with
+  $Z = V(x, y)$. Then we have
+  $\dim X = 2$, $\dim Z = 1$, $\codim_X Z = 0$.
+\end{remark}
+
+\section{Hypersurfaces}
+
+\begin{remark}
+  We now want to study hypersurfaces.
+\end{remark}
+
+\begin{theorem}[Krull's Hauptidealsatz]
+  If $A$ is a Noetherian ring and
+  $f \in A$ is nonzero and a non-unit,
+  then every minimal prime ideal containing
+  $f$ has height $1$.
+\end{theorem}
+
+\begin{corollary}\label{cor:hypersurface-dim}
+  If $X \subseteq \Affine_k^n$ is an
+  irreducible affine variety and
+  $f \in A(X)$ is a nonzero non-unit, then
+  \[
+    \dim Z = \dim X - 1
+  \]
+  for every irreducible component
+  $Z$ of $V_X(f)$.
+\end{corollary}
+
+\begin{proof}
+  Since $X$ is irreducible, $A(X)$ is a
+  domain. So there is a correspondence
+  between the minimal prime ideals
+  $f \in \p \subsetneq A(X)$ and the
+  minimal irreducible closed subsets
+  $Z \supseteq V_X(f)$, which corresponds
+  to the irreducible components
+  $Z$ of $V_X(f)$. For such a component
+  $Z$, we know
+  \[
+    \dim Z = \dim Z - \codim_X Z
+    = \dim X - \height I(Z)
+    = \dim X - 1
+  \]
+  by Krull's Hauptidealsatz, which is
+  the desired result.
+\end{proof}
+
+\begin{example}
+  Corollary \ref{cor:hypersurface-dim} implies that if
+  $f \in k[x_1, \dots, x_n]$ is
+  non-constant, then
+  \[
+    \dim V(f) = \dim \Affine_k^n - 1
+    = n - 1.
+  \]
+\end{example}
+
+\begin{theorem}
+  An irreducible affine variety
+  $Y \subseteq \Affine_k^n$ has
+  $\dim Y = n - 1$ if and only if
+  $Y = V(f)$ for some non-constant
+  polynomial $f \in k[x_1, \dots, x_n]$.
+\end{theorem}
+
+\begin{proof}
+  $(\Leftarrow)$ This
+  was Corollary \ref{cor:hypersurface-dim}.
+
+  $(\Rightarrow)$ We will use that
+  $A(\Affine_k^n) = k[x_1, \dots, x_n]$
+  is a UFD. Since $Y$ is irreducible
+  and $\dim Y = n - 1$,
+  \[
+    \height I(Y)
+    = \codim_{\Affine_k^n} Y
+    = \dim \Affine_k^n - \dim Y
+    = 1.
+  \]
+  Since $(0) \subsetneq I(Y) \subsetneq k[x_1, \dots, x_n]$,
+  there exists a non-constant
+  $f \in k[x_1, \dots, x_n]$ with
+  $f \in I(Y)$. Write
+  \[
+    f = f_1 \cdots f_r
+  \]
+  with $f_i$ irreducible by
+  unique factorization, and note that
+  the $f_i$ are also prime since we are in
+  a UFD. Since $I(Y)$ is prime,
+  some $f_i$ is in $I(Y)$, so we have
+  the inclusions
+  \[
+    (0) \subsetneq (f_i) \subseteq I(Y).
+  \]
+  Since $\height I(Y) = 1$, we must have
+  $(f_i) = I(Y)$, so
+  $Y = V(I(Y)) = V(f_i)$.
+\end{proof}
+
+\section{Regular Functions}
+
+\begin{definition}
+  Let $X$ be an affine variety and
+  $U \subseteq X$ open. A function
+  $\varphi : U \to k$ is \emph{regular} if
+  for each $a \in U$, there exists an
+  open neighborhood $a \in U_a \subseteq U$
+  and $f, g \in A(X)$ such that
+  \[
+    \varphi(x) = \frac{g(x)}{f(x)},
+    \quad f(x) \ne 0,
+    \quad \text{for all } x \in U_a.
+  \]
+  Define $\OO_X(U) = \{\varphi : U \to k \mid \varphi \text{ is a regular function on } U\}$.
+\end{definition}
+
+\begin{exercise}
+  Check that $\OO_X(U)$ is a
+  ring under pointwise addition and
+  multiplication of outputs.
+\end{exercise}
+
+\begin{remark}
+  To patch open sets together, we will
+  later need the notion of a \emph{morphism},
+  and
+  a morphism $U \to Y \subseteq \Affine_k^m$
+  should be given by
+  \[
+    x \longmapsto (\varphi_1(x), \dots, \varphi_m(x))
+  \]
+  with $\varphi_i$ regular functions on $U$.
+\end{remark}
+
+\begin{example}
+  We have the following:
+  \begin{enumerate}
+    \item If $X \subseteq \Affine_k^n$
+      is an affine variety, then any
+      $\varphi \in A(X)$ is regular.
+      Furthermore, we get an injective ring homomorphism
+      $A(X) \to \OO_X(X)$. We will see that
+      this is an isomorphism.
+    \item If $X = \Affine_k^1$ and
+      $U = \Affine_k^1 \setminus \{0\}$,
+      then for any $n \ge 0$ and
+      $g \in k[x]$, the function
+      $g / x^n$ is regular on $U$.
+    \item Let $X = V(x_1x_4 - x_2 x_3) \subseteq \Affine_k^4$ and
+      $U = X \setminus V(x_2, x_4)$.
+      Then the following map is regular:
+      \begin{align*}
+        \varphi : U &\longrightarrow k \\
+        (x_1, x_2, x_3, x_4) &\longmapsto
+        \begin{cases}
+          x_1 / x_2, & \text{if } x_2 \ne 0, \\
+          x_3 / x_4, & \text{if } x_4 \ne 0.
+        \end{cases}
+      \end{align*}
+      Note that on $U \setminus V(x_2 x_4)$,
+      we have $x_1 / x_2 = x_3 / x_4$ since
+      $x_1 x_4 = x_2 x_3$ on $X$.
+  \end{enumerate}
+\end{example}
