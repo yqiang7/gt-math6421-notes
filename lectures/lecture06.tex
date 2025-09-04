@@ -1,0 +1,334 @@
+\chapter{Sept.~4 --- Regular Functions}
+
+\section{Properties of Regular Functions}
+
+\begin{prop}\label{prop:regular-function-properties}
+  Let $X$ be an affine variety and
+  $U \subseteq X$ open. Then:
+  \begin{enumerate}
+    \item if $\varphi \in \OO_X(U)$,
+      then $V(\varphi) = \{x \in U : \varphi(x) = 0\}$
+      is closed in $U$;
+    \item (identity principle) If
+      $X$ is irreducible, $U \subseteq X$
+      is nonempty and open, and
+      $\varphi, \psi \in \OO_X(U)$ with
+      $\varphi|_W = \psi|_W$ for some
+      $W \subseteq U$ nonempty and open,
+      then $\varphi = \psi$ in $\OO_X(U)$.
+  \end{enumerate}
+\end{prop}
+
+\begin{proof}
+  $(1)$ It suffices to show that
+  $U \setminus V(\varphi)$ is open in $U$.
+  Fix $a \in U \setminus V(\varphi)$.
+  Since $\varphi$ is regular, there exists
+  an open neighborhood $a \in U_a \subseteq U$
+  and $f_a, g_a \in A(X)$ such that
+  \[
+    \varphi|_{U_a} = \frac{g_a}{f_a}.
+  \]
+  So $a \in \{g_a \ne 0\} \cap U_a \subseteq U \setminus V(\varphi)$. This is
+  an open set containing $a$ in
+  $U \setminus V(\varphi)$, so
+  $U \setminus V(\varphi)$ is open.
+
+  $(2)$ Since $X$ is irreducible, $U$
+  is also irreducible. The locus
+  $\{x \in U : \varphi(x) = \psi(x)\} = V(\varphi - \psi)$
+  is closed in $U$ by $(1)$. It also
+  contains $W$. Since $W$ is dense
+  (it is a nonempty open set in an irreducible
+  topological space), we must have
+  $V(\varphi - \psi) = U$.
+  This proves the claim.
+\end{proof}
+
+\begin{example}
+  In $(2)$ of Proposition \ref{prop:regular-function-properties}, the
+  assumption that $X$ is irreducible is
+  necessary. Consider
+  \[
+    U = X = V(xy) \subseteq \Affine_k^2
+    \quad \text{and} \quad
+    W = V(xy) \setminus V(x).
+  \]
+  Then the regular functions
+  $\varphi = x$ and $\psi = x + y$
+  agree on $W$ but are not equal on $U$.
+\end{example}
+
+\section{Distinguished Open Sets}
+\begin{remark}
+  We will see that an affine variety
+  has a basis of open sets on which
+  we can compute $\OO_X(U)$.
+\end{remark}
+
+\begin{definition}
+  A \emph{distinguished open set} of
+  an affine variety $X$ is a subset of
+  the form
+  \[
+    D(f) = X \setminus V(f)
+  \]
+  for some polynomial function $f \in A(X)$.
+\end{definition}
+
+\begin{remark}
+  We have the following:
+  \begin{enumerate}
+    \item The $D(f)$ are closed under
+      (finite) intersection: $D(fg) = D(f) \cap D(g)$.
+    \item The $D(f)$ form a basis for the
+      Zariski topology on $X$: If $U \subseteq X$ is
+      open, then $U = X \setminus V(f_1, \dots, f_r)$
+      for some $f_1, \dots, f_r \in A(X)$
+      (since $X$ is Noetherian). So
+      $U = D(f_1) \cup \cdots \cup D(f_r)$.
+  \end{enumerate}
+\end{remark}
+
+\begin{remark}
+  We will view $D(f)$ as
+  ``small open sets'' (under mild
+  assumptions, $\codim_X (X \setminus D(f)) = 1$).
+\end{remark}
+
+\begin{theorem}\label{thm:regular-functions-on-distinguished-open-sets}
+  If $X$ is an affine variety and
+  $f \in A(X)$, then
+  \[
+    \OO_X(D(f))
+    = \left\{
+      \frac{g}{f^m} : g \in A(X), m \ge 0
+    \right\}.
+  \]
+\end{theorem}
+
+\begin{proof}
+  We have an injective ring homomorphism
+  \[
+    \left\{
+      \frac{g}{f^m} : g \in A(X), m \ge 0
+    \right\}
+    \longrightarrow \OO_X(D(f)),
+  \]
+  it suffices to show this map is
+  surjective. Fix $\varphi \in \OO_X(D(f))$.
+  For any $a \in D(f)$, there exists an
+  open neighborhood $a \in U_a \subseteq D(f)$
+  and $f_a, g_a \in A(X)$ such that
+  $\varphi|_{U_a} = g_a / f_a$.
+  We may further assume that
+  \begin{enumerate}
+    \item $U_a = D(h_a)$ for
+      some $h_a \in A(X)$ (by shrinking
+      $U_a$ if necessary, since the
+      $D(h)$ form a basis);
+    \item $h_a = f_a$ (by rewriting
+      $g_a / f_a = g_a h_a / f_a h_a$ and
+      replacing $h_a, f_a$ with $f_a h_a$).
+  \end{enumerate}
+  Then for $a, b \in D(f)$, we have
+  $f_a g_b = f_b g_a$ on $D(f_a) \cap D(f_b)$.
+  Since both the left and right hand
+  sides
+  vanish on $X \setminus (D(f_a) \cap D(f_b))$,
+  we have $f_a g_b = f_b g_a$ in $A(X)$.
+  Now we can write
+  \[
+    V(f) = \bigcap_{a \in D(f)} V(f_a)
+    = V(f_a : a \in D(f)),
+  \]
+  so $f \in I(V(f_a : a \in D(f)))$.
+  By the Nullstellensatz, there exists
+  $n \ge 0$ such that
+  \[
+    f^n = \sum_{a \in D(f)} k_a f_a, \quad
+    k_a \in A(X),
+  \]
+  where only finitely many of the $k_a$
+  are nonzero. Set
+  $g = \sum_{a \in D(f)} k_a g_a$, and
+  we claim that $\varphi = g / f^n$. To
+  see this, note that on $U_b$, we have
+  $\varphi|_{U_b} = g_b / f_b$. Now
+  since $f_a g_b = f_b g_a$, we have
+  \[
+    g f_b
+    = \sum_{a \in D(f)} k_a g_a f_b
+    = \sum_{a \in D(f)} k_a f_a g_b
+    = f^n g_b,
+  \]
+  which shows that $\varphi|_{U_b} = (g / f^n)|_{U_b}$.
+  Since this holds for any $U_b$,
+  we have $\varphi = g / f^n$ in
+  $\OO_X(D(f))$.
+\end{proof}
+
+\begin{remark}
+  Theorem \ref{thm:regular-functions-on-distinguished-open-sets}
+  has the following consequences:
+  \begin{enumerate}
+    \item The $f = 1$ case implies that the
+    natural ring homomorphism
+    $A(X) \to \OO_X(X)$ is surjective
+    and hence an isomorphism (note that
+    $D(1) = X$).
+    \item We will see that
+      $\OO_X(D(f)) \cong A(X)_f$,
+      the \emph{localization} of $A(X)$ at $f$.
+  \end{enumerate}
+\end{remark}
+
+\begin{example}
+  How do we compute $\OO_X(U)$ on
+  non-distinguished open sets? Consider
+  \[
+    X = \Affine_k^2 \quad \text{and} \quad
+    U = \Affine_k^2 \setminus \{(0,0)\}.
+  \]
+  Note that $U$ is never a distinguished
+  open set. We claim that the ring
+  homomorphism
+  \[
+    k[x, y] \longrightarrow \OO_{\Affine_k^2}(\Affine_k^2 \setminus \{(0,0)\})
+  \]
+  is an isomorphism. The map is
+  injective by the identity principle,
+  so it suffices to show surjectivity.
+  The strategy is use
+  $U = D(x) \cup D(y)$ (in general, cover
+  $U$ by basis elements). Fix
+  $\varphi : U \to k$ regular, so
+  \begin{align*}
+    \varphi|_{D(x)}
+    = \frac{f}{x^m} \quad &\text{for some } f \in k[x, y], m \ge 0 \\
+    \varphi|_{D(y)}
+    = \frac{g}{y^n} \quad & \text{for some } g \in k[x, y], n \ge 0.
+  \end{align*}
+  Since we are in a UFD, we may assume
+  that
+  $x \nmid f$ and $y \nmid g$.
+  Now $fy^n = gx^m$ on $D(y) \cap D(x)$,
+  so by the identity principle,
+  $fy^n = gx^m$ on $\Affine_k^2$, so
+  $fy^n = gx^m$ in $k[x, y]$.
+  Using that $y \nmid g$, $x \nmid f$,
+  and that $k[x, y]$ is a UFD, we must
+  have $n = m = 0$, hence $f = g$. In
+  particular, we have
+  \[
+    \varphi|_{D(x)} = \varphi|_{D(y)} = f,
+  \]
+  so the map $k[x, y] \to \OO_{X}(U)$
+  is surjective.
+\end{example}
+
+\section{Localization}
+
+\begin{remark}
+  We want to invert a subset of a ring,
+  in particular \emph{multiplicative systems}.
+\end{remark}
+
+\begin{definition}
+  A \emph{multiplicative system}
+  of a ring $A$ is a subset such that
+  \begin{enumerate}
+    \item $1 \in S$;
+    \item $S$ is closed under
+      multiplication.
+  \end{enumerate}
+\end{definition}
+
+\begin{example}
+  The following examples of $S$ are
+  multiplicative systems:
+  \begin{enumerate}
+    \item $S = A$ or $S = \{1\}$;
+    \item if $\p \le A$ is a prime ideal,
+      then $S = A \setminus \p$;
+    \item if $f \in A$, then
+      $S = \{f^m : m \ge 0\}$.
+  \end{enumerate}
+\end{example}
+
+\begin{definition}
+  The \emph{localization} of a ring
+  $A$ at a multiplicative system $S$ is
+  the ring
+  \[
+    S^{-1} A
+    = \left\{\frac{a}{s} : a \in A, s \in S\right\}/\sim
+  \]
+  where the $a / s$ are formal symbols
+  with $a / s \sim a' / s'$ if
+  $t(as' - a' s) = 0$ for some
+  $t \in S$.\footnote{Note that if $A$ is a domain and $0 \notin S$, then this condition is equivalent to $as' = a's$.}
+  The operations are given by
+  the usual addition and multiplication
+  of fractions:
+  \[
+    \frac{a}{s} \cdot \frac{a'}{s'}
+    = \frac{a a'}{s s'} \quad \text{and} \quad
+    \frac{a}{s} + \frac{a'}{s'}
+    = \frac{a s' + a' s}{s s'}.
+  \]
+  Check as an exercise that these
+  operations respect the equivalence
+  relation.
+\end{definition}
+
+\begin{example}
+  The following are examples of localization:
+  \begin{enumerate}
+    \item If $A$ is a domain and
+      $S = A \setminus \{0\}$, then
+      $S^{-1} A = \Frac A$.
+    \item If $S = \langle f \rangle = \{1, f, f^2, \dots\}$, then
+      we will write
+      $A_f = S^{-1} A$.
+    \item If $S = A \setminus \p$ for
+      a prime ideal $\p$, then
+      we will write $A_\p = S^{-1} A$.
+  \end{enumerate}
+\end{example}
+
+\begin{prop}
+  We have the following properties
+  of localization:
+  \begin{enumerate}
+    \item (Universal property of localization)
+      For any ring homomorphism
+      $\varphi : A \to B$ such that
+      $\varphi(s)$ for all $s \in S$,
+      then there exists a unique
+      ring homomorphism which makes
+      the following diagram commute:
+      \begin{center}
+      \begin{tikzcd}
+        A \ar[rr, "\varphi"] \ar[rd, swap, "\pi : a \mapsto a / 1"] & & B \\
+        & S^{-1} A \ar[ur, dashed, swap, "\exists !"]
+      \end{tikzcd}
+      \end{center}
+    \item There is a bijection
+      between the prime ideals
+      $\p \le A$ with $\p \cap S = \varnothing$
+      and the prime ideals $\q \le S^{-1} A$
+      given by $\p \mapsto \pi(\p) S^{-1} A$
+      with inverse $\q \mapsto \pi^{-1}(\q)$,
+      where $\pi : A \to S^{-1} A$ is
+      the map $a \mapsto a / 1$.
+  \end{enumerate}
+\end{prop}
+
+\begin{remark}
+  In more generality, for an $A$-module $M$, we
+  can define the localization $S^{-1} M$,
+  which is an $S^{-1} A$-module. This gives
+  a functor $\mathrm{Mod}_A \to \mathrm{Mod}_{S^{-1}A}$
+  which is exact.
+\end{remark}
