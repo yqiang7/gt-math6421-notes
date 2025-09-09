@@ -1,0 +1,331 @@
+\chapter{Sept.~9 --- Germs and Sheaves}
+
+\section{More on Localization}
+\begin{prop}
+  If $X$ is an affine variety and
+  $f \in A(X)$ is nonzero, then
+  $\OO_X(D(f)) \cong A(X)_f$.
+\end{prop}
+
+\begin{proof}
+  We define a ring homomorphism as follows:
+  \begin{align*}
+    A(X)_f &\longrightarrow \OO_X(D(f)) \\
+    \frac{g}{f^m} &\longmapsto \left( x \mapsto \frac{g(x)}{f^m(x)} \right).
+  \end{align*}
+  To check that this is well-defined,
+  assume $g / f^m \sim h / f^n$ in
+  $A(X)_f$. So there exists $k \ge 0$
+  such that
+  \[
+    f^k (g f^n - h f^m) = 0
+    \quad \text{in } A(X).
+  \]
+  So $gf^n - hf^m = 0$ as functions
+  $D(f) \to k$, so $g / f^m = h / f^n$
+  as functions $D(f) \to k$. Thus
+  their images agree in $\OO_X(D(f))$, so
+  the map is well-defined.
+
+  Surjectivity follows from the argument
+  from last time. For injectivity, assume
+  $g / f^m = 0$ as functions
+  $D(f) \to k$ with $g \in A(X)$.
+  Then $fg = 0$ in $A(X)$, so
+$g / f^m \sim 0 / 1$ in $A(X)_f$.
+\end{proof}
+
+\section{Germs of Functions}
+
+\begin{definition}
+  Let $p \in X$ be a point on an
+  affine variety.
+  \begin{enumerate}
+    \item A \emph{germ} of a regular
+      function of $X$ at $p$ is a pair
+      $(U, f)$ such that $x \in U \subseteq X$
+      is open and $f$ is a regular
+      function $U \to k$, up to the
+      equivalence relation
+      $(U, \varphi) \sim (V, \psi)$
+      if there exists an open
+      set $x \in W \subseteq U \cap V$
+      such that $\varphi|_W = \psi|_W$.
+    \item Define
+      $\OO_{X, p} = \{\text{germs of regular functions of $X$ at $p$}\}$.
+  \end{enumerate}
+\end{definition}
+
+\begin{exercise}
+  Check that $\OO_{X, p}$ is a ring
+  with operations
+  \begin{align*}
+    (U, \varphi) \cdot (V, \psi)
+    &= (U \cap V, \varphi|_{U \cap V} \cdot \psi|_{U \cap V}), \\
+    (U, \varphi) + (V, \psi)
+    &= (U \cap V, \varphi|_{U \cap V} + \psi|_{U \cap V}),
+  \end{align*}
+  with the zero function as the
+  zero element and the constant $1$
+  function as the unit element.
+\end{exercise}
+
+\begin{lemma}
+  $\OO_{X, p}$ is a local
+  ring with unique maximal ideal
+  $\m_p = \{(U, \varphi) \in \OO_{X, p} : \varphi(p) = 0\}$.
+\end{lemma}
+
+\begin{proof}
+  It suffices to show that
+  the units of $\OO_{X, p}$ are precisely
+  $\OO_{X, p} \setminus \m_p$. To
+  see the reverse inclusion, fix
+  $(U, \varphi) \in \OO_{X, p}$ with
+  $\varphi(p) \ne 0$. So there
+  exists an open neighborhood
+  $p \in W \subseteq U$ such that
+  $\varphi|_W$ never vanishes. Then
+  \[
+    (U, \varphi) \cdot (W, 1 / \varphi|_W)
+    = (W, \varphi|_W) \cdot (W, 1 / \varphi|_W))
+    = (W, 1),
+  \]
+  so $(U, \varphi)$ is a unit
+  in $\OO_{X, p}$. The forward inclusion
+  is similar.
+\end{proof}
+
+\begin{prop}
+  With the above setup, there is an
+  isomorphism
+  \begin{align*}
+    A(X)_{I(p)}
+    &\longrightarrow \OO_{X, p} \\
+    \frac{f}{g}
+    &\longmapsto
+    \left(D(g), x \mapsto \frac{f(x)}{g(x)}\right)
+  \end{align*}
+  with $I(p) = \{f \in A(X) : f(p) = 0\}$.
+\end{prop}
+
+\begin{proof}
+  To see that this is well-defined,
+  let $f / g \sim f' / g' \in A(X)_{I(p)}$.
+  Then $h (f g' - f' g) = 0$ for some
+  $h \in A(X)$ with $h(p) \ne 0$. So
+  $f / g = f' / g'$ as functions
+  $D(h) \cap D(g) \to k$, which means
+  that
+  $f / g = f' / g'$ as elements in
+  $\OO_{X, p}$.
+  Thus the map is well-defined.
+
+  Injectivity is similar to before.
+  For surjectivity, choose
+  $(U, \varphi) \in \OO_{X, p}$.
+  Since $\varphi : U \to k$ is a
+  regular function, there exists
+  an open set $p \in U_p \subseteq U$
+  and $f, g \in A(X)$ such that
+  $g$ does not vanish on $U_p$
+  and $\varphi(x) = f(x) / g(x)$
+  for all $x \in U_p$. So
+  $(U, \varphi) \sim (D(g), f / g)$ in
+  $\OO_{X, p}$, i.e. $(U, \varphi)$ is 
+  in the image.
+\end{proof}
+
+\begin{example}
+  If $X = \Affine^n_k$ and $p = 0$, then
+  \[
+    \OO_{\Affine_k^n, 0}
+    \cong k[x_1, \ldots, x_n]_{(x_1, \ldots, x_n)}
+    =
+    \left\{ \frac{f}{g} : f \in k[x_1, \dots, x_n], g \in k[x_1, \ldots, x_n] \setminus (x_1, \dots, x_n) \right\}.
+  \]
+\end{example}
+
+\begin{remark}
+  We will relate the
+  local properties of $X$ at $p$
+  to properties of
+  $\OO_{X, p}$. We will use the following
+  statements from commutative algebra:
+  Let $A$ be a ring and
+  $\p \subseteq A$ a prime ideal. Then
+  \begin{enumerate}
+    \item $A_\p$ is a local ring with
+      unique maximal ideal $\p A_\p$.
+    \item There is a bijection from the
+      prime ideals of $A_\p$ to
+      the prime ideals of $A$ contained
+      in $\p$.
+    \item $\height_A \p = \dim A_\p$
+      (this follows from (2)).
+  \end{enumerate}
+  This has the following
+  consequence: If $X$ is an affine
+  variety and $p \in X$, then
+  \[\codim_X \{p\} = \height_{A(X)} I(p) = \dim A(X)_{I(p)} = \dim \OO_{X, p}.\]
+\end{remark}
+
+\section{Sheaves}
+
+\begin{remark}
+  We will now formalize the structures
+  $\OO_X(U)$ and $\OO_{X, p}$ that
+  we have seen before.
+\end{remark}
+
+\begin{definition}
+  A \emph{presheaf (of rings)}
+  $\mathcal{F}$ on a topological space
+  $X$ is the data of
+  \begin{enumerate}
+    \item for every open
+      set $U \subseteq X$, a ring
+      $\mathcal{F}(U)$;
+    \item for every inclusion of
+      open sets $U \subseteq V \subseteq X$,
+      a ring homomorphism
+      $\rho_{V, U} : \mathcal{F}(V) \to \mathcal{F}(U)$
+  \end{enumerate}
+  satisfying the following properties:
+  \begin{enumerate}
+    \item $\mathcal{F}(\varnothing) = 0$;
+    \item $\rho_{U, U}$ is the identity
+      map;
+    \item for inclusions of
+      open sets $U \subseteq V \subseteq W \subseteq X$,
+      we have
+      $\rho_{W, U} = \rho_{V, U} \circ \rho_{W, V}$.
+  \end{enumerate}
+\end{definition}
+
+\begin{example}
+  If $X$ is an affine variety, then
+  $\OO_X$ gives a presheaf of rings with
+  \begin{enumerate}
+    \item for $U \subseteq X$,
+      the ring is
+      $\OO_X(U) = \{\text{regular functions } \varphi : U \to k\}$;
+    \item for $U \subseteq V \subseteq X$,
+      the map
+      $\OO_X(V) \to \OO_X(U)$
+      is given by
+      $\varphi \mapsto \varphi|_U$.
+  \end{enumerate}
+\end{example}
+
+\begin{remark}
+  We often call $s \in \mathcal{F}(U)$
+  a \emph{section}, and for
+  $U \subseteq V$, we call
+  $s|_U = \rho_{V, U}(s)$
+  the \emph{restriction}.
+\end{remark}
+
+\begin{remark}
+  A presheaf is the same thing as a functor
+  $\Open_X^{\mathrm{op}} \to \Rings$,
+  where $\Open_X$ is the category with
+  objects the nonempty open sets
+  of $X$ and morphisms corresponding
+  to the inclusions $U \subseteq V$.
+\end{remark}
+
+\begin{definition}
+  A presheaf $\mathcal{F}$ on $X$ is a
+  \emph{sheaf} if it satisfies
+  the \emph{gluing property}: For
+  any $U \subseteq X$ open,
+  an open cover $\{U_i\}_{i \in I}$ of $U$, and
+  $\varphi_i \in \mathcal{F}(U_i)$
+  with $\varphi_i|_{U_i \cap U_j} = \varphi_j|_{U_i \cap U_j}$
+  for all $i, j \in I$,
+  there exists a unique
+  $\varphi \in \mathcal{F}(U)$
+  such that $\varphi|_{U_i} = \varphi_i$
+  for all $i \in I$.
+\end{definition}
+
+\begin{example}
+  We have the following:
+  \begin{enumerate}
+    \item If $X$ is an affine variety,
+      then $\OO_X$ is a sheaf (if we
+      take $\varphi_i \in \OO_X(U_i)$
+      that agree on the overlaps, then we
+      get $\varphi : U \to k$, which
+      is regular since regularity is
+      a local property).
+    \item If $M$ is a smooth manifold, then
+      we can define a sheaf
+      (on open subsets $U \subseteq M$) by
+      \[
+        U \longmapsto \mathcal{F}^{\mathrm{sm}}(U)
+        = \{\text{smooth functions } U \to \R\}.
+      \]
+      We may also consider
+      $\mathcal{F}^{\mathrm{cont}}$,
+      $\mathcal{F}^{\mathrm{diff}}$,
+      $\mathcal{F}^{\mathrm{loc}, \mathrm{const}}$, etc.
+      However, $\mathcal{F}^{\mathrm{const}}$
+      is a presheaf, but not a sheaf in
+      general: We can take
+      $U = U_1 \cup U_2$ with
+      $U_1 \cap U_2 = \varnothing$, and
+      we will only get
+      a locally constant function.
+      Similarly, $\mathcal{F}^{\mathrm{bounded}}$
+      is only a presheaf but not a sheaf.
+    \item If $\mathcal{F}$ is a sheaf
+      on a topological space $X$ and
+      $U \subseteq X$ is open, then we get
+      a sheaf $\mathcal{F}|_U$ on $U$
+      defined by
+      $\mathcal{F}|_U(V) = \mathcal{F}(V)$
+      for $V \subseteq U$ open.
+  \end{enumerate}
+\end{example}
+
+\begin{definition}
+  The \emph{stalk} of a sheaf
+  $\mathcal{F}$ on a topological space
+  $X$ at $x \in X$ is
+  \[
+    \mathcal{F}_x
+    = \{(U, \varphi) : U \subseteq X \text{ open and } \varphi \in \mathcal{F}(U)\} / {\sim},
+  \]
+  where $(U, \varphi) \sim (V, \psi)$
+  if there exists an open set
+  $x \in W \subseteq U \cap V$
+  such that $\varphi|_W = \psi|_W$.
+\end{definition}
+
+\begin{example}
+  If $X$ is an affine variety and
+  $p \in X$, then
+  $\OO_{X, p} \cong (\OO_X)_p$.
+\end{example}
+
+\begin{remark}
+  As before with $\OO_{X, p}$, one
+  can check that
+  $\mathcal{F}_x$ naturally
+  has the structure of a ring.
+\end{remark}
+
+\begin{remark}
+  An alternative perspective
+  is to define the stalk as a direct limit:
+  \[
+    \mathcal{F}_x
+    = \varinjlim_{U \ni x} \mathcal{F}(U),
+  \]
+  where the limit is taken over all
+  open $x \in U \subseteq X$
+  with respect to the ordering
+  $U \le V$ if $V \subseteq U$.
+\end{remark}
