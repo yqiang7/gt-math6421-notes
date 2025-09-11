@@ -1,0 +1,301 @@
+\chapter{Sept.~11 --- Morphisms}
+
+\section{Morphisms of Open Sets}
+
+\begin{remark}
+  Recall that a continuous
+  map $f : \R^m \to \R^n$ is \emph{smooth} if
+  it satisfies either of the following equivalent conditions:
+  \begin{enumerate}
+    \item there exist smooth functions
+      $f_1, \dots, f_n : \R^m \to \R$ such
+      that $f(x) = (f_1(x), \dots, f_n(x))$;
+    \item for each
+      open set $U \subseteq \R^n$ and
+      smooth $\varphi : U \to \R$,
+      the function $f^* \varphi := \varphi \circ f : \R^m \to \R$
+      is smooth.
+  \end{enumerate}
+  The implication $(1 \Rightarrow 2)$ follows
+  by the chain rule. To see $(2 \Rightarrow 1)$,
+  take $y_i : \R^n \to \R$
+  defined by $f_i := f^* y_i$.
+  We want a similar definition
+  in algebraic geometry.
+\end{remark}
+
+\begin{definition}
+  Let $X$ and $Y$ be open sets of affine
+  varieties. A \emph{morphism}
+  $f : X \to Y$ is a continuous map
+  such that every $U \subseteq Y$ open
+  and $\varphi \in \OO_Y(U)$, the map
+  \begin{center}
+    \begin{tikzcd}
+      f^{-1}(U) \arrow[r, "f"] \arrow[rr, bend left=40, "f^* \varphi"]& U \arrow[r, "\varphi"] & k
+    \end{tikzcd}
+  \end{center}
+  satisfies $f^* \varphi \in \OO_X(f^{-1}(U))$.
+  A morphism is an \emph{isomorphism}
+  if it has a two-sided inverse (equivalently,
+  $f$ is a bijection and $f^{-1}$
+  is a morphism).
+\end{definition}
+
+\begin{remark}
+  We have the following properties of
+  morphisms:
+  \begin{enumerate}
+    \item (Composition) If $f : X \to Y$
+      and $g : Y \to Z$ are morphisms of
+      open sets of affine varieties, then
+      so is $g \circ f : X \to Z$.
+    \item (Local on target) If $X \to Y$
+      is a map of open sets of affine
+      varieties such that there exists an
+      open cover $\{U_i\}_{i \in I}$ of
+      $Y$ with $f|_{f^{-1}(U_i)} : f^{-1}(U_i) \to U_i$
+      a morphism for all $i \in I$, then
+      $f$ is a morphism.
+  \end{enumerate}
+\end{remark}
+
+\begin{prop}
+  Let $X \subseteq \Affine^m$ and
+  $Y \subseteq \Affine^n$ be affine
+  varieties. Let $U \subseteq X$ and
+  $V \subseteq Y$ be open sets. A map
+  $f : U \to V$ is a morphism if and only
+  if there exist
+  $\varphi_1, \dots, \varphi_n \in \OO_X(U)$
+  such that
+  \[f(x) = (\varphi_1(x), \dots, \varphi_n(x)).\]
+\end{prop}
+
+\begin{proof}
+  $(\Rightarrow)$ Let $U \subseteq \Affine^m_{x_i}$
+  and $V \subseteq \Affine^n_{y_i}$.
+  By the definition of a morphism,
+  $y_i : V \to k$ satisfies
+  \[
+    \varphi_i := f^* y_i \in \OO_X(U),
+  \]
+  so we can write
+  $f(x) = (\varphi_1(x), \dots, \varphi_n(x))$.
+
+  $(\Leftarrow)$
+  Assume there exist $\varphi_1, \dots, \varphi_n \in \OO_X(U)$
+  such that
+  $f(x) = (\varphi_1(x), \dots, \varphi_n(x))$.
+
+  We first show that $f$ is continuous.
+  Let $Z \subseteq V$ be a closed set.
+  So we can write
+  $Z = V(g_r, \dots, g_r)$ for some
+  $g_1, \dots, g_r \in A(\Affine^n) \cong k[y_1, \dots, y_n]$.
+  Now we have
+  \begin{align*}
+    f^{-1}(Z)
+    = \{x \in U : f(x) \in Z\}
+    &= \{
+      x \in U : g_i(f(x)) = 0 \text{ for } i = 1, \dots, r
+    \} \\
+    &= \{
+      x \in U : (f^* g_i)(x) = 0 \text{ for } i = 1, \dots, r
+    \}.
+  \end{align*}
+  Note that $f^* g_i = g_i(\varphi_1, \dots, \varphi_n)$, which
+  is regular since a composition of
+  a polynomial with fractions of
+  polynomials is again a fraction of
+  polynomials. So
+  $f^{-1}(Z)$ is closed in $U$.
+
+  Now to show that $f$ is a morphism,
+  it suffices to show that for
+  any $W \subseteq Y$ open and
+  $\varphi \in \OO_Y(W)$, we have
+  $f^* \varphi \in \OO_X(f^{-1}(W))$.
+  The proof of this is similar to before.
+\end{proof}
+
+\begin{example}
+  We have the following:
+  \begin{enumerate}
+    \item Morphisms $\Affine^m \to \Affine^n$
+      are of the form
+      \[
+        x \longmapsto (f_1(x), \dots, f_n(x))
+      \]
+      with $f_1, \dots, f_n \in \OO_{\Affine^m}(\Affine^m) = k[x_1, \dots, x_m]$.
+    \item Write $\Affine^1_t$ to mean
+      $\Affine^1$ with variable $t$.
+      Then we can define
+      $\Affine_t^1 \to V(y - x^2) \subseteq \Affine^2_{x,y}$
+      by $t \mapsto (t, t^2)$.
+      We can get an inverse
+      $V(y - x^2) \to \Affine_t^1$ by
+      $(x, y) \mapsto x$, so
+      $\Affine_t^1$ and $V(y - x^2)$
+      are isomorphic.
+    \item Consider the map
+      $g : \Affine^1_t \to V(x^2 - y^3) \subseteq \Affine^2_{x,y}$
+      given by $t \mapsto (t^3, t^2)$.
+      This map is bijective, but it is
+      not an isomorphism. To see this,
+      we can show that
+      $(g^{-1})^* \varphi$ is not regular
+      for some regular function $\varphi$
+      on $\Affine_1^t$.
+      For instance, we can take
+      $\varphi = t$, so that
+      \[
+        (g^{-1})^*(t)
+        =
+        (x, y) \mapsto
+        \begin{cases}
+          x / y & \text{if } y \neq 0,\\
+          0 & \text{otherwise},
+        \end{cases}
+      \]
+      which we can see is not regular.
+  \end{enumerate}
+\end{example}
+
+\section{Relation to Coordinate Rings}
+
+\begin{remark}
+  Let $X \subseteq \Affine^m$ and
+  $Y \subseteq \Affine^n$ be affine
+  varieties. Then a morphism
+  $f : X \to Y$ of affine
+  varieties induces a $k$-algebra
+  morphism (called the \emph{pullback} of
+  $f$)
+  \begin{align*}
+    f^* : A(Y)
+    &\longrightarrow A(X) \\
+    \varphi &\longmapsto f^* = \varphi \circ f
+  \end{align*}
+  with the properties
+  $(g \circ f)^* = f^* \circ g^*$
+  and $(\id_X)^* = \id_{A(X)}$, i.e.
+  $X \mapsto A(X)$ is a
+  contravariant functor.
+\end{remark}
+
+\begin{prop}
+  The following map is
+  a bijection:
+  \begin{align*}
+    \Hom_{\mathrm{aff,var}}(X, Y)
+    &\overset{\Phi}{\longrightarrow}
+    \Hom_{k\text{-}\mathrm{alg}}(A(Y), A(X)) \\
+    f &\longmapsto f^*
+  \end{align*}
+\end{prop}
+
+\begin{proof}
+  Note that
+  $A(X) \cong k[x_1, \dots, x_m]/I(X)$
+  and $A(Y) \cong k[y_1, \dots, y_n]/I(Y)$.
+  Given a morphism
+  \begin{align*}
+    f : X &\longrightarrow Y \\
+    x &\longmapsto (\varphi_1(x), \dots, \varphi_n(x)),
+  \end{align*}
+  we can define
+  $f^* \overline{y}_i = \varphi_i$.
+  Conversely, given a
+  $k$-algebra homomorphism
+  $\phi : A(Y) \to A(X)$, we can set
+  $\varphi_i = \phi(\overline{y}_i)$.
+  Now consider the morphism defined by
+  \begin{align*}
+    f : X
+    &\longrightarrow \Affine^n_{y_i} \\
+    x &\longmapsto (\varphi_1(x), \dots, \varphi_n(x)).
+  \end{align*}
+  We claim that $f(X) \subseteq Y$.
+  To see this, fix $x \in X$. If
+  $h \in I(Y)$, then
+  \[
+    h(f(x))
+    = h(\varphi_1(x), \dots, \varphi_n(x))
+    = \phi(h)(x)
+    = 0(x) = 0,
+  \]
+  so $f(X) \subseteq Y$. Thus we
+  get a morphism $f : X \to Y$ by
+  $x \mapsto (\varphi_1(x), \dots, \varphi_n(x))$ with
+  $f^* y_i = \varphi_i$. One can check
+  that this gives a map
+  $\Psi : \Hom_{k\text{-}\mathrm{alg}}(A(Y), A(X)) \to \Hom_{\mathrm{aff,var}}(X, Y)$
+  which is inverse to $\Phi$.
+\end{proof}
+
+\begin{example}
+  We have the following:
+  \begin{enumerate}
+    \item Recall the morphism
+      $g : \Affine^1_t \to V(y - x^2) \subseteq \Affine_{x, y}^2$
+      given by $t \mapsto (t, t^2)$.
+      The pullback is given by
+      \begin{align*}
+        g^* : \frac{k[x, y]}{(y - x^2)}
+        &\longmapsto k[t] \\
+        x &\longmapsto t \\
+        y &\longmapsto t^2.
+      \end{align*}
+      Note that $g^*$ is an isomorphism
+      of $k$-algebras, so
+      $g$ is an isomorphism of affine varieties.
+      This gives an alternative way of
+      seeing this without writing down
+      an inverse to $g$.
+    \item Recall the morphism
+      $h : \Affine^1_t \to V(x^2 - y^3) \subseteq \Affine_{x, y}^2$
+      given by $t \mapsto (t^3, t^2)$.
+      The pullback is
+      \begin{align*}
+        h^* : \frac{k[x, y]}{(x^2 - y^3)}
+        &\longmapsto k[t] \\
+        x &\longmapsto t^3 \\
+        y &\longmapsto t^2.
+      \end{align*}
+      Note that $t \notin \im h^*$,
+      so $h^*$ is not an isomorphism,
+      so $h$ is not an isomorphism.
+  \end{enumerate}
+\end{example}
+
+\begin{remark}
+  There is a one-to-one correspondence
+  between affine varieties (up to isomorphism)
+  and finitely generated reduced
+  $k$-algebras (up to isomorphism).
+
+  To see this, observe that if $X \subseteq \Affine^n$
+  is an affine variety, then
+  $A(X) \cong k[x_1, \dots, x_n]/I(X)$. This
+  is finitely generated, and reduced since
+  $I(X)$ is radical. Conversely, let
+  $A$ be a reduced finitely generated
+  $k$-algebra. Then
+  $A \cong k[y_1, \dots, y_m] / I$ since
+  $A$ is finitely generated, and
+  $I$ is radical since $A$ is reduced.
+  Thus by Hilbert's nullstellensatz,
+  $Y = V(I)$ satisfies
+  $I(Y) = I(V(I)) = I$, so
+  $A \cong A(Y)$.
+
+  In more abstract language, this means
+  that there is an equivalence of
+  categories
+  \[
+    \mathrm{AffVar}
+    \longleftrightarrow
+    \mathrm{RedFGAlg}_k^\mathrm{op}.
+  \]
+\end{remark}
