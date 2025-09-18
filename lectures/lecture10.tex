@@ -1,0 +1,323 @@
+\chapter{Sept.~18 --- Pre-varieties}
+
+\section{More on Tensor Products}
+
+\begin{prop}
+  If $B$ and $C$ are $A$-algebras (i.e.
+  there are ring homomorphisms
+  $f : A \to B$ and $g : A \to C$ which
+  give $a \cdot b := f(a) b$ and
+  $a \cdot c = g(a) c$, then
+  $B \otimes_A C$ is also an $A$-algebra
+  with
+  \[
+    (b \otimes c) \cdot (b' \otimes c')
+    := (bb') \otimes (cc')
+  \]
+  and ring homomorphism
+  $A \to B \otimes_A C$ given by
+  $a \mapsto a \otimes 1$ (equivalently,
+  $1 \otimes a$).
+\end{prop}
+
+\begin{prop}
+  $k[x_1, \dots, x_m] \otimes_k k[y_1, \dots, y_n] \cong k[x_1, \dots, x_m, y_1, \dots, y_n]$.
+\end{prop}
+
+\begin{prop}
+  $(k[x_1, \dots, x_m] / I) \otimes_k (k[y_1, \dots, y_n] / J) \cong k[x_1, \dots, x_m, y_1, \dots, y_n) / \langle I, J \rangle$.
+\end{prop}
+
+\begin{proof}
+  Set $R = k[x_1, \dots, x_m]$ and
+  $S = k[y_1, \dots, y_n]$. We have a
+  short exact sequence
+  \[
+    0 \longrightarrow
+    I \longrightarrow R \longrightarrow R / I \longrightarrow 0.
+  \]
+  Applying the right exact
+  functor $\otimes_k (S / J)$ (and
+  vice versa with $J$ and $\otimes R$) gives
+  an exact sequence
+  \begin{center}
+    \begin{tikzcd}
+      & R \otimes_k J \ar[d]\\
+      & R \otimes_k S \ar[d]\\
+      I \otimes_k (S / J) \ar[r] & R \otimes_k (S / J) \ar[r] \ar[d] & (R / I) \otimes_k (S / J) \ar[r] & 0 \\
+      & 0
+    \end{tikzcd}
+  \end{center}
+  So we have
+  \[
+    (R / I) \otimes_k (S / J)
+    \cong
+    \frac{R \otimes_k (S / J)}
+    {\im(I \otimes_k (S / J) \to R \otimes_k (S / J))}
+    \cong \frac{R \otimes_k S}{I \otimes_k S + R \otimes_k J},
+  \]
+  which is the desired result since
+  $I \otimes_k S + R \otimes_k J = \langle I, J \rangle$
+  in $R \otimes_k S$.
+\end{proof}
+
+\begin{prop}[Milne]\label{prop:tensor-domain}
+  Let $B$ and $C$ be finitely generated
+  $k$-algebras with $k = \overline{k}$.
+  \begin{enumerate}
+    \item If $B$ and $C$ are
+      reduced, then so is $B \otimes_k C$.
+    \item If $B$ and $C$ are domains,
+      then so is $B \otimes_k C$.
+  \end{enumerate}
+\end{prop}
+
+\begin{remark}
+  We need $k = \overline{k}$ in
+  Proposition \ref{prop:tensor-domain}.
+  Consider the domains
+  $\R[x] / (x^2 + 1)$,
+  $\R[y] / (y^2 + 1)$. Then
+  \[
+    \frac{\R[x]}{(x^2 + 1)}
+    \otimes_{\R}
+    \frac{\R[y]}{(y^2 + 1)}
+    \cong
+    \frac{\R[x, y]}{(x^2 + 1, y^2 + 1)},
+  \]
+  which is not a domain since
+  $(\overline{x - y})(\overline{x + y}) = \overline{x^2 - y^2} = \overline{-1 - (-1)} = 0$.
+\end{remark}
+
+\begin{corollary}
+  If $X \subseteq \Affine^m$ and
+  $Y \subseteq \Affine^n$ are affine
+  varieties, then
+  \begin{enumerate}
+    \item $I(X \times Y) = \langle I(X), I(Y) \rangle \subseteq k[x_1, \dots, x_m, y_1, \dots, y_n]$.
+    \item $A(X \times Y) \cong A(X) \otimes_k A(Y)$.
+    \item If $X$ and $Y$ are irreducible,
+      then $X \times Y$ is irreducible.
+  \end{enumerate}
+\end{corollary}
+
+\begin{proof}
+  Observe that
+  $V(I(X), I(Y)) = X \times Y \subseteq \Affine^{m + n}$, so
+  $I(X \times Y) = \sqrt{\langle I(X), I(Y) \rangle}$.
+  Now we know that
+  $I(X)$ and $I(Y)$ are radical in
+  $k[x_1, \dots, x_m]$ and
+  $k[y_1, \dots, y_n]$, respectively, so
+  \[
+    \frac{k[x_1, \dots, x_m]}{I(X)}
+    \quad \text{and} \quad
+    \frac{k[y_1, \dots, y_n]}{I(Y)}
+  \]
+  are reduced. By Proposition \ref{prop:tensor-domain},
+  we get that
+  \[
+    \frac{k[x_1, \dots, x_m, y_1, \dots, y_n]}{\langle I(X), I(Y) \rangle}
+    \cong
+    \frac{k[x_1, \dots, x_m]}{I(X)}
+    \otimes_k
+    \frac{k[y_1, \dots, y_n]}{I(Y)}
+  \]
+  is reduced, so
+  $\langle I(X), I(Y) \rangle$ is radical.
+  Thus $I(X \times Y) = \langle I(X), I(Y) \rangle$, so
+  $(1)$ holds.
+
+  Now $(1)$ implies $(2)$, and
+  $(3)$ follows since
+  $X$ and $Y$ being irreducible implies
+  $A(X)$ and $A(Y)$ are domains, which
+  implies $A(X \times Y)$ is a domain
+  by Proposition \ref{prop:tensor-domain}
+  and $(2)$, so
+  $X \times Y$ is irreducible.
+\end{proof}
+
+\section{Pre-varieties}
+
+\begin{remark}
+  We will now head towards defining
+  a \emph{variety}, which is roughly
+  finitely many affine varieties glued
+  together (a \emph{pre-variety}) with a separation
+  condition (an algebraic version of
+  Hausdorff).
+\end{remark}
+
+\begin{definition}
+  A \emph{pre-variety} is a ringed
+  space $(X, \OO_X)$ such that
+  there exists a finite open cover
+  $X = \bigcup_{i = 1}^s U_i$ with
+  $(U_i, \OO_X|_{U_i})$ being an
+  affine variety for all $i = 1, \dots, s$.
+  A \emph{morphism} of pre-varieties
+  \[
+    f : (X, \OO_X) \longrightarrow (Y, \OO_Y)
+  \]
+  is a morphism of the ringed spaces.
+  We will often just write
+  $X$ for $(X, \OO_X)$.
+\end{definition}
+
+\begin{remark}
+  We call $\varphi \in \OO_X(U)$ with
+  $U \subseteq X$ open and
+  $\varphi : U \to k$ a \emph{regular function}
+  on $U$.
+\end{remark}
+
+\begin{example}
+  Consider the following:
+  \begin{enumerate}
+    \item An affine variety $X$ is a
+      pre-variety.
+      However, we have multiple
+      choices for the open cover:
+      We can take $X = X$, or
+      $X = \bigcup_{i = 1}^s D(f_i)$
+      with $f_i \in \OO_X(X)$ and
+      $(f_1, \dots, f_s) = (1)$
+      in $\OO_X(X)$.
+    \item $\PP^n_k = (\Affine^{n + 1} \setminus \{0\}) / k^*$ is
+      a pre-variety. We will see that
+      $\PP^1_k = \Affine^1_k \cup \{\mathrm{pt}\}$.
+    \item Let $X = V(I) \subseteq \Affine^n$
+      be an affine variety and $U \subseteq X$ open.
+      Set
+      \[
+        \OO_U(V) = \{\varphi : V \to k \mid \varphi \text{ is regular}\}.
+      \]
+      Then $(U, \OO_U)$ is a pre-variety.
+      To see this, note that
+      $U = \bigcup_{f \in I(X \setminus U)} D(f)$.
+      Since $U$ is Noetherian (hence is
+      compact), we can find a finite subcover,
+      so $U = \bigcup_{i = 1}^s D(f_i)$
+      for some $f_i \in A(X)$.
+    \item (Gluing) Let
+      $X_1$ and $X_2$ be affine varieties,
+      and $U_{1,2} \subseteq X_1$,
+      $U_{2,1} \subseteq X_2$ open, with
+      an isomorphism
+      \[
+        f : U_{1, 2} \longrightarrow U_{2, 1}.
+      \]
+      Then we get a pre-variety by
+      setting
+      $X = (X_1 \sqcup X_2) / {\sim}$,
+      where
+      $a \sim f(a)$ for all $a \in U_{1, 2}$,
+      $f(a) \sim a$ for all
+      $a \in U_{2, 1}$, and
+      $b \sim b$ for all $b \in X_1 \sqcup X_2$.
+      We have quotient maps
+      \[
+        j_1 : X_1 \longrightarrow X
+        \quad \text{and} \quad
+        j_2 : X_2 \longrightarrow X.
+      \]
+      Now $X$ is a topological space
+      with the quotient topology, and 
+      $j_1, j_2$ are open embeddings
+      (i.e. have open images and are
+      homeomorphisms onto their images).
+      Define a sheaf of rings
+      $\OO_X$ on $X$ by
+      \[
+        \OO_X(U)
+        = \{\varphi : U \to k \mid j_1^* \varphi \in \OO_{X_1}(j^{-1}(U)) \text{ and } j_2^* \varphi \in \OO_{X_2}(j_2^{-1}(U))\}.
+      \]
+      One can check
+      $X = j_1(X_1) \cup j_2(X_2)$ and
+      $(j(X_i), \OO_X|_{j_i(X_i)}) \cong (X_i, \OO_{X_i})$,
+      so $(X, \OO_X)$ is a pre-variety.
+  \end{enumerate}
+\end{example}
+
+\begin{example}
+  Consider $X_1 = \Affine^1_x$
+  and $X_2 = \Affine^1_y$, with
+  $U_{1, 2} = \Affine^1_x \setminus \{0\}$
+  and $U_{2, 1} = \Affine^1_y \setminus \{0\}$. Define
+  \begin{align*}
+    f : U_{1, 2}
+    &\longrightarrow U_{2, 1} \\
+    x &\longmapsto 1 / x.
+  \end{align*}
+  Then we can
+  take $\PP^1_k = (X_1 \sqcup X_2) / {\sim}$.
+  What are the regular functions
+  $\PP^1_k \to k$? We should
+  get only the constant functions
+  (When $k = \C$,
+  $\PP^1_{\C}$ is compact, so a
+  holomorphic function $f : \PP^1_{\C} \to \C$
+  is bounded. By restricting to $X_1$,
+  we get a bounded map
+  $f : \C \to \C$, so $f$ is constant
+  by Liouville's theorem).
+
+  In general,  let $j_i : X_i \to \PP^1_k$
+  be the quotient maps. Fix
+  $\varphi \in \OO_{\PP^1}(\PP^1)$.
+  Now
+  \[
+    \varphi|_{X_1} := j_1^* \varphi
+    = \sum_{i \ge 0} a_i x^i \quad
+    \text{and} \quad
+    \varphi|_{X_2} := j_2^* \varphi
+    = \sum_{i \ge 0} b_i y^i
+  \]
+  for some $a_i, b_i \in k$.
+  They must agree on the overlap, so
+  \[
+    \sum_{i \ge 0} a_i x^i
+    = \sum_{i \ge 0} b_i (1 / x)^i
+  \]
+  as functions on $\Affine^1 \setminus \{0\}$.
+  Since $\OO_{\Affine^1}(\Affine^1 \setminus \{0\}) = k[x^{\pm 1}]$,
+  we have $a_i = b_i = 0$ for
+  $i > 0$ and $a_0 = b_0$ (since
+  the powers of $x^{\pm 1}$ are $k$-linearly
+  independent), so
+  $\varphi$ is a constant function.
+
+  If we instead took
+  $f : U_{1, 2} \to U_{2, 1}$ to be
+  $x \mapsto x$, then
+  $X = (X_1 \sqcup X_2) / {\sim}$
+  is the ``bug-eyed line'' with
+  two points $0, 0'$ at the origin (this is
+  the \emph{line with two origins} when
+  $k = \R$, which is not Hausdorff.)
+  Note that $X \setminus \{0, 0'\} \cong \Affine^1 \setminus \{0\}$.
+  In our case, the bad property is
+  that there exist two morphisms
+  \[
+    g_1, g_2 : \Affine^1 \longrightarrow X
+  \]
+  such that $g_1|_{\Affine^1 \setminus \{0\}} = g_2|_{\Affine^1 \setminus \{0\}}$
+  and $g_1 \ne g_2$, i.e.
+  ``limits are not unique'' on $X$.
+  Note that a similar computation shows
+  $\OO_X(X) \cong k[x]$, so in particular,
+  $X \ncong \PP^1_k$.
+\end{example}
+
+\begin{example}[General gluing procedure]
+  Let $I$ be a finite index set,
+  $(X_i, \OO_{X_i})$ affine varieties,
+  $U_{i, j} \subseteq X_i$ open sets, and
+  $f_{i, j} : U_{i, j} \to U_{j, i}$
+  isomorphisms
+  for each $i, j \in I$. With some
+  compatibility conditions, we can also
+  glue the $X_i$ together to get
+  a pre-variety.
+\end{example}
