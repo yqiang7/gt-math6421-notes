@@ -1,0 +1,317 @@
+\chapter{Sept.~23 --- Pre-varieties, Part 2}
+
+\section{More on Pre-varieties}
+
+\begin{prop}
+  Let $(X, \OO_X)$ be a pre-variety.
+  \begin{enumerate}
+    \item $X$ is Noetherian as a
+      topological space.
+    \item $X$ has a basis by affine varieties.
+  \end{enumerate}
+\end{prop}
+
+\begin{proof}
+  (1) Note that
+  $X$ has a finite cover by
+  affine varieties $U_i$, which are
+  each Noetherian.
+
+  (2) If $(X, \OO_X)$ is affine, then
+  $\{D(f) : f \in \OO_X(X)\}$ gives such
+  a basis. Do this for each
+  $U_i$.
+\end{proof}
+
+\begin{example}[General gluing procedure]
+  Let $I$ be a finite index set,
+  $(X_i, \OO_{X_i})$ affine varieties,
+  $U_{i, j} \subseteq X_i$ open sets, and
+  $f_{i, j} : U_{i, j} \to U_{j, i}$
+  isomorphisms
+  for each $i, j \in I$, satisfying
+  \begin{enumerate}
+    \item $U_{i, i} = X_i$ and
+      $f_{i, i} = \id$;
+    \item $f_{i, j}^{-1}(U_{j, i} \cap U_{j, k}) = U_{i, j} \cap U_{i, k}$;
+    \item the following diagram commutes:
+      \begin{center}
+        \begin{tikzcd}
+          U_{i, j} \cap U_{i, k} \ar[dr, "f_{i, j}"] \ar[rr, "f_{i, k}"]
+          & & U_{k, i} \cap U_{k, j} \\
+          & U_{j, i} \cap U_{j, k} \ar[ur, "f_{j, k}"]
+        \end{tikzcd}
+      \end{center}
+  \end{enumerate}
+  We can define
+  $X = (\bigsqcup_{i \in I} X_i) / {\sim}$
+  with the quotient topology, where
+  $a \sim a$ for $a \in X_i$ and
+  $a \sim f_{i, j}(a)$ for $a \in U_{i, j}$.
+  The inclusions $j_i : X_i \hookrightarrow X$
+  are open embeddings, and we can set
+  \[
+    \OO_X(U)
+    := \{
+      \varphi : U \to k \mid
+      \varphi|_{X_i} = j_i^* \varphi
+      \text{ is regular for all } i
+    \}.
+  \]
+  Then $(X, \OO_X)$ is a ringed space
+  with $(j_i(X_i), \OO_X|_{j_i(X_i)}) \cong (X_i, \OO_{X_i})$,
+  so $(X, \OO_X)$ is a pre-variety.
+\end{example}
+
+\begin{remark}
+  Any pre-variety $X$ is a gluing of
+  affine varieties.
+  To see this, note that there exists a
+  cover $X = \bigcup_{i = 1}^s U_i$
+  by affine varieties. Then we can
+  take $X_i = U_i$,
+  $U_{i, j} = U_i \cap U_j \subseteq X_i$,
+  and $f_{i, j} : U_{i, j} \to U_{j, i}$
+  to be the identity map.
+\end{remark}
+
+\begin{prop}
+  Let $X$ be a pre-variety.
+  \begin{enumerate}
+    \item If $U \subseteq X$ is an open
+      set, then $(U, \OO_X|_U)$ is again
+      a pre-variety.
+    \item Let $Z \subseteq X$ be a closed
+      set. For $U \subseteq Z$ open, set
+      \[
+        \OO_Z(U) = \left\{\varphi : U \to k 
+          \mid
+          \substack{\displaystyle\text{for each $a \in U$, there
+          exists open $a \in W \subseteq X$
+        and\,} \\ \displaystyle \text{$\psi : W \to k$ regular
+      such that $\varphi|_{W \cap Z} = \psi|_{W \cap Z}$}
+  }\right\}.
+      \]
+      Then $(Z, \OO_Z)$ is a pre-variety.
+  \end{enumerate}
+\end{prop}
+
+\begin{proof}
+  (1) Note that $X$ has a basis by affine
+  varieties, so we can cover $U$ by
+  affine varieties. This cover may be
+  infinite, but we can pass to a
+  finite subcover since $X$ and hence
+  $U$ is Noetherian.
+
+  (2) The idea is to first reduce to the case
+  $X = V(I) \subseteq \Affine^n$, so
+  $Z \subseteq X$ is cut out by polynomials.
+  Then observe that $\OO_Z$ agrees with
+  the previous definition.
+\end{proof}
+
+\begin{remark}
+  Note that unions of intersections
+  of closed and open sets are not
+  necessarily pre-varieties.
+  For instance, consider
+  $(\Affine^2 \setminus V(xy)) \cup \{0\}$.
+\end{remark}
+
+\begin{prop}
+  If $X, Y$ are pre-varieties, then
+  there exists a pre-variety with morphisms
+  \begin{center}
+    \begin{tikzcd}
+      & P \ar[dl, "p_1", swap] \ar[dr, "p_2"] \\
+      X & & Y
+    \end{tikzcd}
+  \end{center}
+  with the property that for every diagram
+  \begin{center}
+    \begin{tikzcd}
+      & Z \ar[ddl, "f_X", bend right=30, swap] \ar[ddr, "f_Y", bend left=30] \ar[d, "f", dashed, swap] \\
+      & P \ar[dl, "p_1"] \ar[dr, "p_2", swap] \\
+      X & & Y
+    \end{tikzcd}
+  \end{center}
+  there exists a unique morphism
+  $f$ such that the diagram commutes.
+  We call $P$ the \emph{product} of
+  $X$ and $Y$, and write
+  $X \times Y := P$. Moreover,
+  set theoretically
+  $X \times Y = \{(x, y) : x \in X \text{ and } y \in Y\}$.
+\end{prop}
+
+\begin{proof}
+  We know the result holds when
+  $X, Y, Z$ are affine or even
+  open sets of affine varieties. In the
+  general case, fix an open affine cover
+  $X = \bigcup_{i = 1}^s U_i$
+  and $Y = \bigcup_{j = 1}^r V_j$. Then
+  glue the products by:
+  \begin{enumerate}
+    \item $P_{(i, j)} := U_i \times V_j$,
+    \item along $P_{(i, j), (i', j')} :
+      (U_i \cap U_{i'}) \times (V_j \cap V_{j'})$,
+    \item via
+      $f_{(i, j), (i', j')} :
+      P_{(i, j), (i', j')} \overset{\cong}{\to}
+      P_{(i', j'), (i, j)}$, the
+      isomorphism from the universal
+      property of products.
+  \end{enumerate}
+  We get a pre-variety $P$, and the morphisms
+  \begin{center}
+    \begin{tikzcd}
+      & f_1^{-1}(U_2) \cap f_2^{-1}(V_j) \subseteq Z \ar[ddl, bend right=30, swap] \ar[ddr, bend left=30] \ar[d, "f_{i, j}", dashed, swap] \\
+      & P \ar[dl] \ar[dr, swap] \\
+      X & & Y
+    \end{tikzcd}
+  \end{center}
+  glue to give a morphism
+  \begin{center}
+    \begin{tikzcd}
+      & Z \ar[ddl, bend right=30, swap] \ar[ddr, bend left=30] \ar[d, "f", dashed, swap] \\
+      & P \ar[dl] \ar[dr, swap] \\
+      X & & Y
+    \end{tikzcd}
+  \end{center}
+  which is a morphism as the morphism
+  condition can be checked locally.
+  Furthermore, the diagram commutes
+  (as can be checked locally). Last,
+  $f$ is unique: One can either this check
+  locally or check set theoretically
+  using $P = \{(x, y) : x \in X \text{ and } y \in Y\}$
+  as sets.
+\end{proof}
+
+\begin{remark}
+  Note that $X \times Y$ is set theoretically
+  the product of $X$ and $Y$, but
+  not the product of $X$ and $Y$
+  as topological spaces.
+  Consider $X = Y = \Affine^1$
+  and $X \times Y = \Affine^2$.
+\end{remark}
+
+\section{Varieties}
+
+\begin{remark}
+  We want a version of Hausdorffness in
+  algebraic geometry. However, an
+  irreducible topological space
+  (e.g. $\Affine^n$) is almost never
+  Hausdorff (unless it is a single point).
+  From a different perspective, note
+  that $X$ is Hausdorff if and only if
+  the diagonal
+  $\Delta_X = \{(x, x) : x \in X\} \subseteq X \times X$ is
+  closed, where $X \times X$ is given
+  the product topology.
+\end{remark}
+
+\begin{definition}
+  A pre-variety is \emph{separated} if
+  the diagonal
+  \[
+    \Delta_X = \{(x, x) : x \in X\}
+  \]
+  is closed in $X \times X$ (the product
+  pre-variety). A \emph{variety} is a
+  pre-variety that is separated.
+\end{definition}
+
+\begin{example}
+  $\Affine^n$ is separated. We have
+  \[
+    V(x_1 - y_1, \dots, x_n - y_n)
+    = \Delta_{\Affine^n} \subseteq
+    \Affine_{x_i}^n \times \Affine_{y_i}^n
+    \cong \Affine^{2n},
+  \]
+  so $\Delta_{\Affine^n}$ is closed
+  in $\Affine^n \times \Affine^n$.
+\end{example}
+
+\begin{example}
+  Any affine variety is separated. To
+  see this, we may assume $X = V(I) \subseteq \Affine^n$.
+  By the construction of the product,
+  $X \times X \subseteq \Affine^n \times \Affine^n$
+  is closed and
+  \[
+    \Delta_X
+    = (X \times X) \cap \Delta_{\Affine^n}.
+  \]
+  Since $\Delta_{\Affine^n}$ is closed,
+  we have
+  $\Delta_X$ is closed in $X \times X$ since
+  $X \times X$ has the subspace topology.
+\end{example}
+
+\begin{prop}
+  If $X$ is a variety, then any
+  closed or open set $Z \subseteq X$
+  is a variety.
+\end{prop}
+
+\begin{proof}
+  We have already seen that $Z$ is a
+  pre-variety, so it suffices to show that
+  $Z$ is separated. We note that
+  $Z \times Z \hookrightarrow X \times X$
+  is an embedding of topological spaces,
+  and $\Delta_Z = (Z \times Z) \cap \Delta_X$.
+  Since $\Delta_X$ is closed and
+  $Z \times Z$ has the subspace topology,
+  $\Delta_Z$ is closed in $Z \times Z$.
+  So $Z$ is separated.
+\end{proof}
+
+\begin{example}
+  Recall the bug-eyed line from
+  Example \ref{ex:projective-bug-eyed-line}.
+  Let $a, b$ be the two origins, and
+  write
+  $X = U_1 \cup U_2$, where
+  $U_1 = X \setminus \{b\} \cong \Affine^1$
+  and $U_2 = X \setminus \{a\} \cong \Affine^1$.
+  Then consider
+  \[
+    \Affine^2 \cong U_1 \times U_2 \subseteq X \times X.
+  \]
+  Note that $\Delta_X \cap (U_1 \times U_2) = \{(x, x) : x \in k \setminus \{0\}\} = \Delta_{\Affine^1} \setminus \{0\}$.
+  So $\Delta_X$ is not closed in $X \times X$.
+\end{example}
+
+\begin{exercise}
+  Show that $\PP_k^1$ is separated.
+\end{exercise}
+
+\begin{prop}
+  Let $f, g : X \to Y$ be morphisms
+  of pre-varieties with $Y$ a variety.
+  \begin{enumerate}
+    \item The graph $\Gamma_f := \{(x, f(x)) : x \in X\}$
+      of $f$
+      is closed in $X \times Y$.
+    \item $\{x \in X : f(x) = g(x)\}$
+      is closed in $X$. This becomes a
+      version of the identity principle
+      in the case that $X$ is irreducible.
+  \end{enumerate}
+\end{prop}
+
+\begin{proof}
+  (1) We can write
+  $\Gamma_f = (f, \id)^{-1}(\Delta_Y)$
+  where $(f, \id) : X \times Y \to Y \times Y$,
+  and $\Delta_Y$ is closed.
+
+  (2) We will prove this next class.
+\end{proof}
