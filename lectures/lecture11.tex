@@ -303,7 +303,10 @@
     \item $\{x \in X : f(x) = g(x)\}$
       is closed in $X$. This becomes a
       version of the identity principle
-      in the case that $X$ is irreducible.
+      in the case that $X$ is irreducible:
+      If $X$ is irreducible and
+      $f, g$ agree on a nonempty open set,
+      then $f = g$.
   \end{enumerate}
 \end{prop}
 
@@ -313,5 +316,11 @@
   where $(f, \id) : X \times Y \to Y \times Y$,
   and $\Delta_Y$ is closed.
 
-  (2) We will prove this next class.
+  (2) Consider the morphism
+  \begin{align*}
+    X &\overset{(f, g)}{\longrightarrow} Y \times Y \\
+    x &\longmapsto (f(x), g(x)).
+  \end{align*}
+  Then $\{x \in X : f(x) = g(x)\} = (f, g)^{-1}(\Delta_Y)$,
+  so it is closed.
 \end{proof}
