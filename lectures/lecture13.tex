@@ -1,0 +1,310 @@
+\chapter{Sept.~30 --- Projective Varieties, Part 2}
+
+\section{More on Projective Varieties}
+
+\begin{example}
+  Consider $X = V(y^2 z - x^3 - z x^2 - z^3) \subseteq \PP^2$
+  and $H_z = V(z)$. Let
+  \begin{align*}
+    U_z = \PP^2 \setminus H_z
+    &\underset{\text{bij}}{\overset{f}{\longrightarrow}} \Affine^2 \\
+    {[x:y:1]} &\longmapsto (x, y).
+  \end{align*}
+  Then $f(X \cap U_z) = V(y^2 - x^3 - x^2 - 1)$,
+  and
+  \[
+    X \cap U_z
+    = V(y^2 z - x^3 - z x^2 - z^3, z)
+    = V(x^3, z)
+    = \{[0 : 1 : 0]\}.
+  \]
+\end{example}
+
+\begin{example}
+  Let $I = (x_0, \dots, x_n)$
+  be the irrelevant ideal.
+  Then $I$ is radical, but
+  \[I_p(V_p(I)) = I_p(\varnothing) = (1) \ne \sqrt{I}.\]
+\end{example}
+
+\section{Cones}
+\begin{definition}
+  A subset $C \subseteq \Affine^{n + 1}$
+  is a \emph{cone} if $0 \in C$ and
+  $\lambda x \in C$ whenever
+  $x \in C$ and $\lambda \in k$.
+\end{definition}
+
+\begin{example}
+  If $X \subseteq \PP^n$ is a projective
+  variety, then we can set $C(X) = \pi^{-1}(X) \{0\}$, where
+  \begin{align*}
+    \pi :
+    \Affine^{n + 1} \setminus \{0\}
+    &\longrightarrow \PP^n \\
+    x &\longmapsto [x].
+  \end{align*}
+\end{example}
+
+\begin{prop}
+  If $C \subseteq \Affine^{n + 1}$
+  is a cone, then $I_a(C) \le k[x_0, \dots, x_n]$
+  is homogeneous.
+\end{prop}
+
+\begin{proof}
+  Fix $f \in I_a(C)$. Then we can
+  write $f = \sum_{i = 0}^d f_i$
+  with $f_i$ homogeneous of degree $i$.
+  We want to show that
+  $f_i \in I_a(C)$ for each $i$.
+  Fix $x \in C$. For any
+  $\lambda \in k$,
+  \[
+    0 = f(\lambda x)
+    = \sum_{i = 0}^d \lambda^i f_i(x).
+  \]
+  Viewing this as a polynomial in
+  $\lambda$ (with $x$ fixed),
+  we must have each $f_i(x) = 0$.
+  Thus $f_i \in I_a(C)$.
+\end{proof}
+
+\section{Projective Nullstellensatz}
+
+\begin{theorem}[Projective Hilbert's Nullstellensatz]
+  We have the following:
+  \begin{enumerate}
+    \item For a projective variety
+      $X \subseteq \PP^n$,
+      $V_p(I_p(X)) = X$.
+    \item For a homogeneous ideal
+      $J \le k[x_0, \dots, x_n]$
+      with $\sqrt{J} \ne (x_0, \dots, x_n)$,
+      $I_p(V_p(J)) = \sqrt{J}$.
+  \end{enumerate}
+  As a consequence, there is a bijection
+  between projective varieties and
+  radical homogeneous ideals
+  of $k[x_0, \dots, x_n]$
+  which are not equal to
+  $(x_0, \dots, x_n)$, given by
+  $X \mapsto I_p(X)$ with inverse
+  $J \mapsto V_p(J)$.
+\end{theorem}
+
+\begin{proof}
+  (1) This is similar to the affine case.
+
+  (2) Fix
+  a homogeneous ideal
+  $(1) \ne J \le k[x_0, \dots, x_n]$
+  such that $\sqrt{J} \ne (x_0, \dots, x_n)$
+  (the theorem is clearly true for
+  the unit ideal). Then observe
+  that we can write
+  \begin{align*}
+    I_p(V_p(J))
+    &= (f \in k[x_0, \dots, x_n] \text{ homogeneous} : f(x) = 0 \text{ for all } [x] \in V_p(J)) \\
+    &= (f \in k[x_0, \dots, x_n] \text{ homogeneous} : f(x) = 0 \text{ for all } x \in V_a(J) \setminus \{0\}) \\
+    &= (f \in k[x_0, \dots, x_n] : f(x) = 0 \text{ for all } x \in \overline{V_a(J) \setminus \{0\}}) \\
+    &=
+    \begin{cases}
+      I_a(V_a(J)) & \text{if } V_a(J) \supsetneq \{0\}, \quad\quad \text{(A)} \\
+      I_a(\varnothing) & \text{if } V_a(J) = \{0\}, \quad\quad \text{(B)}
+    \end{cases}
+  \end{align*}
+  In Case A, we get that
+  $I_p(V_p(J)) = I_a(V_a(J)) = \sqrt{J}$
+  by the affine Nullstellensatz.
+  In Case B, we have
+  $V_a(J) = \{0\}$, so
+  $\sqrt{J} = (x_0, \dots, x_n)$,
+  which we assumed was not the case.
+\end{proof}
+
+\section{The Zariski Topology on \texorpdfstring{$\PP^n$}{Pn}}
+
+\begin{remark}
+  We have the following properties
+  of $I_p$ and $V_p$:
+  \begin{enumerate}
+    \item For homogeneous
+      ideals $J_i \le k[x_0, \dots, x_n]$
+      for $i \in I$, we have
+      $V_p(\sum_{i \in I} J_i) = \bigcap_{i \in I} V_p(J_i)$;
+
+      If $I = \{1, 2\}$, then we have
+      $V_p(J_1 J_2) = V_p(J_1) \cup V_p(J_2)$.
+    \item If $X_1, X_2 \subseteq \PP^n$
+      are projective varieties, then
+      \[
+        I_p(X_1 \cup X_2)
+        = I_p(X_1) \cap I_p(X_2)
+        \quad \text{and} \quad
+        I_p(X_1 \cap X_2)
+        = \sqrt{I_p(X_1) + I_p(X_2)},
+      \]
+      where we assume in the second
+      equality that
+      $X_1 \cap X_2 \ne \varnothing$.
+  \end{enumerate}
+  The proofs are similar to the
+  affine case.
+\end{remark}
+
+\begin{example}
+  Let $X_1 = V(x) \subseteq \PP^2$
+  and $X_2 = V(y, z) \subseteq \PP^2$.
+  Then $I(X_1 \cap X_1) = I(\varnothing) = (1)$,
+  but we have
+  $I(X_1) + I(X_2) = (x, y, z)$, which
+  is already radical.
+\end{example}
+
+\begin{definition}
+  The \emph{Zariski topology} on
+  $\PP^n$ is the topology whose
+  closed sets are projective
+  varieties $X \subseteq \PP^n$
+  (equivalently, the vanishing loci
+  of homogeneous ideals).
+\end{definition}
+
+\begin{remark}
+  This is a topology by the above
+  properties of $I_p$ and $V_p$.
+  We now want to relate this to
+  the topology on our charts.
+  Let $H_0 = V(x_0)$ and consider
+  the bijection
+  \begin{align*}
+    \Affine^n
+    &\overset{\rho_0}{\longrightarrow} \PP^n \setminus H_0 \\
+    (x_1, \dots, x_n)
+    &\longmapsto [1 : x_1 : \dots : x_n].
+  \end{align*}
+  We want to show that $\rho_0$ is a
+  homeomorphism. Write
+  $\Affine^n \subseteq \PP^n$.
+  Consider the ring homomorphism
+  \begin{align*}
+    k[x_0, \dots, x_n]
+    &\overset{\Phi}{\longrightarrow} k[x_1, \dots, x_n] \\
+    f(x_0, \dots, x_n)
+    &\longmapsto f(1, x_1, \dots, x_n) =: f^i
+  \end{align*}
+  We call $f^i$ the
+  \emph{dehomogenization} of $f$.
+\end{remark}
+
+\begin{example}
+  Let $f(x) = x_0 x_2^2 - x_1^3 - x_0 x_1^2 - x_0^3$,
+  then
+  $f^i(x) = x_2^2 - x_1^3 - x_1^2 - 1$.
+\end{example}
+
+\begin{definition}
+  If $J \le k[x_0, \dots, x_n]$
+  is homogeneous, then define
+  its \emph{dehomogenization} to be
+  \[
+    J^i = (f^i : f \in J)
+    = \Phi(J).
+  \]
+\end{definition}
+
+\begin{prop}
+  For $J \le k[x_0, \dots, x_n]$
+  homogeneous,
+  $V_p(J) \cap \Affine^n = V_a(J^i)$.
+\end{prop}
+
+\begin{proof}
+  The idea is to
+  use that for
+  $[1 : x_1 : \dots : x_n] \in \PP^n$
+  and $f \in k[x_0, \dots, x_n]$
+  homogeneous, we have
+  $f([1 : x]) = 0$ if and only if
+  $f^i(x) = 0$. Fill in the details
+  as an exercise.
+\end{proof}
+
+\begin{definition}
+  If $f \in k[x_1, \dots, x_n]$
+  with $\deg f  = d$, then define
+  its \emph{homogenization} to be
+  \[
+    f^h = x_0^d f(x_1 / x_0, \dots, x_n / x_0) \in k[x_0, x_1, \dots, x_n],
+  \]
+  which is homogeneous of degree $d$.
+\end{definition}
+
+\begin{example}
+  Let $f = x_2^2 - x_1^3 - x_1^2 - 1$.
+  Then we have
+  \[
+    f^h = x_0^3 ((x_2 / x_0)^2 - (x_1 / x_0)^3 - (x_1 / x_0)^2 - 1)
+    = x_0 x_2^2 - x_1^3 - x_0 x_1^2 - x_0^3.
+  \]
+\end{example}
+
+\begin{remark}
+  While $f^h g^h = (fg)^h$, note that
+  $(f + g)^h \ne f^h + g^h$ in general.
+\end{remark}
+
+\begin{definition}
+  For $J \le k[x_1, \dots, x_n]$ an ideal,
+  define its \emph{homogenization} to be
+  \[
+    J^h = (f^h : f \in J).
+  \]
+\end{definition}
+
+\begin{prop}
+  For $J \le k[x_1, \dots, x_n]$ an ideal,
+  $V_a(J) = V_p(J^h) \cap \Affine^n$.
+\end{prop}
+
+\begin{proof}
+  Left as an exercise,
+  use that
+  $f(a_1, \dots, a_n) = 0$ if and only
+  if $f^h(1, a_1, \dots, a_n) = 0$.
+\end{proof}
+
+\begin{remark}
+  The above results imply that
+  $\rho_0 : \Affine^n \to \PP^n \setminus H_0$
+  is a homeomorphism.
+\end{remark}
+
+\begin{prop}[Projective closure]
+  For $J \le k[x_1, \dots, x_n]$
+  and $X = V_a(J) \subseteq \Affine^n \subseteq \PP^n$,
+  we have
+  \[
+    \overline{X} = V_p(J^h).
+  \]
+\end{prop}
+
+\begin{proof}
+  See Gathmann.
+\end{proof}
+
+\begin{prop}
+  If $X = V_a(f) \subseteq \Affine^n$ with $f \in k[x_1, \dots, x_n]$,
+  then its projective closure
+  in $\PP^n$ is
+  \[
+    \overline{X} = V(f^h).
+  \]
+\end{prop}
+
+\begin{proof}
+  Left as an exercise, the idea
+  is to show that
+  $(f)^h = (f^h)$.
+\end{proof}
