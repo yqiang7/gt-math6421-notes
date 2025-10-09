@@ -1,0 +1,393 @@
+\chapter{Oct.~9 --- Projective Space as Varieties}
+
+\section{More on the Zariski Topology on \texorpdfstring{$\PP^n$}{Pn}}
+\begin{prop}
+  For each $0 \le i \le n$,
+  the map
+  \begin{align*}
+    U_i = \PP^n \setminus V(x_i)
+    &\overset{h_i}{\longrightarrow} \Affine^n \\
+    [x_0 : \cdots : x_n]
+    &\longmapsto
+    (x_0 / x_i, \dots, \widehat{x_i / x_i}, \dots, x_n / x_i)
+  \end{align*}
+  is a homeomorphism.
+\end{prop}
+
+\begin{proof}
+  The main inputs to the proof are
+  \begin{itemize}
+    \item For $I \le k[x_0, \dots, x_n]$
+      homogeneous,
+      $h_0(V(I) \cap U_0) = V(I^i)$.
+    \item For $J \le k[x_1, \dots, x_n]$,
+      $h_0^{-1}(V(J)) = V(J^h)$.
+  \end{itemize}
+  Fill in the remaining details as
+  an exercise.
+\end{proof}
+
+\begin{prop}[Projective closure]\label{prop:projective-closure}
+  For $J \le k[x_1, \dots, x_n]$
+  and $X = V_a(J) \subseteq \Affine^n \subseteq \PP^n$,
+  we have
+  \[
+    \overline{X} = V_p(J^h).
+  \]
+\end{prop}
+
+\begin{proof}
+  See Gathmann.
+\end{proof}
+
+\begin{prop}
+  If $X = V_a(f) \subseteq \Affine^n$ with $f \in k[x_1, \dots, x_n]$,
+  then its projective closure
+  in $\PP^n$ is
+  \[
+    \overline{X} = V_p(f^h).
+  \]
+\end{prop}
+
+\begin{proof}
+  We know that
+  $\overline{X} = V_p(\langle f \rangle^h)$
+  by Proposition
+  \ref{prop:projective-closure}.
+  Now
+  \[
+    \langle f \rangle^h
+    = \langle (fg)^h : g \in k[x_1, \dots, x_n] \rangle
+    = \langle f^h g^h : g \in k[x_1, \dots, x_n] \rangle
+    = \langle f^h \rangle,
+  \]
+  which implies the desired result.
+\end{proof}
+
+\begin{example}[Twisted cubic]
+  Take $X = \im(\Affine^1 \to \Affine^3 : t \mapsto (t, t^2, t^3))$.
+  Note that $X \cong \Affine^1$, and
+  \[
+    I_a(X)
+    = (x^2 - y, x^3 - z)
+    = (x^2 - y, x^3 - z, xy - z).
+  \]
+  Then one can check
+  that
+  $\overline{X} \subseteq \PP^3_{w : x : y : z}$
+  is given by
+  $\overline{X} = V_p(x^2 - yw, x^3 - zw^2, xy - zw)$.
+  However, one can also check that
+  $\overline{X}$ cannot be
+  cut out by $2$ equations.
+  For example,
+  \[
+    V_p(x^2 - yw, x^3 - zw^2)
+    = \overline{X} \cup V(w, x).
+  \]
+\end{example}
+
+\section{Projective Space as Varieties}
+
+\begin{remark}
+  Our goal now is to show that
+  projective varieties are varieties.
+  The first step is to define a sheaf
+  of regular functions on $\PP^n$.
+\end{remark}
+
+\begin{definition}
+  Let $U$ be an open set of a
+  projective variety $X \subseteq \PP^n$.
+  A function $\varphi : U \to k$
+  is \emph{regular} if for every $p \in U$,
+  there exists $d \in \N$,
+  $f, g \in k[x_0, \dots, x_n]$
+  homogeneous of degree $d$, and
+  $U_p \subseteq U$ open such that
+  \[
+    \varphi(x) = \frac{f(x)}{g(x)}
+    \quad \text{for all } x \in U_p.
+  \]
+\end{definition}
+
+\begin{remark}
+  If $X \subseteq \PP^n$ is a projective
+  variety, then
+  \[
+    \OO_X(U)
+    = \{\varphi : U \to k \mid \varphi \text{ is regular}\}
+  \]
+  is a sheaf of rings on $X$.
+  Again this is because the regular
+  condition can be checked locally.
+\end{remark}
+
+\begin{prop}
+  If $X \subseteq \PP^n$ is a projective
+  variety, then
+  $(X, \OO_X)$ is a pre-variety.
+\end{prop}
+
+\begin{proof}
+  Let $X_i = X \cap (\PP^n \setminus V(x_i))$.
+  It suffices to show
+  $(X_i, \OO_X|_{X_i})$ is an affine
+  variety for each $0 \le i \le n$.
+  For simplicity, assume $i = 0$.
+  Let $J = I(X) \le k[x_0, \dots, x_n]$
+  and $Z_0 = V(J^i) \subseteq \Affine^n$.
+  We have seen before that we have
+  a homeomorphism
+  \begin{align*}
+    X_0 &\overset{F}{\longrightarrow} Z_0 \\
+    [x_0 : \cdots : x_n]
+        &\longmapsto (x_1 / x_0, \dots, x_n / x_0).
+  \end{align*}
+  We claim that $F$ induces an
+  isomorphism of ringed spaces
+  $(X_0, \OO_X|_{X_0}) \cong (Z_0, \OO_{Z_0})$.
+  To see this, we need to check
+  that regular functions pull back to
+  regular functions via $F$ and
+  $F^{-1}$. A regular function on an
+  open set of $X_0$ is locally of
+  the form
+  \[
+    \frac{f(x_0, \dots, x_n)}{g(x_0, \dots, x_n)}
+  \]
+  with $f, g$ homogeneous of the
+  same degree. Now
+  \[
+    (F^{-1})^*
+    \left(\frac{f(x_0, \dots, x_n)}{g(x_0, \dots, x_n)}\right)
+    = \frac{f(1, x_1, \dots, x_n)}{g(1, x_1, \dots, x_n)},
+  \]
+  which is a fraction of polynomials
+  and hence regular on $Z_0$.
+  So $F^{-1}$ pulls regular functions
+  back to regular functions. Conversely,
+  a regular function on
+  $Z_0$ is locally given by
+  \[
+    \frac{q(x_1, \dots, x_n)}{r(x_1, \dots, x_n)},
+  \]
+  and its pullback via $F$ is
+  \[
+    F^*\left(\frac{q(x_1, \dots, x_n)}{r(x_1, \dots, x_n)}\right)
+    = \frac{q(x_1 / x_0, \dots, x_n / x_0)}{r(x_1 / x_0, \dots, x_n / x_0)}
+    = \frac{x_0^d q(x_1 / x_0, \dots, x_n / x_0)}{x_0^d r(x_1 / x_0, \dots, x_n / x_0)},
+  \]
+  where $d = \max\{\deg q, \deg r\}$.
+  This is regular on $X_0$, so
+  $F$ also pulls regular functions
+  back to regular functions.
+  So we get an isomorphism of
+  ringed spaces, as desired.
+\end{proof}
+
+\begin{example}
+  $\PP^n$ is a pre-variety, and
+  $\PP^n \setminus V(x_i) =: U_i \cong \Affine^n$
+  as pre-varieties.
+\end{example}
+
+\begin{definition}
+  A \emph{morphism}
+  of projective varieties
+  is a morphism of
+  the underlying pre-varieties.
+\end{definition}
+
+\begin{remark}
+  For a projective variety $X$, it will
+  be convenient to work with
+  ``global coordinates,'' i.e.
+  \[
+    S(X)
+    := k[x_0, \dots, x_n] / I_p(X).
+  \]
+  This is called the
+  \emph{homogeneous coordinate ring}.
+  Note the following:
+  \begin{enumerate}
+    \item For $f \in S(X)$
+      homogeneous, $f$ is not
+      necessarily a well-defined
+      function on $X$. But
+      \[
+        V(f) = \{[x] \in X : f(x) = 0\}
+      \]
+      is still well-defined.
+    \item A relative version of the
+      projective Nullstellensatz holds:
+      There is a bijection
+      \begin{align*}
+        \left\{
+          \substack{\displaystyle\text{projective subvarieties} \\ \displaystyle Y \subseteq X}
+        \right\}
+        &\longleftrightarrow
+        \left\{
+          \substack{\displaystyle\text{radical homogeneous ideals in $S(X)$} \\ \displaystyle \text{not equal to $(\overline{x}_1, \dots, \overline{x}_n)$}}
+        \right\} \\
+        Y &\longmapsto I(Y) \\
+        V(J) &\mathrel{\reflectbox{\ensuremath{\longmapsto}}} J
+      \end{align*}
+  \end{enumerate}
+  where $I(Y) = \langle f \in S(X) : f \text{ homogeneous and } f(y) = 0 \text{ for all } y \in Y \rangle$.
+\end{remark}
+
+\begin{lemma}
+  If $X \subseteq \PP^n$ and
+  $f_0, \dots, f_m \in S(X)$ are homogeneous
+  of the same degree, then
+  \begin{align*}
+    U = X \setminus V(f_0, \dots, f_m)
+    &\overset{f}{\longrightarrow} \PP^m \\
+    [x_0 : \cdots : x_n]
+    &\longmapsto [f_0(x) : \cdots : f_m(x)]
+  \end{align*}
+  is a morphism.
+\end{lemma}
+
+\begin{proof}
+  To see that $f$ is well-defined,
+  note that for $[a_0 : \cdots : a_n] \in X \setminus V(f_0, \dots, f_m)$,
+  we have
+  \[
+    (f_0(\lambda a), \dots, f_m(\lambda a))
+    = \lambda^d (f_0(a), \dots, f_m(a))
+  \]
+  with $d = \deg f_i$.
+  So $[f_0(a) : \cdots : f_m(a)] \in \PP^m$
+  is well-defined. To see that $f$ is a
+  morphism, we check locally on
+  $\PP^m$. Let
+  $V_i = \PP^m \setminus V(x_i)$
+  and $U_i = f^{-1}(V_i)$.
+  Then
+  \begin{align*}
+    U_i
+    &\overset{f|_{U_i}}{\longrightarrow} V_i \cong \Affine^m \\
+    a &\longmapsto
+    \left(
+      \frac{f_0(a)}{f_i(a)},
+      \dots,
+      \widehat{\frac{f_i(a)}{f_i(a)}},
+      \dots,
+      \frac{f_m(a)}{f_i(a)}
+    \right).
+  \end{align*}
+  Since each $f_j / f_i$ is regular,
+  $f|_{U_i}$ is a morphism. So
+  $f$ is a morphism.
+\end{proof}
+
+\begin{example}
+  Define a map
+  \begin{align*}
+    \PP^1_{s : t}
+    &\overset{f}{\longrightarrow}
+    \PP^3_{x : y : z} \\
+    [s : t]
+    &\longmapsto
+    [s^3 : s^2 t : s t^2 : t^3].
+  \end{align*}
+  Then $S(\PP^1) = k[s, t]$ and
+  $f(\PP^1)$ is the projective
+  twisted cubic in $\PP^3$.
+\end{example}
+
+\begin{example}
+  Let $A \in \GL_{n + 1}(k)$.
+  Then
+  \begin{align*}
+    f_A : \PP^n
+    &\longrightarrow \PP^n \\
+    [x] &\longmapsto [Ax]
+  \end{align*}
+  is an isomorphism with inverse
+  $f_{A^{-1}}$. We will see later
+  that we have a surjective group
+  homomorphism
+  \begin{align*}
+    \GL_{n + 1}(k)
+    &\longrightarrow \Aut(\PP^n) \\
+    A &\longmapsto f_A
+  \end{align*}
+  with kernel $k^\times I$.
+  So we get
+  $\Aut(\PP^n) \cong \GL_{n + 1}(k) / k^\times I =: \PGL_{n + 1}(k)$.
+\end{example}
+
+\begin{example}[Conics]
+  Let $f \in k[x, y, z]$ be homogeneous
+  of degree $2$, and write
+  \[
+    f =
+    (x, y, z) B (x, y, z)^T
+  \]
+  with $B$ a symmetric $3 \times 3$
+  matrix. We want to characterize
+  $X = V(f)$.
+  Choose
+  $A \in \GL_3(k)$ such that
+  \[
+    B' = A B A^T =
+    \begin{pmatrix}
+      1 & 0 & 0 \\
+      0 & 1 & 0 \\
+      0 & 0 & 1
+    \end{pmatrix},\
+    \begin{pmatrix}
+      1 & 0 & 0 \\
+      0 & 1 & 0 \\
+      0 & 0 & 0
+    \end{pmatrix},
+    \text{ or }
+    \begin{pmatrix}
+      1 & 0 & 0 \\
+      0 & 0 & 0 \\
+      0 & 0 & 0
+    \end{pmatrix}.
+  \]
+  Then $f' = (x, y, z) B' (x, y, z)^T$
+  has $f' = x^2 + y^2 + z^2$,
+  $x^2 + y^2$, or $x^2$. Now
+  $A$ induces an isomorphism
+  $h_{A^{-1}} : \PP^2 \to \PP^2$
+  and $g := h_{A^{-1}}|_{X} : X \to h_{A^{-1}}(X) = V(f')$,
+  so any projective conic is isomorphic
+  to
+  \[
+    V(x^2 + y^2 + z^2), \quad
+    V(x^2 + y^2), \quad
+    \text{or} \quad
+    V(x^2).
+  \]
+\end{example}
+
+\begin{example}[Projections]
+  Let $a = [1 : 0 : \cdots : 0]$
+  and define
+  \begin{align*}
+    \PP^n \setminus \{a\}
+    &\overset{f}{\longrightarrow}
+    \PP^{n - 1} \\
+    [x_0 : \cdots : x_n]
+    &\longmapsto
+    [x_1 : \cdots : x_n].
+  \end{align*}
+  Geometrically, if we fix
+  $[b] \in \PP^n \setminus \{a\}$
+  and set
+  \[
+    \ell_{a, b}
+    = \{
+      [s : tb_1 : \cdots : tb_n]
+      : (s, t) \in k^2 \setminus \{0\}
+    \}
+    = \text{the line through $a$ and $b$},
+  \]
+  then $\ell_{a, b} \cap V(x_0) = [0 : b_1 : \cdots : b_n] = [0 : f(b)]$.
+\end{example}
