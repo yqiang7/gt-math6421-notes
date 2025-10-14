@@ -1,0 +1,345 @@
+\chapter{Oct.~14 --- Projective Space as Varieties, Part 2}
+
+\section{Example of Projective Morphism}
+\begin{example}[Projections, continued]
+  Let $H \subseteq \PP^n$ be a hyperplane
+  and $p \notin H$. Then we can define
+  \begin{align*}
+    \PP^n \setminus \{p\}
+    &\overset{\pi}{\longrightarrow} H \cong \PP^{n - 1} \\
+    q &\longmapsto
+    \text{intersection point of $H$ and $\overline{pq}$}.
+  \end{align*}
+  For example, when $n = 2$,
+  $p = [1 : 0 : 0] \in \PP^2_{x_0 : x_1 : x_2}$,
+  and $H = V(x_0)$, then we have
+  \begin{align*}
+    \PP^2 \setminus \{p\}
+    &\longrightarrow \PP^{1} \\
+    [x_0 : x_1 : x_2]
+    &\longmapsto [x_1 : x_2].
+  \end{align*}
+  Note that this does not extend to a
+  morphism $\PP^2 \to \PP^1$. But if
+  we let $X = V(x_0 x_1 - x_2^2) \subseteq \PP^2$, then
+  the restriction of the above morphism
+  to $X$:
+  \begin{align*}
+    X \setminus \{p\}
+    &\longrightarrow \PP^{1} \\
+    [x_0 : x_1 : x_2]
+    &\longmapsto [x_1 : x_2].
+  \end{align*}
+  does extend to a morphism
+  \begin{align*}
+    X
+    &\longrightarrow \PP^{1} \\
+    [x_0 : x_1 : x_2]
+    &\longmapsto
+    \begin{cases}
+      [x_1 : x_2] & \text{if } [x] \ne [1 : 0 : 0], \\
+      [x_2 : x_0] & \text{if } [x] \ne [1 : 1 : 0].
+    \end{cases}
+  \end{align*}
+\end{example}
+
+\section{The Segre Embedding}
+
+\begin{remark}
+  We now want to show that
+  projective varieties are varieties, and
+  understand and analogue of compactness
+  in algebraic geometry.
+  To do this, we will need to understand
+  products.
+\end{remark}
+
+\begin{definition}
+  Fix $m, n \ge 0$. The
+  \emph{Segre embedding} is
+  the map $\Sigma : \PP_{x_i}^m \times \PP_{y_i}^n \to \PP^N_{z_{i, j}}$
+  given by
+  \[
+    \Sigma([x_0 : \cdots : x_m], [y_0 : \cdots : y_n])
+    = [x_i y_j : 0 \le i \le m, 0 \le j \le n],
+  \]
+  where $N = (m + 1)(n + 1) - 1$.
+\end{definition}
+
+\begin{prop}
+  Let $\Sigma$ be the Segre embedding.
+  Then
+  \begin{enumerate}
+    \item $X = \Sigma(\PP^m \times \PP^n) = V(z_{i, j} z_{k, \ell} - z_{i, \ell} z_{k, j} : 0 \le i, k \le m,\, 0 \le j, \ell \le n)$.
+    \item The map
+      $\PP^m \times \PP^n \to X$ is an
+      isomorphism, i.e. $\Sigma$ is a
+      closed embedding.
+  \end{enumerate}
+\end{prop}
+
+\begin{proof}
+  (0) First one can check that
+  $\Sigma$ is a morphism.
+  To do this, restrict to charts.
+
+  (1) Fix $[a_{i ,j}] \in \PP^N$.
+  Then $[a_{i, j}] \in \im \Sigma$
+  if and only if the matrix $(a_{i, j})$
+  has rank $1$, which occurs if and only
+  if all $2 \times 2$ minors of
+  $(a_{i, j})$ vanish,
+  which happens if and only if
+  \[
+    a_{i, j} a_{k, \ell} - a_{i, \ell} a_{k, j} = 0
+  \]
+  for all $i, j, k, \ell$ for which the
+  above equation makes sense.
+
+  (2) We define a morphism
+  $X \to \PP^m \times \PP^n$ that will
+  be inverse to $\Sigma$. Set
+  $U_{i, j} = X \cap \{z_{i, j} \ne 0\}$.
+  Define
+  \begin{align*}
+    U_{i, j}
+    &\overset{h_{i, j}}{\longrightarrow}
+    \PP^m \times \PP^n \\
+    [z_{i, j}]
+    &\longmapsto
+    ([z_{0, j} : \cdots : z_{m, j}], [z_{i, 0} : \cdots : z_{i, n}]).
+  \end{align*}
+  Using the definition of $X$
+  (as the set of rank $1$ matrices up
+  to scaling), these glue to give a
+  morphism $X \to \PP^m \times \PP^n$
+  that is inverse to $\Sigma$.
+\end{proof}
+
+\begin{example}
+  Let $m = n = 1$. Then the Segre
+  embedding is given by
+  \begin{align*}
+    \PP^1 \times \PP^1
+    &\longrightarrow \PP^3_{x : y : z : w} \\
+    ([a_0 : a_1], [b_0 : b_1])
+    &\longmapsto
+    \begin{bmatrix}
+      a_0 b_0 & a_0 b_1 \\
+      a_1 b_0 & a_1 b_1
+    \end{bmatrix}.
+  \end{align*}
+  Then $\im \Sigma = V(xw - yz)$. Observe
+  that the images of $\{a\} \times \PP^1$
+  and $\PP^1 \times \{b\}$ in
+  $\Sigma(\PP^1 \times \PP^1)$ are two
+  families of lines, where the lines within
+  each families do not intersect.
+\end{example}
+
+\begin{remark}
+  The following are consequences of the
+  Segre embedding.
+  \begin{enumerate}
+    \item We can study products of
+      projective varieties.
+
+      \begin{definition}[Redefinition of projective variety]
+        A \emph{projective variety}
+        is a (pre-)variety $X$ such that
+        there exists a closed embedding
+        $X \hookrightarrow \PP^n$ for some $n \ge 0$.
+      \end{definition}
+
+      Now using the Segre embedding,
+      we get that
+      $\PP^m \times \PP^n$ is a projective
+      variety. Moreover, if
+      $X \subseteq \PP^m$ and $Y \subseteq \PP^n$
+      are projective varieties, then
+      so is $X \times Y$.
+    \item We can show that $\PP^n$ is
+      separated.
+
+      \begin{lemma}\label{lem:pn-separated}
+        $\Delta_{\PP^n}$ is closed in
+        $\PP^n \times \PP^n$.
+      \end{lemma}
+
+      \begin{proof}
+        Observe that
+        \[
+          \Delta_{\PP^n}
+          = \{([x_0 : \cdots : x_n], [y_0 : \cdots : y_n]) \in \PP^n \times \PP^n :
+            x_i y_j - x_j y_i
+            = 0 \text{ for all }
+            0 \le i, j \le n
+          \}.
+        \]
+        It suffices to show that
+        $\Delta_{\PP^n}$ is closed in
+        $\PP^n \times \PP^n$.
+        There are two ways to see this.
+        The first is to use the Segre
+        embedding $\PP^n_{x_i} \times \PP^n_{y_i} \underset{\text{cl}}{\overset{\Sigma}{\hookrightarrow}} \PP^{N}_{z_{i, j}}$
+        Then we can write
+        \[
+          \Sigma(\Delta_{\PP^n})
+          = \Sigma(\PP^n \times \PP^n)
+          \cap V(z_{i, j} - z_{j, i} : 0 \le i, j \le n),
+        \]
+        which is closed in $\PP^N$, so
+        $\Delta_{\PP^n}$ is closed in
+        $\PP^n \times \PP^n$.
+        Alternatively, one can just compute
+        $\Delta_{\PP^n}$ directly on the
+        affine charts. One can fill in the
+        details of this method as an
+        exercise.
+      \end{proof}
+  \end{enumerate}
+\end{remark}
+
+\begin{prop}
+  Projective varieties are varieties.
+\end{prop}
+
+\begin{proof}
+  We have already seen that they are
+  pre-varieties, so
+  it suffices to show that they are separated.
+  By Lemma \ref{lem:pn-separated},
+  $\PP^n$ is separated. Thus
+  any closed sub-prevariety of $\PP^n$ is also
+  separated.
+\end{proof}
+
+\section{Completeness}
+
+\begin{remark}
+  We now want an analogue of compactness
+  in algebraic geometry. One issue
+  is that all varieties are
+  compact to begin with, but
+  $\Affine^n$ has points missing in some
+  sense.
+\end{remark}
+
+\begin{example}\label{ex:missing-point}
+  Consider the projection map
+  \begin{align*}
+    \Affine^1 \times \Affine^1
+    &\overset{\mathrm{pr}_2}{\longrightarrow} \Affine^1 \\
+    (x, t) &\longmapsto t.
+  \end{align*}
+  Then $X = V(xt - 1) \subseteq \Affine^1 \times \Affine^1$
+  is closed, but
+  $\mathrm{pr}_2(X) = \Affine^1 \setminus \{0\}$.
+  If we instead viewed this over $\PP^1$:
+  \begin{align*}
+    \PP^1_{[x : y]} \times \Affine^1_t
+    &\overset{\mathrm{pr}_2}{\longrightarrow} \Affine^1_t \\
+    ([x : y], t) &\longmapsto t
+  \end{align*}
+  with $\overline{X} = V(xt - y)$,
+  then $\mathrm{pr}_2(\overline{X}) = \Affine^1$
+  as there is a point
+  $([1 : 0], 0)$ at infinity in
+  $\overline{X}$.
+  In other words, ``compactifying''
+  $\Affine^1$ to $\PP^1$ gives the
+  desired missing point.
+\end{example}
+
+\begin{definition}
+  A morphism $f : X \to Y$ is
+  \emph{closed} if $f(Z)$ is
+  closed in $Y$ for all closed sets $Z \subseteq X$.
+\end{definition}
+
+\begin{definition}
+  A variety $X$ is \emph{complete}
+  if the projection
+  \[
+    \mathrm{pr}_2
+    : X \times Y \longrightarrow Y
+  \]
+  is closed for all varieties $Y$.
+\end{definition}
+
+\begin{remark}
+  The same definition for
+  topological spaces
+  gives the usual notion of
+  compactness.
+\end{remark}
+
+\begin{example}
+  Example \ref{ex:missing-point} shows that
+  $\Affine^1$ is not complete.
+  Similar examples show that
+  $\Affine^n$ is not complete for any
+  $n \ge 1$.
+\end{example}
+
+\begin{prop}
+  $\PP^n$ is complete.
+\end{prop}
+
+\begin{proof}
+  The steps to show this are the following:
+  \begin{enumerate}
+    \item For any $m, n \ge 0$,
+      the projection
+      $\mathrm{pr}_2 : \PP^n \times \PP^m \to \PP^m$
+      is closed.
+
+      See Gathmann for a proof of this
+      fact.
+    \item If $Y$ is an affine variety,
+      then
+      $\mathrm{pr}_2 : \PP^n \times Y \to Y$
+      is closed.
+
+      To see this, write
+      $Y = V(I) \subseteq \Affine^m \subseteq \PP^m$
+      and consider the diagram
+      \begin{center}
+      \begin{tikzcd}
+        \PP^n \times \PP^m
+        \ar[r, "\mathrm{pr}_2"] &\PP^m \\
+        \PP^n \times \Affine^n \ar[u, hook, "\text{op}"] \ar[r, "\mathrm{pr}_2"] &\Affine^n \ar[u, hook]\\
+        \PP^n \times Y \ar[u, hook, "\text{cl}"] \ar[r, "\mathrm{pr}_2"] &\ar[u, hook] Y
+      \end{tikzcd}
+      \end{center}
+      Since the top row is closed, so
+      is the bottom row.
+  \end{enumerate}
+  Finally, we complete the proof.
+  If $Y$ is a variety, then it admits an
+  open affine cover
+  $Y = \bigcup_{i = 1}^r U_i$. Now
+  $\mathrm{pr}_2 : \PP^n \times Y \to Y$
+  is closed when restricted to
+  $\mathrm{pr}_2^{-1}(U_i)$. Since
+  closedness of a map can be checked on
+  an open cover of the target,
+  we see that $\PP^n \times Y \to Y$
+  is closed.
+\end{proof}
+
+\begin{remark}
+  The same definition and
+  arguments for completeness work if
+  $Y$ is replaced by a pre-variety.
+\end{remark}
+
+\begin{exercise}
+  Show that if $X$ is a complete variety,
+  then so is any closed subvariety of
+  $X$.
+\end{exercise}
+
+\begin{corollary}
+  Any projective variety is complete.
+\end{corollary}
