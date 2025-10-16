@@ -1,0 +1,346 @@
+\chapter{Oct.~16 --- Completeness and Embeddings}
+
+\section{More on Completeness}
+
+\begin{example}
+  Recall from before that we have:
+  \begin{enumerate}
+    \item $\Affine^n$ is not complete for
+      $n \ge 1$.
+    \item $\PP^n$ is complete.
+    \item Any projective variety is
+      complete.
+  \end{enumerate}
+\end{example}
+
+\begin{remark}
+  Note the following:
+  \begin{enumerate}
+    \item If $k = \C$, then a variety is
+      complete if and only if $X^{\mathrm{an}}$ is compact
+      in the analytic topology.
+    \item \emph{Nagata's compactification theorem}:
+      Any variety $X$ admits an open
+      embedding $X \hookrightarrow \overline{X}$
+      with $\overline{X}$ complete.
+    \item In dimension $1$, completeness
+      is equivalent to being projective.
+      In dimension $\ge 2$, being projective
+      implies completeness, but the converse
+      may fail.
+  \end{enumerate}
+\end{remark}
+
+\begin{prop}
+  If $f : X \to Y$ is a morphism of varieties
+  with $X$ complete, then
+  \begin{enumerate}
+    \item $f(X)$ is closed in $Y$.
+    \item $f(X)$ is complete.
+  \end{enumerate}
+\end{prop}
+
+\begin{proof}
+  (1) Consider the projection
+  $\pr_2 : X \times Y \to Y$. As
+  $Y$ is separated, the graph
+  $\Gamma_f$ of $f$ is closed in $X \times Y$.
+  Now $f(X) = \pr_2(\Gamma_f)$, which is
+  closed in $Y$ as $X$ is complete.
+
+  (2) Fix any variety $Z$. Now consider
+  the projection
+  $\pi' : f(X) \times Z \to Z$ and
+  $W \subseteq f(X) \times Z$ closed. Now
+  consider the projection $\pi : X \times Z \to Z$.
+  Then $\pi'(W) = \pi((f, \id)^{-1}(W))$.
+  The set $(f, \id)^{-1}(W)$ is closed in
+  $X \times Z$ by continuity, and
+  $\pi'(W)$ is closed in $Z$ as $X$ is complete.
+  So $f(X)$ is complete.
+\end{proof}
+
+\begin{corollary}
+  If $X$ is a complete variety that is
+  connected, then any $\varphi \in \OO_X(X)$
+  is constant. In particular,
+  $\OO_X(X) \cong k$.
+\end{corollary}
+
+\begin{proof}
+  Any $\varphi \in \OO_X(X)$ induces a
+  morphism $f : X \to \PP^1_{s : t}$ by
+  $x \mapsto [1 : \varphi(x)]$.
+  By construction, we have
+  $f(X) \subseteq \{s \ne 0\} \cong \Affine^1$.
+  As $X$ is complete, $f(X)$ is closed,
+  and as $X$ is connected, $f(X)$ is
+  connected. Since the only proper closed
+  subsets of $\PP^1$ are points, $f(X)$
+  be must a single point $[1 : a]$ since
+  $f(X)$ is connected.
+  So $\varphi(x) = a$ for every
+  $x \in X$.
+\end{proof}
+
+\begin{corollary}
+  The only complete affine varieties are
+  finite point sets.
+\end{corollary}
+
+\begin{proof}
+  Assume $X = V(I) \subseteq \Affine^n$ is
+  complete. Using the decomposition
+  of $X$ into connected components (there
+  finitely many
+  since $X$ is Noetherian), we may reduce
+  to the case that $X$ is connected.
+  Then $A(X) = \OO_X(X) \cong k$, but this happens
+  if and only if $X$ is a single point
+  (see Homework 1).
+\end{proof}
+
+\section{The Veronese Embedding}
+
+\begin{remark}
+  If $X \subseteq \PP^n$ is a projective
+  variety, which open sets in $X$ are
+  affine?
+  \begin{itemize}
+    \item $X_i = X \cap (\PP^n \setminus
+      V(x_i))$ is affine.
+    \item $X \setminus (\PP^n \setminus H)$
+      with $H \subseteq \PP^n$ a
+      hyperplane is affine.
+  \end{itemize}
+  We will see that
+  $X \cap (\PP^n \setminus V(g))$ is affine
+  with $g \in k[x_0, \ldots, x_n]$
+  homogeneous of degree $d > 0$.
+\end{remark}
+
+\begin{definition}[Veronese embedding, $d$-tuple embedding]
+  Fix $n , d > 0$. Let
+  $f_0, \dots, f_N \in k[x_0, \ldots, x_n]$
+  denote the monomials of degree $d$, where
+  $N = \binom{n + d}{d} - 1$. The
+  \emph{Veronese embedding} $\nu_{n, d}$
+  is the map
+  \begin{align*}
+    \nu_{n, d} : \PP^n
+    &\longrightarrow \PP^N \\
+    x &\longmapsto [f_0(x) : \cdots : f_N(x)].
+  \end{align*}
+\end{definition}
+
+\begin{example}\label{ex:veronese}
+  Let $n = 1$, $d = 3$. Then the degree-$3$
+  Veronese embedding is given by
+  \begin{align*}
+    f : \PP^1 &\longmapsto \PP^3_{s : t : u : v} \\
+    [x : y] &\longmapsto [x^3 : x^2y : xy^2 : y^3].
+  \end{align*}
+  Then $X = f(\PP^1) = V(sv - tu, t^2 - su, u^2 - vt)$.
+  We can define an inverse
+  \begin{align*}
+    X &\longrightarrow \PP^1 \\
+    [s : t : u : v] &\longmapsto
+    \begin{cases}
+      [1 : t / s] & \text{if } s \ne 0, \\
+      [u / v : 1] & \text{if } v \ne 0.
+    \end{cases}
+  \end{align*}
+  Note that $ut = sv$ on $X$ when
+  $sv \ne 0$, so this is well-defined.
+\end{example}
+
+\begin{prop}
+  $\nu_{n, d} : \PP^n \to \PP^N$ is a
+  closed embedding.
+\end{prop}
+
+\begin{proof}
+  As $\PP^n$ is complete,
+  $X = \nu_{n, d}(\PP^n)$ is closed in
+  $\PP^N$. A similar computation as
+  in Example \ref{ex:veronese} shows that
+  $\nu_{n, d} : \PP^n \to X$ has
+  an inverse. So $\nu_{n, d}$ is a
+  closed embedding.
+\end{proof}
+
+\begin{remark}
+  Note the following:
+  \begin{enumerate}
+    \item With some work, one can show that
+      $\nu_{n, d}(\PP^n)$ can be cut out
+      by quadratic equations
+      \[
+        \{
+          z_i z_j - z_k z_\ell :
+          f_i f_j = f_k f_\ell
+          \text{ as monomials}
+        \}.
+      \]
+    \item If $g \in k[x_0, \ldots, x_n]$
+      is homogeneous of degree $d > 0$, then
+      \[
+        \PP^n \supseteq
+        V(g)
+        = \nu_{n, d}^{-1}(H)
+      \]
+      for some hyperplane $H \subseteq \PP^N$.
+  \end{enumerate}
+\end{remark}
+
+\begin{theorem}
+  If $X \subseteq \PP^n$ is a projective
+  variety, then for any
+  $g \in k[x_0, \ldots, x_n]$ homogeneous of
+  degree $d$, the variety
+  $X \setminus V(g)$ is affine.
+\end{theorem}
+
+\begin{proof}
+  Consider the Veronese
+  embedding $\nu_{n, d} : \PP^n \to \PP^N$.
+  Then $V(g) = \nu_{n, d}^{-1}(H)$ for some
+  hyperplane $H \subseteq \PP^N$. So
+  $X \setminus V(g) \cong \nu_{n, d}(X) \setminus H$,
+  which is affine.
+\end{proof}
+
+\section{The Grassmannian}
+
+\begin{definition}
+  For $0 \le d \le n$, define the
+  \emph{Grassmannian}
+  \[
+    G(d, n) :=
+    \{
+      \text{$d$-dimensional subspaces of }
+      k^n
+    \}.
+  \]
+\end{definition}
+
+\begin{example}
+  We have the following:
+  \begin{itemize}
+    \item $G(0, n)$ and $G(n, n)$ are
+      just points.
+    \item $G(1, n) = \PP^{n - 1}$
+      set-theoretically.
+    \item $G(d, n) \cong G(n - d, n)$
+      as dimension $d$ subspaces of
+      $V = k^n$ are in bijection with
+      dimension $n - d$ subspaces of
+      $V^*$, where $W \subseteq V$
+      corresponds to
+      $\ker(V^* \to W^*)$.
+    \item $G(2, n) = \{\text{lines in } \PP^{n - 1}\}$.
+  \end{itemize}
+\end{example}
+
+\begin{theorem}
+  The Grassmannian
+  $G(d, n)$ can be endowed with the
+  structure of a (projective) variety of
+  dimension $d(n - d)$.
+\end{theorem}
+
+\begin{proof}
+  One strategy is to let
+  $V = k^n = \Span\{e_1, \dots, e_n\}$.
+  We sketch this idea.
+  Observe that
+  \begin{enumerate}
+    \item A $d$-dimensional subspace
+      $W \subseteq V$ can be represented by
+      a $d \times n$ matrix $A$ of
+      rank $d$ (choose a basis of $W$ and
+      write the coordinates with respect
+      to the basis $\{e_1, \dots, e_n\}$
+      of $V$).
+      Note that $A$ is unique up to
+      the action by
+      $\GL_d(k)$, so we get a point
+      $[A] \in G(d, n)$.
+    \item For $I = \{1, \dots, n\}$ with
+      $|I| = d$, define the set
+      \[
+        U_I = \{
+          [A] \in G(d, n)
+          : \det(A_I) \ne 0
+        \},
+      \]
+      where $A_I$ denotes the $I$-th
+      $d \times d$ minor of $A$.
+      One can check that the condition
+      $\det(A_I) \ne 0$
+      is well-defined
+      (i.e. $\det((BA)_I) = \det(B) \det(A_I)$ for $B \in \GL_d(k)$).
+
+    Then we have a bijection
+    $\Affine^{d(n - d)} \to U_I$ given as
+    follows. When $I = \{1, \dots, d\}$,
+    define
+    \begin{align*}
+      \Affine^{d(n - d)} &\longrightarrow U_I \\
+      C &\longmapsto
+      [ I_d \mid C ].
+    \end{align*}
+    One can make a similar definition for
+    other $I$.
+    Note that $G(d, n) = \bigcup_I U_I$.
+  \item Show that the $U_I$ glue to give
+    $G(d, n)$ the structure of a variety.
+  \end{enumerate}
+  The second strategy is to use the
+  wedge product $\bigwedge^d V$.
+  Recall that
+  \begin{itemize}
+    \item $\bigwedge^d V$ has basis given
+      by $e_I := e_{i_1} \wedge \cdots \wedge e_{i_d}$
+      with $I = \{i_1 < \cdots < i_d\} \subseteq \{1, \dots, n\}$.
+    \item For $v_1, \dots, v_d \in V$
+      with $v_i = \sum_{j = 1}^d a_{i, j} e_j$,
+      we have
+      $v_1 \wedge \cdots \wedge v_d = \sum_{I \subseteq \{1, \dots, n\}} \det(a_I) e_I$.
+  \end{itemize}
+  The following are two linear algebra
+  lemmas we will use:
+  \begin{quote}
+    \vspace{-2em}
+    \begin{lemma}
+      Let $v_1, \dots, v_d \in V$. Then
+      $v_1, \dots, v_d$ are linearly independent
+      if and only if $v_1 \wedge \cdots \wedge v_d \ne 0$.
+    \end{lemma}
+
+    \begin{proof}
+      Use the determinant formula.
+    \end{proof}
+
+    \begin{lemma}
+      For linearly independent
+      sets $\{v_1, \dots, v_d\}, \{w_1, \dots, w_d\} \subseteq V$,
+      then $v_1 \wedge \cdots \wedge v_d$
+      and $w_1 \wedge \cdots \wedge w_d$
+      are linearly dependent in
+      $\bigwedge^d V$ if and only if
+      $\Span\{v_1, \dots, v_d\} = \Span\{w_1, \dots, w_d\}$.
+    \end{lemma}
+
+    \begin{proof}
+      $(\Leftarrow)$ It suffices to show
+      that $k \cdot v_1 \wedge \cdots \wedge v_d \subseteq \bigwedge^d V$
+      is preserved under change of basis operations.
+      Check this as an exercise.
+
+      $(\Rightarrow)$
+      We will prove this next class.
+    \end{proof}
+  \end{quote}
+  We will complete the proof next class.
+\end{proof}
