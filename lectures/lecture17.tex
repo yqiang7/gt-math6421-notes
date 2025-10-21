@@ -1,0 +1,269 @@
+\chapter{Oct.~21 --- The Grassmannian}
+
+\section{Pl\"ucker Coordinates}
+
+\begin{remark}
+  Consider coordinates on $\PP^{\binom{n}{d} - 1}$
+  with respect to
+  \[
+    \{
+      e_I = e_{i_1} \wedge \cdots \wedge e_{i_d}
+      : I = \{i_1 < \cdots < i_d\} \subseteq \{1, \ldots, n\}
+    \}.
+  \]
+  So when $d = 2$, $n = 3$, and
+  $W = \Span\{e_1 + e_2, e_1 + e_3\}$, then
+  \[
+    p_{n, d}(W)
+    = k(e_1 \wedge e_3 - e_1 \wedge e_2 + e_2 \wedge e_3)
+    = [1 : -1 : 1] \in \PP^2.
+  \]
+  Note that $p_{n, d}(W)$ encodes the
+  determinants of the $2 \times 2$ minors
+  of
+  \[
+    \begin{bmatrix}
+      1 & 1 & 0 \\
+      1 & 0 & 1
+    \end{bmatrix}.
+  \]
+\end{remark}
+
+\begin{remark}
+  We will now try to describe the image
+  of $p_{n, d} : G(d, n) \to \PP^{\binom{n}{d} - 1}$.
+  Note that $0 \ne \omega \in \Lambda^d V$
+  is in the image if and only if $\omega$
+  is \emph{pure}, i.e. $\omega = v_1 \wedge \cdots \wedge v_d$
+  for some $v_1, \ldots, v_d \in V$.
+\end{remark}
+
+\begin{prop}\label{prop:rank-wedge}
+  For $0 \ne \omega \in \Lambda^d V$, the map
+  \begin{align*}
+    g : V &\longrightarrow \Lambda^{d + 1} V \\
+    v &\longmapsto w \wedge v
+  \end{align*}
+  has rank $\ge n - d$. Furthermore,
+  $\omega$ is pure if and only if the rank
+  is exactly $n - d$.
+\end{prop}
+
+\begin{proof}
+  After a change of basis, we may
+assume that $\ker g = \Span\{e_1, \dots, e_r\}$
+with $1 \le r \le n$. Write
+\[
+  \omega = \sum_{I \subseteq \{1, \dots, n\}} a_I e_I.
+\]
+Note that $e_i \wedge \omega = 0$ for
+$1 \le i \le r$, so $a_I = 0$ if
+there exists $1 \le i \le r$ with $i \notin I$. So
+\[
+  \omega = \sum_{\substack{\{1, \dots, r\} \subseteq I \subseteq \{1, \dots, n\}\\|I| = d}} a_I e_I.
+  \]
+  As $\omega \ne 0$, we have $r \le d$.
+  So $\rank g = n - r \ge n - d$.
+  Furthermore, if $r = d$, then
+  $\omega = a_{\{1, \dots, d\}} e_1 \wedge \cdots \wedge e_d$.
+  Conversely, if $\omega$ is pure, a
+  similar computation shows that
+  $\rank g = n - d$.
+\end{proof}
+
+\begin{example}
+  Let $n = 3$, $d = 2$, $\omega \in \Lambda^2 V$.
+  Consider a map
+  \begin{align*}
+    g : V &\longrightarrow \Lambda^3 V \\
+    v &\longmapsto \omega \wedge v.
+  \end{align*}
+  Then $\rank g \le 1$. By Proposition
+  \ref{prop:rank-wedge}, $\rank g = 1$ and
+  $\omega$ is pure.
+\end{example}
+
+\begin{example}
+  Let $n = 4$, $d = 2$, and
+  $\omega = e_1 \wedge e_2$. Then
+  \[
+    g(a_1 e_1 + a_2 e_2 + a_3 e_3 + a_4 e_4)
+    = a_3 e_1 \wedge e_2 \wedge e_3
+    + a_4 e_1 \wedge e_2 \wedge e_4.
+  \]
+  So we have $\rank g = 2 = 4 - 2$.
+\end{example}
+
+\begin{corollary}\label{cor:plucker-closed}
+  The image of
+  $p_{n, d} : G(d, n) \to \PP^{\binom{n}{d} - 1}$
+  is a closed set. In particular, this
+  endows $G(d, n)$ with the structure of
+  an algebraic variety.
+\end{corollary}
+
+\begin{proof}
+  Let $[\omega] \in \PP^{\binom{n}{d} - 1}$
+  where $0 \ne \omega = \sum_{|I| = d} b_I e_I$.
+  Then $[\omega]$ is in $\im p_{n, d}$
+  if and only if $\omega \in \Lambda^d V$
+  is pure, which happens if and only if
+  the map
+  \begin{align*}
+    g_\omega : V &\longrightarrow \Lambda^{d + 1} V \\
+    \sum a_i e_i &\longmapsto \sum_{|I| = d} b_I e_I \wedge \sum a_i e_i
+  \end{align*}
+  has rank $n - d$. Note that $g_\omega$
+  is given by some matrix in the $b_I$.
+  This matrix has rank $n - d$ if and only
+  if the $n - d + 1$ minors of this matrix
+  vanish (we already know the rank
+  is at least $n - d$ by Proposition
+  \ref{prop:rank-wedge}).
+  These give equations cutting out
+  $\im p_{n, d}$ in $\PP^{\binom{n}{d} - 1}$,
+  so $\im p_{n, d}$ is closed in
+  $\PP^{\binom{n}{d} - 1}$.
+\end{proof}
+
+\begin{example}
+  Let $n = 3$, $d = 2$. As all
+  $\omega \in \Lambda^2 V$ are pure,
+  $G(2, 3) \to \PP^{\binom{n}{d} - 1}$
+  is an isomorphism.
+\end{example}
+
+\section{Charts of the Grassmannian}
+
+\begin{remark}
+  For $I \subseteq \{1, \dots, n\}$
+  with $|I| = d$, let
+  \[
+    U_I \subseteq G(d, n) \subseteq \PP^{\binom{n}{d} - 1}
+  \]
+  denote the open set on which the
+  $e_I$ coordinate does not vanish.
+\end{remark}
+
+\begin{prop}
+  $U_I \cong \Affine^{d(n - d)}$.
+\end{prop}
+
+\begin{proof}
+  After a change of coordinates, let
+  $I = \{n - d + 1, n - d + 2, \dots, n\}$.
+  Then define a map
+  \begin{align*}
+    h_I : \Affine^{d(n - d)} &\longrightarrow U_I \subseteq \PP^{\binom{n}{d} - 1} \\
+    A = (a_{i, j}) &\longmapsto
+    p_{n, d}([A \mid I_d]),
+  \end{align*}
+  where $A$ is a $d \times (n - d)$ matrix
+  and $I_d$ is the $d \times d$ identity matrix.
+  This map is a morphism, and $h_I$ has inverse
+  given by
+  \[
+    h_I^{-1}
+    \Big(
+      \Big[\sum_{|J| = d} b_J e_J\Big]
+    \Big)
+    = (\pm b_{(I \setminus \{i\}) \cup \{j\}} / b_I)_{\substack{1 \le i \le d \\ 1 \le j \le n - d}}.
+  \]
+  We can see that this is also a morphism,
+  so $h_I$ is an isomorphism
+  $\Affine^{d(n - d)} \to U_I$.
+\end{proof}
+
+\begin{remark}
+  Note that $G(d, n) = \bigcup_{|I| = d} U_I$.
+  This gives us the following:
+  \begin{enumerate}
+    \item $\dim G(d, n) = d(n - d)$.
+    \item $G(d, n)$ is irreducible,
+      as $U_I$ is irreducible and
+      $U_I \cap U_J \ne \varnothing$
+      (for the latter, it suffices to find
+      some $d \times n$ matrix $A$ whose
+      $I$ and $J$ minors are both nonzero).
+  \end{enumerate}
+\end{remark}
+
+\begin{example}
+  We have
+  $G(2, 4) \hookrightarrow \PP^{\binom{4}{2} - 1} = \PP^5$.
+  Note that $\dim G(2, 4) = 4$ and
+  $\dim \PP^5 = 5$. One can additionally
+  show that $G(2, 4)$ is cut out
+  by a single equation via the
+  \emph{Pl\"ucker relations}.
+\end{example}
+
+\section{Birational Maps}
+
+\begin{remark}
+  Many non-isomorphic varieties are
+  isomorphic on an open set. Consider:
+  \begin{enumerate}
+    \item $\PP^{n + m}$ and
+      $\PP^n \times \PP^m$ both contain
+      $\Affine^{n + m}$ as a dense open
+      set.
+    \item $G(d, n)$ and
+      $\PP^{d(n - d)}$
+      both contain $\Affine^{d(n - d)}$
+      as a dense open set.
+    \item Consider the curve defined by
+      \begin{align*}
+        f : \Affine^1 &\longrightarrow
+        C = V(y^2 - x^3) \subseteq \Affine^2_{x, y} \\
+        t &\longmapsto (t^2, t^3).
+      \end{align*}
+      Note that $f$ is injective but not an
+      isomorphism, as
+      \[
+        f^{-1}(x, y) =
+        \begin{cases}
+          y / x & \text{if } x \ne 0, \\
+          0 & \text{otherwise},
+        \end{cases}
+      \]
+      which is not regular at the origin.
+      But this does tell us that
+      $\Affine^1 \setminus \{0\} \cong C \setminus \{(0, 0)\}$.
+  \end{enumerate}
+  So we want to study maps defined on an
+  open set.
+\end{remark}
+
+\begin{definition}
+  Let $X$ and $Y$ be irreducible varieties.
+  Then a \emph{rational map}
+  $f : X \dashrightarrow Y$ is a
+  morphism $f : U \to Y$ with $U \subseteq Y$
+  a nonempty open set, up to the
+  equivalence
+  $f_1 : U_1 \to Y \sim f_2 : U_2 \to Y$
+  if $f_1, f_2$ agree on a
+  nonempty open set
+  $W \subseteq U_1 \cap U_2$.
+\end{definition}
+
+\begin{remark}
+  Note that if
+  $f_1 : U_1 \to Y \sim f_2 : U_2 \to Y$,
+  then they agree on $U_1 \cap U_2$
+  by the identity principle. So
+  $f_1, \dots, f_2$ are equivalent
+  to a morphism $U_1 \cap U_2 \to Y$.
+  So there exists a maximal nonempty
+  open $U \subseteq X$ on which $f$ is a
+  morphism.
+\end{remark}
+
+\begin{remark}
+  If $f, g \in \OO_X(X)$, then we will see
+  that the map
+  $X \dashrightarrow \Affine^1$
+  given by $x \mapsto f(x) / g(x)$
+  is rational.
+\end{remark}

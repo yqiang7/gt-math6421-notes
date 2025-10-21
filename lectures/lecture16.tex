@@ -297,10 +297,10 @@
     $G(d, n)$ the structure of a variety.
   \end{enumerate}
   The second strategy is to use the
-  wedge product $\bigwedge^d V$.
+  wedge product $\Lambda^d V$.
   Recall that
   \begin{itemize}
-    \item $\bigwedge^d V$ has basis given
+    \item $\Lambda^d V$ has basis given
       by $e_I := e_{i_1} \wedge \cdots \wedge e_{i_d}$
       with $I = \{i_1 < \cdots < i_d\} \subseteq \{1, \dots, n\}$.
     \item For $v_1, \dots, v_d \in V$
@@ -322,25 +322,53 @@
       Use the determinant formula.
     \end{proof}
 
-    \begin{lemma}
+    \begin{lemma}\label{lem:span-wedge}
       For linearly independent
       sets $\{v_1, \dots, v_d\}, \{w_1, \dots, w_d\} \subseteq V$,
       then $v_1 \wedge \cdots \wedge v_d$
       and $w_1 \wedge \cdots \wedge w_d$
       are linearly dependent in
-      $\bigwedge^d V$ if and only if
+      $\Lambda^d V$ if and only if
       $\Span\{v_1, \dots, v_d\} = \Span\{w_1, \dots, w_d\}$.
     \end{lemma}
 
     \begin{proof}
       $(\Leftarrow)$ It suffices to show
-      that $k \cdot v_1 \wedge \cdots \wedge v_d \subseteq \bigwedge^d V$
+      that $k v_1 \wedge \cdots \wedge v_d \subseteq \Lambda^d V$
       is preserved under change of basis operations.
       Check this as an exercise.
 
       $(\Rightarrow)$
-      We will prove this next class.
+      Assume that
+      $v_1 \wedge \cdots \wedge v_d = \lambda w_1 \wedge \cdots \wedge w_d$
+      for $\lambda \ne 0$.
+      Then
+      \[
+        w_i \wedge v_1 \wedge \cdots \wedge v_d = 0,
+      \]
+      so $w_i \in \Span\{v_1, \dots, v_d\}$.
+      So we have
+      $\Span\{w_1, \dots, w_d\} \subseteq
+      \Span\{v_1, \dots, v_d\}$,
+      and by symmetry, the reverse inclusion
+      holds as well.
     \end{proof}
   \end{quote}
-  We will complete the proof next class.
+  So given a $d$-dimensional vector subspace
+  $\Span\{v_1, \dots, v_d\} = W \subseteq V$,
+  we get a $1$-dimensional subspace
+  $k_1 v_1 \wedge \cdots \wedge v_d = \Lambda^d W \subseteq \Lambda^d V$.
+  By Lemma \ref{lem:span-wedge}, there is
+  an injection
+  \begin{align*}
+    p_{n, d} : G(d, n)
+    &\lhook\joinrel\longrightarrow \PP^{\binom{n}{d} - 1} \\
+    W = \Span\{v_1, \dots, v_d\}
+    &\longmapsto
+    k v_1 \wedge \cdots \wedge v_d
+  \end{align*}
+  This is called the \emph{Pl\"ucker embedding}.
+  It remains to show $p_{n, d}$
+  is closed, which is Corollary
+  \ref{cor:plucker-closed}.
 \end{proof}
