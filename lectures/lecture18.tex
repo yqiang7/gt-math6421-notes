@@ -1,0 +1,321 @@
+\chapter{Oct.~23 --- Birational Maps}
+
+\section{Birational Maps, Continued}
+
+\begin{example}
+  The following are examples of
+  birational maps:
+  \begin{enumerate}
+    \item The \emph{cuspidal curve}
+      $C = V(x^2 - y^3) \dashrightarrow \Affine^1$
+      given by $(x, y) \mapsto x / y$ is
+      a morphism on $C \setminus \{(0, 0)\}$.
+    \item The projection
+      $\PP^n \dashrightarrow \PP^{n - 1}$,
+      $[x_0 : \dots : x_n] \mapsto [x_0 : \dots : x_{n - 1}]$
+      is a morphism on
+      $\PP^n \setminus \{[0 : \dots : 0 : 1]\}$.
+    \item Consider a map
+      \begin{align*}
+        \Affine^n &\dasharrow \Affine^n \\
+        x &\longmapsto
+        \left(
+          \frac{f_1(x)}{g_1(x)},
+          \dots,
+          \frac{f_n(x)}{g_n(x)}
+        \right)
+      \end{align*}
+      for some nonzero $f_i, g_j \in k[x_1, \dots, x_n]$.
+      This is a morphism on
+      $\Affine^n \setminus V(g_1 \cdots g_n)$.
+  \end{enumerate}
+\end{example}
+
+\begin{definition}
+  We define the following:
+  \begin{enumerate}
+    \item A map $f : X \dashrightarrow Y$
+      is \emph{dominant} if the image
+      of $f$ contains a nonempty open set.
+    \item If $f : X \dashrightarrow Y$
+      and $g : Y \dashrightarrow Z$
+      are dominant rational maps, i.e.
+      \begin{center}
+        \begin{tikzcd}
+          X \arrow[dashed]{r}{f} & Y \arrow[dashed]{r}{g} & Z \\
+          U \ar[u, hook] \ar[ur, "f'", swap] & V \ar[u, hook] \ar[ur, "g'", swap]
+        \end{tikzcd}
+      \end{center}
+      then we can define the composition
+      $g \circ f : X \dashrightarrow Z$
+      by
+      \[
+        (f')^{-1}(V) \overset{f'}{\longrightarrow} V
+        \overset{g'}{\longrightarrow} Z.
+      \]
+  \end{enumerate}
+\end{definition}
+
+\begin{definition}
+  A rational map $f : X \dashrightarrow Y$
+  is \emph{birational} if it is dominant
+  and there exists a dominant rational map
+  $g : Y \dashrightarrow X$ such that
+  $g \circ f = \id_X$ and $f \circ g = \id_Y$
+  (as rational maps). In this case,
+  we say that $X$ and $Y$ are
+  are \emph{birational}.
+\end{definition}
+
+\begin{example}
+  We have the following:
+  \begin{enumerate}
+    \item Let $X$ be an irreducible variety
+      and $U \subseteq X$ a nonempty open
+      set. Then the inclusion morphism
+      $f : U \hookrightarrow X$ is
+      birational with
+      $g : X \dashrightarrow U$
+      the identity map on $U$.
+    \item Define a morphism
+      \begin{align*}
+        \Affine^n &\overset{f}{\longrightarrow} \Affine^n \\
+        x &\longmapsto
+        (x_1, x_1 x_2, \dots, x_1 x_n).
+      \end{align*}
+      Then we can define an inverse
+      rational map
+      \begin{align*}
+        \Affine^n &\overset{g}{\dashrightarrow} \Affine^n \\
+        y &\longmapsto
+        (x_1, x_2 / x_1, \dots, x_n / x_1).
+      \end{align*}
+      So $f$ is a birational map.
+  \end{enumerate}
+\end{example}
+
+\begin{prop}
+  Two irreducible varieties are birational
+  if and only if they contain isomorphic
+  nonempty open sets.
+\end{prop}
+
+\begin{proof}
+  $(\Leftarrow)$ Assume we have open
+  sets $U \subseteq X$, $V \subseteq Y$
+  with an isomorphism $f : U \overset{\cong}{\longrightarrow} V$.
+  Then we get rational maps
+  $f : X \dashrightarrow Y$ and
+  $f^{-1} : Y \dashrightarrow X$ which
+  compose to the identity.
+
+  $(\Rightarrow)$ Assume we have
+  \begin{center}
+  \begin{tikzcd}
+    X \arrow[dashed]{r}{f} & Y & Y \arrow[dashed]{r}{f} & X \\
+    U \ar[u, hook] \ar[ur, "f'", swap] & & V \ar[u, hook] \ar[ur, "g'", swap]
+  \end{tikzcd}
+  \end{center}
+  satisfying $g \circ f = \id_X$
+  and $f \circ g = \id_Y$.
+  Then the composition
+  \[
+    (g')^{-1}(U) \overset{g'}{\longrightarrow} U \overset{f'}{\longrightarrow} Y
+  \]
+  is the inclusion map by the identity
+  principle, so $g'((g')^{-1}(U)) = (f')^{-1}(g^{-1}(U)) \subseteq (f')^{-1}(V)$.
+  Similarly, we can also get the inclusion
+  $f'((f')^{-1}(V)) \subseteq (g')^{-1}(U)$.
+  So we get morphisms
+  \begin{center}
+    \begin{tikzcd}
+      (f')^{-1}(U) \arrow[bend left]{r}{f'} & (g')^{-1}(V) \arrow[bend left]{l}{g'}
+    \end{tikzcd}
+  \end{center}
+  that compose to the identity on
+  some open sets, so they compose to
+  $\id$ by the identity principle.
+\end{proof}
+
+\begin{example}
+  Consider the following:
+  \begin{enumerate}
+    \item  $\PP^{n + m}$
+      and $\PP^n \times \PP^m$ both
+      contain $\Affine^{n + m}$,
+      so they are birational.
+    \item $G(d, n)$ and $\PP^{d(n - d)}$
+      both contain $\Affine^{d(n - d)}$,
+      so they are birational.
+  \end{enumerate}
+\end{example}
+
+\section{Rational Functions}
+
+\begin{definition}
+  A \emph{rational function} on a variety
+  $X$ is a rational map
+  $X \dashrightarrow \Affine^1$.
+  This is equivalent to the data
+  $(U, \varphi)$ for $U \subseteq X$ a
+  nonempty open set and
+  $\varphi \in \OO_X(U)$, up to the
+  equivalence $(U, \varphi) \sim (U', \varphi')$
+  if and only if $\varphi|_W = \varphi'|_W$
+  for some nonempty open $W \subseteq U \cap U'$.
+\end{definition}
+
+\pagebreak
+\begin{example}
+  If $f, g \in k[x_1, \dots, x_n]$
+  with $g \ne 0$, then $f / g$ gives a
+  rational function on $\Affine^n$. The
+  two ways of thinking about this are:
+  \begin{enumerate}
+    \item The rational map
+      $\varphi : \Affine^n \dashrightarrow \Affine^1$
+      given by $x \mapsto f(x) / g(x)$.
+    \item The equivalence class
+      of $(D(g), f(x) / g(x))$.
+  \end{enumerate}
+\end{example}
+
+\begin{definition}
+  Let $X$ be an irreducible variety $X$.
+  Then the \emph{function field} of $X$ is
+  \[
+    K(X) = \{\text{rational functions on } X\}
+  \]
+\end{definition}
+
+\begin{remark}
+  Note that $K(X)$ is in fact a field:
+  \begin{itemize}
+    \item Multiplication is
+      defined by
+      $(U, \varphi) \cdot (V, \psi) = (U \cap V, \varphi|_{U \cap V} \psi|_{U \cap V})$
+      and similarly for addition.
+    \item One can check that
+      the above operations turn
+      $K(X)$ into a ring.
+    \item For $0 \ne (U, \varphi) \in K(X)$,
+      we have
+      $(U, \varphi)
+        \cdot (U \setminus \{\varphi = 0\}, 1 / \varphi)
+        = (X, 1)$.
+  \end{itemize}
+\end{remark}
+
+\begin{remark}
+  We have the following properties of
+  $K(X)$:
+  \begin{enumerate}
+    \item For a nonempty open set $U \subseteq X$, the
+      restriction map
+      $K(X) \to K(U)$
+      is an isomorphism.
+    \item For an irreducible affine variety
+      $X$, the map
+      \begin{align*}
+        \Frac(A(X)) &\overset{\alpha}{\longrightarrow} K(X) \\
+        \varphi / \psi
+        &\longmapsto (D(\psi), \varphi / \psi)
+      \end{align*}
+      is an isomorphism. One can check
+      that it is a well-defined
+      homomorphism, and it is injective
+      since it is a homomorphism out of a
+      field. To see surjectivity, let
+      $(U, \varphi) \in K(X)$. By shrinking
+      $U$, we may assume that $U = D(g)$
+      for some $0 \ne g \in A(X)$.
+      Since
+      \[
+        \OO_X(D(g)) = A(X)_g,
+      \]
+      we can write $\varphi = f / g^n$
+      for some $n \ge 0$ and $f \in A(X)$.
+      So $\alpha(f / g^n) = (U, \varphi)$.
+  \end{enumerate}
+\end{remark}
+
+\begin{example}
+  We have
+  $K(\Affine^n) = \Frac(A(\Affine^n)) = \Frac(k[x_1, \dots, x_n]) = k(x_1, \dots, x_n)$.
+\end{example}
+
+\begin{remark}
+  If $f : X \dashrightarrow Y$ is a
+  dominant morphism of irreducible
+  varieties, then we get a $k$-algebra
+  homomorphism on their function fields by
+  the pullback:
+  \begin{align*}
+    f^* : K(Y) &\longrightarrow K(X) \\
+    (V, \varphi) &\longmapsto
+    (f^{-1}(V), (f')^*(\varphi)).
+  \end{align*}
+\end{remark}
+
+\begin{exercise}
+  Let $X$ and $Y$ be irreducible varieties.
+  Then
+  \begin{enumerate}
+    \item If $f : X \dashrightarrow Y$ is
+      birational, then $f^* : K(Y) \to K(X)$
+      is an isomorphism.
+    \item If $K(X) \cong K(Y)$ as
+      $k$-algebras, then $X$ is birational
+      to $Y$.
+  \end{enumerate}
+\end{exercise}
+
+\begin{example}
+  Since $G(d, n) \sim_{\mathrm{bir}} \PP^{d(n - d)}$,
+  we have $K(G(d, n)) \cong K(\PP^{d(n - d)})$.
+\end{example}
+
+\begin{corollary}
+  Any irreducible variety $X$ is birational
+  to a hypersurface in $\PP^n$.
+\end{corollary}
+
+\begin{proof}
+  By Noether normalization, there exists a
+  transcendence basis 
+  $x_1, \dots, x_n$ for $K(X)$ over $k$
+  (this is finite as we may replace $X$ by
+  an affine open set).
+  Assuming $k$ is characteristic $0$ (or
+  working harder in nonzero characteristic),
+  $k(x, \dots, x_n) \subseteq K(X)$
+  is separable. By the definition of a
+  transcendence basis, this extension is
+  finite. So by the primitive element
+  theorem, there exists $y \in K(X)$ such
+  that
+  \[K(X) = k(x_1, \dots, x_n, y).\] Let
+  $f \in k(x_1, \dots, x_n)[t]$ denote
+  the minimal polynomial of $y$.
+  Clearing denominators, we may assume
+  $f \in k[x_1, \dots, x_n][t]$.
+  By Gauss's lemma, $f$ is still
+  irreducible in $k[x_1, \dots, x_n, t]$.
+  Now set
+  \[
+    Y = V(f(x_1, \dots, x_n, x_{n + 1}))
+    \subseteq \Affine^{n + 1},
+  \]
+  which is irreducible. Now we have
+  \[
+    K(Y) =
+    \Frac
+    \frac{(k[x_1, \dots, x_{n + 1}])}
+    {(f(x_1, \dots, x_{n + 1}))}
+    \cong \frac{k(x_1, \dots, x_n)[y]}{(f)}
+    \cong K(X),
+  \]
+  so $X \sim_{\mathrm{bir}} Y$.
+  We get the desired statement after
+  taking projective closures.
+\end{proof}
