@@ -1,0 +1,265 @@
+\chapter{Oct.~28 --- The Blow-Up}
+
+\section{Rational Varieties}
+
+TODO: fill in notes from beginning of class.
+
+\begin{theorem}
+  Any irreducible algebraic variety
+  is birational to a hypersurface in
+  $\PP^n$.
+\end{theorem}
+
+\begin{definition}
+  An irreducible algebraic variety is
+  \emph{rational} if it is birational to
+  $\PP^n$.
+\end{definition}
+
+\begin{example}
+  Rational varieties include
+  $\PP^n$, $\Affine^n$, $G(d, n)$,
+  $\PP^m \times \PP^n$, etc.
+\end{example}
+
+\begin{remark}
+  Which hypersurfaces in $\PP^n$ are
+  rational? This is an open question. It
+  is known that if $X \subseteq \PP^n$
+  is a smooth hypersurface over a
+  field of characteristic $0$ and
+  degree $d > n + 1$, then $X$ is \emph{not}
+  rational.
+\end{remark}
+
+\section{The Blow-Up}
+
+\begin{example}
+  Consider the following birational map:
+  \begin{align*}
+    \Affine^2
+    &\dashrightarrow \PP^1 \\
+    (x_1, x_2) &\longmapsto [x_1 : x_2].
+  \end{align*}
+  Why does this not extend to a morphism
+  $\Affine^2 \to \PP^1$?
+  The issue is where $(0, 0)$ would go.
+  Let us try to make it extend. Consider
+  $U = \Affine^2 \setminus \{0\}$
+  and the map
+  \begin{align*}
+    f : U &\longrightarrow \PP^1 \\
+    (x_1, x_2) &\longmapsto [x_1 : x_2].
+  \end{align*}
+  Consider the graph $\Gamma_f = \{(x, y) \in U \times \PP^1 : x_1 y_2 = x_2 y_1\}$,
+  and the \emph{blow-up}
+  \[
+    B_0 \Affine^2 := \overline{\Gamma}_f \subseteq \Affine^2 \times \PP^1,
+  \]
+  with projection maps
+  $\pi : B_0 \Affine^2 \to \Affine^2$
+  and $B_0 \Affine^2 \to \PP^1$. Then
+  \begin{enumerate}
+    \item $B_0 \Affine^2 = \{(x, y) \in \Affine^2 \times \PP^1 : x_1 y_2 - x_2 y_1 = 0\}$.
+
+      Let $Y$ be the right-hand side.
+      Since $\Gamma_f \subseteq Y$, it is
+      immediate that $B_0 \Affine^2 = \overline{\Gamma}_f \subseteq \overline{Y} = Y$.
+      For the reverse inclusion, it suffices
+      to show $Y$ is irreducible
+      and $\Gamma_f$ is open in $Y$.
+      By the equation for $Y$,
+      \[
+        Y \setminus V(x_1, x_2)
+        = \Gamma_f,
+      \]
+      which shows $\Gamma_f$ is open in $Y$.
+      For irreducibility, set
+      $U_i = \{(x, y) \in Y : y_i \ne 0\}$.
+      Then $U_i \cong \Affine^2$:
+      \begin{align*}
+        U_1 &\longrightarrow \Affine^2 \\
+        (x, y) &\longmapsto (x_1, x_2 / y_1) \\
+        ((x_1, x_1 x_2), (1 : x_2)) &\mathrel{\reflectbox{\ensuremath{\longmapsto}}} (x_1, x_2).
+      \end{align*}
+      So each $U_i$ is irreducible.
+      As $U_1 \cap U_2 \ne \varnothing$ 
+      and $Y = U_1 \cap U_2$,
+      $Y$ is irreducible.
+      Thus $B_0 \Affine^2 \supseteq Y$.
+    \item $\pi^{-1}(\Affine^2 \setminus \{0\}) \to \Affine^2 \setminus \{0\}$
+      is an isomorphism.
+
+      For this, we can give an inverse
+      $\Affine^2 \setminus \{0\} \to \pi^{-1}(\Affine^2 \setminus \{0\})$
+      by $(x_1, x_2) \mapsto ((x_1, x_2), [x_1 : x_2])$.
+    \item $\pi^{-1}(\{0\}) = \{0\} \times \PP^1 \cong \PP^1$.
+
+      This follows from (1).
+  \end{enumerate}
+\end{example}
+
+\begin{remark}
+  An alternative perspective is
+  to think of $B_0\Affine^2$ as
+  \[B_0 \Affine^2 = \{(p, \ell) \in \Affine^2 \times \PP^1 : p \in \ell\}.\]
+  where we think of $\PP^1$ as lines
+  in $\Affine^2$ through $0$.
+\end{remark}
+
+\begin{example}
+  In higher dimensions, we define
+  $B_0 \Affine^n = \overline{\Gamma}_f \subseteq \Affine^n \times \PP^{n-1}$,
+  where $f : \Affine^n \setminus \{0\} \to \PP^{n - 1}$
+  is given by $x \mapsto [x]$.
+  Let $\pi : B_0 \Affine^n \to \Affine^n$
+  be the projection. Then the same
+  argument as before shows:
+  \begin{enumerate}
+    \item $B_0 \Affine^n = \{(x, y) \in \Affine^n \times \PP^{n - 1} : x_i y_i - x_j y_j = 0 \text{ for all } 1 \le i, j \le n\}$.
+    \item $\pi^{-1}(\Affine^n \setminus \{0\}) \to \Affine^n \setminus \{0\}$
+      is an isomorphism.
+    \item $\pi^{-1}(\{0\}) = \{0\} \times \PP^{n - 1} \cong \PP^{n - 1}$.
+  \end{enumerate}
+\end{example}
+
+\begin{remark}
+  Define charts $U_i = \{(x, y) \in B_0 \Affine^n : y_i \ne 0\}$.
+  Then we have
+  \begin{center}
+    \begin{tikzcd}
+      \Affine^n \ar[d, "\cong", swap]
+      & x \ar[d, mapsto] \\
+      U_1 \ar[d] & ((x_1, x_1 x_2, \dots, x_1 x_n), [1 : x_2 : \cdots : x_n]) \ar[d, mapsto] \\
+      \Affine^n & (x_1, x_1 x_2, \dots, x_1 x_n)
+    \end{tikzcd}
+  \end{center}
+  Check that $\Affine^n \to U_1$
+  is in fact an isomorphism.
+\end{remark}
+
+\begin{example}
+  Let $n = 2$ and $\pi : B_0 \Affine^2 \to \Affine^2$.
+  What happens to
+  $C := V(y^2 - x^3) \subseteq \Affine^2$
+  under the blow-up?
+  We have $\pi^{-1}(C) = (\{0\} \times \PP^1) \cup \overline{\pi^{-1}(C \setminus \{0\})}$.
+  We call $\{0\} \times \PP^1$
+  the \emph{exceptional locus} of $\pi$.
+  We can compute this explicitly
+  on charts. Write
+  \begin{center}
+    \begin{tikzcd}
+      \Affine^2 \ar[r] \ar[dr, "\pi_1", swap] & U_1 \subseteq B_0 \Affine^2 \ar[d, "\pi"] \ar[r, equal] & \{((x, y), [s : t]) \in \Affine^2 \times \PP^1 : xt - ys = 0\} \\
+    &= \Affine^2
+    \end{tikzcd}
+  \end{center}
+  where $\Affine^2 \to U_1$ is given by
+  $(x, y) \mapsto ((x, x y), [1 : y])$
+  and $\pi_1$ is given by
+  $(x, y) \mapsto (x, x y)$. Then
+  \[
+    \pi_1^{-1}(C)
+    = V((x y)^2 - x^3)
+    = V(x^2 (y^2 - x))
+    = V(x) \cup V(y^2 - x)
+  \]
+  In particular, we see that the
+  piece $\overline{\pi^{-1}(C \setminus \{0\})} = V(y^2 - x)$
+  no longer has a singularity at $0$.
+\end{example}
+
+\begin{definition}
+  Let $X \subseteq \Affine^n$ be an
+  affine variety, $f_1, \dots, f_r \in A(X)$,
+  and $U = X \setminus V(f_1, \dots, f_r)$.
+  We define the \emph{blow-up} of $X$ along
+  $f_1, \dots, f_r$ to be
+  \[
+    B_{f_1, \dots, f_r} X
+    := \widetilde{X}
+    := \text{closure of } \Gamma_f \text{ in } X \times \PP^{n - 1}
+  \]
+  where $f : U \to \PP^{r - 1}$
+  is given by $x \mapsto [f_1(x) : \cdots : f_r(x)]$,
+\end{definition}
+
+\begin{remark}
+  We have the following:
+  \begin{enumerate}
+    \item[0.] When $X = \Affine^n$ and
+      $f_1, \dots, f_r = x_1, \dots, x_n$,
+      then $B_{x_1, \dots, x_n} \Affine^n = B_0 \Affine^n$.
+    \item $\pi$ is an isomorphism
+      over $U$.
+
+      To see this, use that
+      $\Gamma_f$ is closed in
+      $U \times \PP^{r - 1}$ and
+      the projection $\pr_1 : \Gamma_f \to U$
+      is an isomorphism to get
+      that $\overline{\Gamma}_f \cap (U \times \PP^{r - 1}) = \Gamma_f$.
+      So $\pi^{-1}(U) = \Gamma_f \cong U$.
+    \item If $X$ is irreducible and
+      $U \ne \varnothing$, then $\pi$ is birational.
+
+      For this, use $(1)$ to get
+      $B_{f_1, \dots, f_r}$ is irreducible
+      and $\pi$ being an isomorphism
+      over $U$.
+    \item If $(f_1, \dots, f_r) = (f_1', \dots, f_s')$
+      as ideals in $A(X)$, then there is
+      an isomorphism
+      \[
+        B_{f_1, \dots, f_r} X
+        \overset{\cong}{\longrightarrow}
+        B_{f_1', \dots, f_s'} X.
+      \]
+      Hint: Write $f_j' = \sum_{i = 1}^r g_{i, j} f_i$.
+      Use the $g_{i, j}$ to get a
+      morphism $\Gamma_f \to \Gamma_{f'}$,
+      $(x, y) \mapsto (x, \big[\sum_{i = 1}^r g_{i, 1}(x) y_i : \cdots : \sum_{i = 1}^r g_{i, s}(x) y_i\big])$,
+      then use this to get a
+      morphism $B_{f_1, \dots, f_r} X \to B_{f_1', \dots, f_s'} X$.
+      We can obtain an inverse similarly
+      by swapping
+      the roles of $f_i$ and $f_j'$.
+      See Gathmann 9.16.
+    \item (Local) If $W \subseteq X$ is
+      open and $W \setminus V(f_1, \dots, f_r)$
+      is dense in $W$, then
+      \[
+        B_{f_1, \dots, f_r} X|_{\pi^{-1}(W)}
+        \cong B_{f_1|_W, \dots, f_r|_W} W.
+      \]
+      (Use the properties of the graph.)
+  \end{enumerate}
+\end{remark}
+
+\begin{remark}
+  We can further generalize the blow-up
+  as follows:
+  \begin{enumerate}
+    \item (Affine case) Let
+      $X$ be affine, $I \le A(X)$, and
+      $Z \subseteq X$ closed. Then we
+      can define $B_I X := B_{f_1, \dots, f_r} X$
+      with $f_1, \dots, f_r$ generators of
+      $I$ (the isomorphism class is independent of the choice
+      of generators), and
+      $B_Z X = B_{I(Z)} X$
+      with $I(Z) \le A(X)$ the ideal
+      consisting of regular functions
+      vanishing on $Z$.
+    \item Let $X$ be a variety and $Z \subseteq X$ 
+      a closed subvariety. Choose an affine
+      open cover
+      $X = \bigcup_i U_i$, and define
+      $B_Z X$ to be the $B_{Z \cap U_i} U_i$
+      glued together along
+      $B_{Z \cap U_i \cap U_j} (U_i \cap U_j)$.
+      (Use that the blow-up can be computed
+      locally and glue these together to
+      get $B_Z X$.)
+  \end{enumerate}
+\end{remark}
