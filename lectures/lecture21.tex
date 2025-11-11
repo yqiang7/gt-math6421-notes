@@ -1,0 +1,350 @@
+\chapter{Nov.~11 --- Tangent Spaces}
+
+\section{Tangent Cones}
+
+\begin{definition}
+  Let $a \in X \subseteq \Affine^n$,
+  where $X$ is an affine variety. Define
+  \begin{align*}
+    f : X \setminus \{a\} &\longrightarrow \PP^{n-1} \\
+    x &\longmapsto [x_1 - a_1 : \cdots : x_n - a_n],
+  \end{align*}
+  then the \emph{blowup} of $X$
+  at $a$ is $B_a X = \overline{\Gamma}_f \subseteq X \times \PP^{n - 1}$.
+  Let $\pi : B_a X \to X$ be the first
+  projection. Then the \emph{tangent cone}
+  of $X$ at $a$ is
+  $C_a X = C(\pi^{-1}(\{a\})) \subseteq \Affine^n$,
+  where $\pi^{-1}(\{a\}) \subseteq \{a\} \times \PP^{n - 1} \cong \PP^{n - 1}$.
+\end{definition}
+
+\begin{example}
+  When $a = 0$ and $X = \Affine^n$, we have
+  $\pi^{-1}(\{0\}) = \{0\} \times \PP^{n - 1}$
+  and $C_0 \Affine^n = \Affine^n$.
+\end{example}
+
+\begin{example}
+  Let $X = \Affine^2$ and $a = 0$. Then
+  we have:
+  \begin{center}
+    \begin{tabular}{c|ccc}
+      $X$ & $V(y - x^2)$ & $V(y^2 - x^3)$ & $V(y^2 - x^2 - x^3)$ \\
+      \hline
+      $C_0 X$ & $V(y)$ & $V(y^2)$ & $V(y^2 - x^2)$
+    \end{tabular}
+  \end{center}
+\end{example}
+
+\begin{theorem}
+  If $a \in X$ is a point on a variety,
+  then $\dim C_a X = \codim_X \{a\}$.\footnote{Note that $\codim_X\{a\} = \dim X$ when
+  $X$ is irreducible.}
+\end{theorem}
+
+\begin{proof}
+  Since both sides are local, we may assume
+  $X$ is affine. If $X = X_1 \cup \cdots \cup X_r$
+  are the irreducible components, then
+  we can write
+  $B_a X = \bigcup_{i = 1}^r B_a X_i$ (where we take $B_a X_i = X_i$ if $a \not\in X_i$).
+  Thus we may assume that $X$ is
+  irreducible.
+  Now let $\pi : B_a X \to X$ be the first projection, then
+  \[
+    \dim C_a X
+    = \dim C(\pi^{-1}(\{a\}))
+    = \dim \pi^{-1}(\{a\}) + 1
+    = \dim X,
+  \]
+  where the last equality is by
+  Proposition \ref{prop:blowup-codimension}.
+\end{proof}
+
+\begin{prop}\label{prop:blowup-codimension}
+  Assume $X \subseteq \Affine^n$ is an
+  irreducible affine variety and
+  $f_1, \dots, f_r \in A(X)$ such that
+  $U = X \setminus V(f_1, \dots, f_r) \ne \varnothing$.
+  Then every irreducible component
+  of $\pi^{-1}(V(f_1, \dots, f_r))$
+  in $B_{f_1, \dots, f_r} X$ is of
+  codimension $1$.
+\end{prop}
+
+\begin{proof}
+  Since $X$ is irreducible, so is
+  $U$. As $U \cong \Gamma_f$,
+  we know $\Gamma_f$ is irreducible, so
+  $B_{f_1, \dots, f_r} X$ is irreducible.
+  Now observe that
+  \[
+    B_{f_1, \dots, f_r} X
+    \subseteq \{(x, y) \in X \times \PP^{r - 1} : f_i(x) y_j - f_j(x) y_i = 0\}
+  \]
+  as this containment holds on $\Gamma_f$
+  and the right-hand side is closed.
+  Consider
+  \[
+    U_i = \{(x, y) \in B_{f_1, \dots, f_r}(X) : y_i \ne 0\}.
+  \]
+  If $(x, y) \in U_i$ and
+  $f_i(x) = 0$, then $f_j(x) = 0$ for all
+  $j$. So
+  $\pi^{-1}(V(f_1, \dots, f_r)) \cap U_i$
+  is cut out on $U_i$ by $f_i = 0$, so
+  $\pi^{-1}(V(f_1, \dots, f_r))$ is
+  codimension $1$ in $B_{f_1, \dots, f_r} X$
+  (it is codimension $1$ on each chart).
+\end{proof}
+
+\begin{example}
+  Let $X = \Affine^n$
+  and $f_1, \dots, f_r = x_1, \dots, x_n$.
+  Then
+  \[
+    \pi^{-1}(V(x_1, \dots, x_n))
+    = \pi^{-1}(\{0\})
+    = \{0\} \times \PP^{n - 1}.
+  \]
+\end{example}
+
+\section{Tangent Spaces}
+
+\begin{remark}
+  Fix $f \in \C[x_1, \dots, x_n]$ with
+  $0 \in X = V(f) \subseteq \C^n$. If
+  \[
+    \left[\frac{\partial f}{\partial x_1}(0), \cdots, \frac{\partial f}{\partial x_n}(0)\right]
+    \ne \vec{0},
+  \] 
+  then $X$ is smooth at $0$ with
+  tangent plane $T_0 X = V(f_1) \subseteq \C^n$, where
+  $f_1$ is the linear part of $f$.
+\end{remark}
+
+\begin{definition}
+  Let $X \subseteq \Affine^n$ be an affine variety
+  with $0 \in X$. The
+  \emph{tangent space} of $X$ at $0$ is
+  \[
+    T_0 X = V(f_1 : f \in I(X)) \subseteq \Affine^n,
+  \]
+  where $f_1$ is the homogeneous
+  degree $1$ part of $f$
+  (note that $T_0 X$ is a linear subspace
+  of $k^n$).
+\end{definition}
+
+\begin{remark}
+  Note the following:
+  \begin{enumerate}
+    \item We will give an intrinsic
+      definition of the tangent space
+      later (i.e. without embedding $X$ in $\Affine^n$).
+    \item If $f, g \in I(X)$
+      and $h \in k[x_1, \dots, x_n]$,
+      then
+      $[f + g]_1 = f_1 + g_1$ and
+      $[fh]_1 = f_1 h(0) + h_1 f(0) = f_1 h(0)$,
+      where $f(0) = 0$ since
+      $0 \in X$.
+      So if $I(X) = (f^{(1)}, \dots, f^{(r)})$,
+      then $T_0 X = V(f^{(1)}_1, \dots, f^{(r)}_1)$.
+    \item Recall that
+      $C_0 X = V(f^{\mathrm{init}} : f \in I(X))$
+      and $T_0 X = V(f_1 : f \in I(X))$.
+      So $C_0 X \subseteq T_0 X$.
+  \end{enumerate}
+\end{remark}
+
+\begin{example}
+  $T_0 \Affine^n = V(0_1) = \Affine^n$.
+\end{example}
+
+\begin{example}
+  We have the following table in $\Affine^2$:
+  \begin{center}
+    \begin{tabular}{c|ccc}
+      $X$ & $V(y - x^2)$ & $V(y^2 - x^3)$ & $V(y^2 - x^2 - x^3)$ \\
+      \hline
+      $T_0 X$ & $V(y)$ & $\Affine^2$ & $\Affine^2$
+    \end{tabular}
+  \end{center}
+\end{example}
+
+\begin{remark}
+  To define a tangent space at
+  $a \in X$, we can just translate
+  $a$ to $0$.
+\end{remark}
+
+\begin{prop}
+  Let $X \subseteq \Affine^n$ be an
+  affine variety with $0 \in X$. Write
+  \[
+    I(0)
+    = (\overline{x}_1, \dots, \overline{x}_n)
+    \le A(X) \cong k[x_1, \dots, x_n]/I(X).
+  \]
+  Then there is a natural vector space
+  isomorphism
+  \[
+    I(0) / I(0)^2
+    \overset{\cong}{\longrightarrow}
+    \Hom_k(T_0 X, k).
+  \]
+  (Note that $I(0) / I(0)^2$ is a
+  module over $A(X) / I(0) \cong k$,
+  so it is a $k$-vector space.)
+\end{prop}
+
+\begin{proof}
+  Consider the $k$-linear map
+  \begin{align*}
+    \varphi : I(0) &\longrightarrow \Hom_k(T_0 X, k) \\
+    \overline{f} &\longmapsto f_1|_{T_0 X}
+  \end{align*}
+  where we view $f \in (x_1, \dots, x_n) \le k[x_1, \dots, x_n]$.
+  We first check that this is well-defined.
+  Assume we have $\overline{f} = \overline{g} \in I(0)$,
+  so $f - g = I(X)$.
+  So $[f_1 - g_1] = [f - g]_1 \in (h_1 : h \in I(X))$.
+  This is the defining ideal for $T_0 X$,
+  so $(f_1 - g_1)|_{T_0 X} = 0$.
+  So $\varphi(\overline{f}) = \varphi(\overline{g})$, i.e. $\varphi$ is well-defined.
+
+  Now we check that $\varphi$ is surjective.
+  For this, note that the right-hand side
+  is generated by the coordinate functions,
+  and we have $I(0) = (\overline{x}_1, \dots, \overline{x}_n)$.
+
+  Finally, it suffices to
+  check that $\ker \varphi = I(0)^2$.
+  For the reverse containment, if
+  $\overline{f}, \overline{g} \in I(0)$,
+  then
+  \[
+    (fg)_1
+    = f_1 g(0) + g_1 f(0)
+    = 0
+  \]
+  since $f(0) = g(0) = 0$. So
+  $\varphi(\overline{f} \overline{g}) = 0$,
+  i.e. $I(0)^2 \subseteq \varphi$.
+  For the forward containment,
+  if $f \in \ker \varphi$, then
+  $f_1|_{T_0 X} = 0$,
+  so there exists $g \in I(X)$ such that
+  $f_1 = g_1$. Then
+  $f - g$ has no constant or
+  degree $1$ term, so
+  $\overline{f} = \overline{f - g} \in I(0)^2$.
+  Thus $\ker \varphi \subseteq I(0)^2$ as
+  well, so we have $\ker \varphi = I(0)^2$.
+\end{proof}
+
+\begin{example}
+  If $X = \Affine^n$ and $a = 0$, then
+  $I(0) = (x_1, \dots, x_n) \le k[x_1, \dots, x_n]$, and
+  \[
+    I(0) / I(0)^2
+    = k \overline{x}_1 \oplus \cdots \oplus k \overline{x}_n.
+  \]
+\end{example}
+
+\begin{remark}
+  We now want a representation of
+  $T_0 X$, independent of its embedding
+  in $\Affine^n$.
+\end{remark}
+
+\begin{prop}\label{prop:ideal-quotient-isomorphism}
+  For an affine variety $X \subseteq \Affine^n$
+  with $a \in X$, let
+  \[
+    I(a) = (f \in A(X) : f(a) = 0)
+    \quad \text{and} \quad
+    I_a = (f \in \OO_{X, a} : f(a) = 0).
+  \]
+  Then $I(a) / I(a)^2 \cong I_a / I_a^2$
+  as $k$-vector spaces.
+\end{prop}
+
+\begin{definition}[Redefinition of tangent space]
+  For a variety $X$ and $a \in X$,
+  the \emph{tangent space} of $X$ at $a$ is
+  the $k$-vector space
+  \[
+    T_a X
+    = \Hom_k(I_a / I_a^2, k).
+  \]
+\end{definition}
+
+\begin{remark}
+  Note that $I_a / I_a^2$ is a module over
+  $\OO_{X, a} / I_a \cong k$.
+\end{remark}
+
+\begin{lemma}\label{lem:localization-quotient}
+  Given a ring $A$,
+  $S \subseteq A$ a multiplicative system,
+  and $A$-modules $N \subseteq M$, then
+  \[
+    S^{-1}(M / N) \cong
+    S^{-1} M / S^{-1} N.
+  \]
+\end{lemma}
+
+\begin{proof}
+  Consider the short exact sequence
+  \begin{center}
+    \begin{tikzcd}
+      0 \arrow{r} & N \arrow{r} & M \arrow{r} & M / N \arrow{r} & 0.
+    \end{tikzcd}
+  \end{center}
+  Using that localization is an exact
+  functor $\mathrm{Mod}_A \to \mathrm{Mod}_{S^{-1} A}$,
+  we get a short exact sequence
+  \[
+    \begin{tikzcd}
+      0 \arrow{r} & S^{-1} N \arrow{r} & S^{-1} M \arrow{r} & S^{-1}(M / N) \arrow{r} & 0.
+    \end{tikzcd}
+  \]
+  So we get that
+  $S^{-1}(M / N) \cong S^{-1} M / S^{-1} N$.
+\end{proof}
+
+\begin{remark}
+  Previously, we had
+  $\OO_{X, a} = S^{-1} A(X)$ where
+  $S = A(X) \setminus I(a)$, and
+  $I_a = S^{-1} I(a)$. So
+  \[
+    \OO_{X, a} / I_a
+    = S^{-1} (A(X) / I(a))
+    = S^{-1} k \cong k
+  \]
+  by Lemma \ref{lem:localization-quotient}
+  (note that any localization of $k$ is
+  still $k$).
+\end{remark}
+
+\begin{proof}[Proof of Proposition \ref{prop:ideal-quotient-isomorphism}]
+  Observe that we have
+  \[
+    I_a / I_a^2
+    = S^{-1} I(a) / S^{-1} I(a)^2
+    \cong S^{-1}(I(a) / I(a)^2).
+  \]
+  Now we claim that the map
+  \begin{align*}
+    I(a) / I(a)^2 &\longrightarrow S^{-1}(I(a) / I(a)^2) \\
+    \overline{f} &\longmapsto \overline{f} / 1
+  \end{align*}
+  is an isomorphism. The hard part is
+  surjectivity. The key idea is to note
+  that for $g \in S$, we can write
+  $\overline{f} / g = (1 / g(a)) \overline{f} / 1$
+  (this is just a computation).
+\end{proof}
