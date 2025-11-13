@@ -1,0 +1,329 @@
+\chapter{Nov.~13 --- Singularities}
+
+\section{Tangent Spaces, Continued}
+\begin{remark}
+  Recall that the tangent space to a
+  variety $X$ at $a \in X$ is
+  \[
+    T_a X =
+    \Hom_k(\m_a / \m_a^2, k),
+  \]
+  where $\OO_{X, a} \supseteq \m_a = \{\varphi \in \OO_{X, a} : \varphi(a) = 0\}$.
+  Note the following:
+  \begin{enumerate}
+    \item We have
+      $\OO_{X, a} / \m_a \cong k$:
+      We can define a map
+      \begin{align*}
+        \psi : \OO_{X, a} &\longrightarrow k \\
+        \varphi &\longmapsto \varphi(a).
+      \end{align*}
+      This is surjective and has
+      kernel $\m_a$, so
+      $k \cong \OO_{X, a} / {\ker \psi} = \OO_{X, a} / \m_a$.
+    \item Since $\m_a \cdot (\m_a / \m_a^2) = 0$,
+      we have that
+      $\m_a / \m_a^2$ is a module over
+      $\OO_{X, a} / \m_a \cong k$.
+  \end{enumerate}
+\end{remark}
+
+\begin{remark}
+  How do we compute the tangent space?
+  We can do the following:
+  \begin{enumerate}
+    \item Shrink $X$ so that it is
+      affine: $a \in X \subseteq \Affine^n$
+      where $X$ is closed.
+    \item Translate so that  $a = 0$.
+    \item Use $T_0 X = V(f_1 : f \in I(X))$.
+  \end{enumerate}
+\end{remark}
+
+\begin{example}
+  In $\Affine^2$, we have the following:
+  \begin{center}
+    \begin{tabular}{c|cc}
+      $X$ & $V(y - x^2)$ & $V(y^2 - x^2 - x^3)$ \\
+      $T_0 X$ & $V(y)$ & $V(0)$
+    \end{tabular}
+  \end{center}
+\end{example}
+
+\begin{remark}
+  Since
+  $C_a X \subseteq T_a X$, we have
+  \[
+    \dim T_a X \ge \dim C_a X
+    = \codim_X \{a\}.
+  \]
+  Note that this is equal to
+  $\dim X$ when $X$ is irreducible.
+\end{remark}
+
+\section{Singularities}
+
+\begin{definition}
+  Let $X$ be a variety and $a \in X$.
+  \begin{enumerate}
+    \item $X$ is \emph{smooth} (or
+      \emph{non-singular}, \emph{regular})
+      at $a$ if
+      \[\dim T_a X = \codim_X \{a\}.\]
+      Otherwise we say that $X$ is singular at $a$.
+      \pagebreak
+    \item $X$ is \emph{smooth}
+      (or \emph{non-singular}, \emph{regular})
+      if it is smooth at every point.
+  \end{enumerate}
+\end{definition}
+
+\begin{example}
+  We have the following:
+  \begin{enumerate}
+    \item For $\Affine^n$, we have
+      $T_0 \Affine^n = \Affine^n$, so
+      $\Affine^n$ is smooth at $0$.
+      By translation, $\Affine^n$ is smooth.
+    \item Let $C = V(y - x^2)$. Then
+      $\dim T_0 C = 1 = \dim C$, so
+      $C$ is smooth at $0$.
+    \item Let $0 \in X \subseteq \Affine^n$
+      be a hypersurface with $I(X) = (f)$.
+      Then $T_0 X = V(f_1)$, so
+      \begin{align*}
+        \text{$X$ is singular at $0$}
+        &\iff \dim T_0 X > n - 1 \\
+        &\iff \dim T_0 X = n \\
+        &\iff T_0 X = \Affine^n \\
+        &\iff f_1 = 0.
+      \end{align*}
+    \item $D = V(x^2 - y^2 - y^3)$
+      is singular at $0$.
+  \end{enumerate}
+\end{example}
+
+\begin{remark}[Relation to commutative algebra]
+  A local ring $(R, \m)$ is
+  \emph{regular} if it is Noetherian and
+  \[
+    \dim R = \dim_{R / \m} \m / \m^2.
+  \]
+  We will use the following
+  result from commutative
+  algebra result without proof:
+  Regular local rings are always integral
+  domains.
+
+  In algebraic geometry, note that
+  for a variety $X$ and $a \in X$,
+  \begin{align*}
+    \dim T_a X &= \dim_k \m_a / \m_a^2 \\
+    \codim_X \{a\} &= \dim \OO_{X, a}.
+  \end{align*}
+  So if $X$ is non-singular at $a$, then
+  $\OO_{X, a}$ is regular, so $\OO_{X, a}$
+  is a domain. Thus $X$ is irreducible
+  at $a$.
+\end{remark}
+
+\begin{prop}[Jacobi criterion]\label{prop:jacobi}
+  Let $a \in X \subseteq \Affine^n$ be a
+  point on an affine variety with
+  $I(X) = (f_1, \dots, f_r)$.
+  Then $X$ is smooth at $a$ if and only if
+  the Jacobian
+  \[
+    (\partial f_i / \partial x_j (a))_{i, j}
+    \text{ has rank }
+    \ge n - \codim_X \{a\}.
+  \]
+  Moreover, this happens if and only if
+  the rank is equal to
+  $n - \codim_X \{a\}$.
+  This implies that the rank is always at
+  most $n - \codim_X \{a\}$ regardless
+  of smoothness.
+\end{prop}
+
+\begin{remark}
+  Assume that $X$ is irreducible. Then
+  \[
+    \Sing X
+    := \{a \in X : X \text{ is singular at } a\}
+    = V_X(\text{$(n - \dim X)$-dimensional minors of $\Jac(f)$})
+  \]
+  where $I(X) = (f_1, \dots, f_r)$.
+\end{remark}
+
+\begin{example}
+  Let $X$ be an irreducible hypersurface
+  in $\Affine^n$ with $I(X) = (f)$. Then
+  \[
+    \Sing X =
+    V_X(\partial f / \partial x_1, \dots, \partial f / \partial x_n)
+    = V(f, \partial f / \partial x_1, \dots, \partial f / \partial x_n).
+  \]
+\end{example}
+
+\begin{example}
+  Let $C = V(y^2 - x^3)$, then
+  \[
+    \Sing C = V(y^2 - x^3, -3x^2, 2y)
+    = \{0\}.
+  \]
+\end{example}
+
+\begin{example}[Whitney umbrella]
+  Let $X = V(x^2 - y^2 z) \subseteq \Affine^3$. Then
+  \[
+    \Sing X
+    = V(x^2 - y^2 z, 2x, -2yz, -y^2)
+    = V(x, y),
+  \]
+  which is a line in $\Affine^3$.
+\end{example}
+
+\begin{proof}[Proof of Proposition \ref{prop:jacobi}]
+  By translating, we may assume
+  $a = 0$. Now $I(X) = (f_1, \dots, f_r)$,
+  so
+  \[
+    [f_i]_1
+    = \sum_{j = 1}^n \frac{\partial f_i}{\partial x_j}(0) x_j.
+  \]
+  As $T_0 X = V([f_1]_1, \dots, [f_r]_1)$, we have
+  $T_0 X = \ker J$ with
+  $J = (\partial f_i / \partial x_j(0))_{i, j}$.
+  So
+  \[
+    \dim T_0 X = n - \rank J.
+  \]
+  As $\dim T_0 X \ge \codim_X \{a\}$,
+  we get $\codim_X\{a\} \le n - \rank J$,
+  i.e. $\rank J \le n - \codim_X \{a\}$.
+  Furthermore, equality holds if and only if
+  $\dim T_0 X = \codim_X \{a\}$, which
+  happens if and only if
+  $X$ is smooth at $a$.
+\end{proof}
+
+\begin{corollary}[Generic smoothness]
+  The smooth locus of a variety is a
+  dense open set.
+\end{corollary}
+
+\begin{proof}
+  Since the statement is local, we may
+  assume $X$ is affine and irreducible
+  (it suffices to show that the smooth
+  locus is nonempty and open in each
+  irreducible component, away from the
+  intersections with other irreducible
+  components).
+  Thus it suffices to show that the smooth
+  locus is open and nonempty.
+
+  Openness follows from the Jacobi
+  criterion, since
+  \[
+    \Sing X
+    = V_X(\text{$(r \times r)$}-\text{minors of $\Jac(f)$})
+  \]
+  with $I(X) = (f_1, \dots, f_r)$ and
+  $r = n - \dim X$.
+  So $\Smooth(X)$ is open.
+
+  To see that it is nonempty, we first
+  assume that $X \subseteq \Affine^n$
+  is a hypersurface with
+  $I(X) = (f)$. Now
+  \[
+    \Sing X
+    = V(f, \partial f / \partial x_1, \dots, \partial f / \partial x_n)
+    \subsetneq X.
+  \]
+  This is because $f$ is irreducible
+  (as $X$ is irreducible) and
+  $\deg \partial f / \partial x_i < \deg f$,
+  so
+  \[
+    \sqrt{(f)}
+    = (f)
+    \subsetneq (f, \partial f / \partial x_1, \dots, \partial f / \partial x_n),
+  \]
+  which implies that
+  $X \supsetneq \Sing X$. So
+  $\Smooth(X) \ne \varnothing$. In general,
+  any irreducible variety $X$ is birational
+  to a hypersurface, so
+  $\Smooth(X) \ne \varnothing$
+  in general as well.\footnote{Let $H$ be the hypersurface. The birational map $\varphi : X \dashrightarrow H$ is defined on some open set $U \subseteq H$, so $\Smooth(X)$ being open dense implies $U \cap \Smooth(H) \ne \varnothing$, so $\Smooth(X) \supseteq \Smooth(X) \cap \varphi^{-1}(U) = \varphi^{-1}(U \cap \Smooth(H)) \ne \varnothing$.}
+\end{proof}
+
+\begin{exercise}[Projective Jacobi criterion]
+  Let $X \subseteq \PP^n$ be a projective
+  variety and
+  \[I(X) = (f_1, \dots, f_r) \le k[x_0, \dots, x_n], \quad f_i \text{ homogeneous}.\]
+  Then $X$ is smooth at $a$ if and only if
+  $(\partial f_i / \partial x_j (a))_{i, j}$ has
+  rank $\ge n - \codim_X \{a\}$.
+  Moreover, the inequality
+  $\le n - \codim_X \{a\}$ always holds.
+\end{exercise}
+
+\begin{example}[Fermat hypersurface]
+  Let $F = x_0^d + \dots + x_n^d$ with
+  $n \ge 2$ and $\Char k \nmid d$. Then
+  for $X = V(F) \subseteq \PP^n$, we have
+  (using a relaxed version of the
+  projective Jacobi criterion: if
+  we only assume $X = V(f_1, \dots, f_r)$,
+  then we only get
+  $\rank(\partial f_i / \partial x_j (a)) \ge n - \codim_X \{a\}$
+  implies smoothness at $a$)
+  \[
+    \Sing X
+    = V_X(d x_0^{d - 1}, \dots, d x_n^{d - 1})
+    = V(F, d x_0^{d - 1}, \dots, d x_n^{d - 1})
+    = \varnothing.
+  \]
+\end{example}
+
+\begin{exercise}
+  Fix $n \ge 2$ and $d \ge 1$.
+  Let $N = \dim k[x_0, \dots, x_n]_d - 1 = \binom{n + d}{d} - 1$.
+  View
+  \[
+    \PP^N_{a_I}
+    = \text{parameter space of degree $d$ hypersurfaces in $\PP^n$},
+  \]
+  where $I = (i_0, \dots, i_n) \in \N^{n + 1}$
+  with $\sum i_j = d$, i.e.
+  $p \in [a_I] \in \PP^N$
+  corresponds to
+  \[
+    F_p = \sum a_I x^I
+    \in k[x_0, \dots, x_n]_d.
+  \]
+  Then there exists some nonempty open set
+  $U \subseteq \PP^N$ such that
+  $V(F_p) \subseteq \PP^n$ is smooth
+  for every $p \in U$. Colloquially,
+  one says that a ``general'' hypersurface
+  of degree $d$ in $\PP^n$ is smooth.
+
+  Hint: Consider the incidence
+  correspondence
+  \[
+    X = \left\{([a_I], x) : \sum a_I x^I = 0\right\}
+    \subseteq \PP^N \times \PP^n
+  \]
+  and the projection maps
+  $\varphi : X \to \PP^N$,
+  $\psi : X \to \PP^n$.
+  Then for $p \in \PP^N$, the set
+  $\varphi^{-1}(\{p\})$ corresponds
+  to the set of points lying on the
+  hypersurface.
+\end{exercise}
