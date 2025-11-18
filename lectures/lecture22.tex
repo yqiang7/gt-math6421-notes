@@ -291,7 +291,8 @@
 \end{example}
 
 \begin{exercise}
-  Fix $n \ge 2$ and $d \ge 1$.
+  Fix $n \ge 2$ and $d \ge 1$
+  ($\Char k \nmid d$).
   Let $N = \dim k[x_0, \dots, x_n]_d - 1 = \binom{n + d}{d} - 1$.
   View
   \[
@@ -313,17 +314,20 @@
   one says that a ``general'' hypersurface
   of degree $d$ in $\PP^n$ is smooth.
 
-  Hint: Consider the incidence
-  correspondence
+  Hint: Consider the \emph{incidence
+  correspondence} (write $F = \sum c_I x^I$)
   \[
-    X = \left\{([a_I], x) : \sum a_I x^I = 0\right\}
+    \Gamma
+    = \left\{([F], [a]) : a \in V(F)\right\}
+    = \left\{([c_I], [a]) : \sum c_I a^I = 0\right\}
     \subseteq \PP^N \times \PP^n
   \]
   and the projection maps
-  $\varphi : X \to \PP^N$,
-  $\psi : X \to \PP^n$.
-  Then for $p \in \PP^N$, the set
-  $\varphi^{-1}(\{p\})$ corresponds
-  to the set of points lying on the
-  hypersurface.
+  $p : \Gamma \to \PP^N$,
+  $q : \Gamma \to \PP^n$.
+  Then for $[F] \in \PP^N$, the set
+  $p^{-1}(\{F\}) = [F] \times V(F)$,
+  and $q^{-1}([a])$ corresponds to
+  the hypersurfaces containing
+  $[a]$.
 \end{exercise}

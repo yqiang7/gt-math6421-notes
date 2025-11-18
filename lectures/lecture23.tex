@@ -1,0 +1,307 @@
+\chapter{Nov.~18 --- Lines on Hypersurfaces}
+
+TODO: Fill in notes from beginning of class.
+
+\section{Lines on Hypersurfaces in \texorpdfstring{$\PP^3$}{P3}}
+
+\begin{remark}
+  Let $X \subseteq \PP^3_{x : y : z : w}$ be a
+  smooth hypersurface of degree $d$.
+  How many lines are on $X$?
+\end{remark}
+
+\begin{example}
+  Let $d = 1$. After a linear
+  change of coordinates,
+  we can assume $X = V(x)$.
+  This contains infinitely many lines,
+  as any two points are connected by
+  a line in $X$.
+\end{example}
+
+\begin{example}
+  Let $d = 2$. After a linear
+  change of coordinates,
+  $X = V(x^2 + y^2 + z^2 + w^2)$, which
+  shows that all smooth degree $2$
+  hypersurfaces are isomorphic.
+  In particular, we may assume
+  \[
+    X = V(xw - yz) \subseteq \PP^3,
+  \]
+  which is the image of the
+  Segre embedding
+  $\PP^1 \times \PP^1 \to \PP^3$
+  which sends
+  $([a : b], [c : d]) \mapsto [ac : ad : bc : bd]$.
+  Note that $\im([a : b] \times \PP^1)$
+  and $\im(\PP^1 \times [c : d])$
+  are lines. So
+  $X$ contains infinitely many lines.
+\end{example}
+
+\begin{example}
+  Let $d = 3$. To understand the
+  moduli of cubics, we roughly consider
+  $\PP / {\PGL_4}$, where
+  $\PP$ is the projective space of
+  $k[x, y, z, w]_3$. Then the
+  expected dimension is
+  \[
+    \dim \PP - \dim \PGL_4
+    = \left[\binom{3 + 3}{3} - 1\right]
+    - [4^2 - 1]
+    = 19 - 15 = 4.
+  \]
+  Thus we expect that there is not
+  just one smooth cubic in $\PP^3$
+  up to a linear change of coordinates.
+
+  First consider the Fermat cubic
+  $X = V(x^3 + y^3 + z^3 + w^3) \subseteq \PP^3$,
+  and assume $\Char k \ne 3$.
+  We compute the lines on $X$. A line
+  $L \subseteq \PP^3$ corresponds to a
+  point $L \in G(2, 4)$. After
+  permuting the coordinates,
+  \[
+    L = \text{row span of }
+    \begin{pmatrix}
+      1 & 0 & a_2 & a_3 \\
+      0 & 1 & b_2 & b_3
+    \end{pmatrix}
+  \]
+  with $a_i, b_i \in k$. Thus we
+  can write
+  \[
+    L =
+    \{[s : t : sa_2 + tb_2 : s a_3 + tb_3] : [s : t] \in \PP^1\}.
+  \]
+  Now $L \subseteq X$ if and only if
+  \[
+    s^3 + t^3 + (s a_2 + t b_2)^3
+    + (s a_3 + t b_3)^3 = 0
+  \]
+  for all $s, t \in k$. This
+  happens if and only if the
+  coefficients of the above expression
+  (as a polynomial in $s, t$)
+  vanish,
+  which happens if and only if
+  the following equations are satisfied:
+  \pagebreak
+  \[
+    \begin{cases}
+      A : a_2^3 + a_3^3 = -1, \\
+      B : b_2^3 + b_3^3 = -1, \\
+      C : a_2^2 b_2 = -a_3^2 b_3, \\
+      D : a_2 b_2^2 = -a_3 b_3^2.
+    \end{cases}
+  \]
+  Note that $a_2, a_3, b_2, b_3$
+  cannot all be nonzero, since
+  otherwise $C^2 / D$ gives
+  $a_2^3 = -a_3^3$, contradicting
+  $A$.
+  Assume $a_2 = 0$. Then we get
+  \[
+    \begin{cases}
+      a_3^3 = -1, \\
+      b_3 = 0, \\
+      b_2^3 = -1,
+    \end{cases}
+  \]
+  i.e. $a_2 = 0, a_3 = -\omega^j, b_2 = -\omega^k, b_3 = 0$
+  with $\omega$ a primitive 3rd root
+  of unity and $0 \le j, k \le 2$. Thus
+  \[
+    L =
+    \begin{pmatrix}
+      1 & 0 & 0 & -\omega^j \\
+      0 & 1 & -\omega^k & 0
+    \end{pmatrix},
+  \]
+  which gives $9$ lines
+  by varying $j, k$.
+  Permuting the coordinates gives $18$
+  more:
+  \[
+    \begin{pmatrix}
+      1 & 0 & -\omega^j & 0 \\
+      0 & 1 & 0 & -\omega^k
+    \end{pmatrix} \quad \text{and} \quad
+    \begin{pmatrix}
+      1 & -\omega^j & 0 & 0 \\
+      0 & 0 & 1 & -\omega^k
+    \end{pmatrix}.
+  \]
+  Thus the Fermat cubic
+  $V(x^3 + y^3 + z^3 + w^3) \subseteq \PP^3$
+  contains exactly $27$ lines.
+\end{example}
+
+\begin{remark}
+  A similar computation shows that
+  $V(x^d + y^d + z^d + w^d) \subseteq \PP^3$
+  contains $3d^2$ lines when
+  $d \ge 3$ and $\Char k \nmid d$.
+\end{remark}
+
+\begin{theorem}
+  We have the following:
+  \begin{enumerate}
+    \item Every smooth cubic surface
+      in $\PP^3$ contains exactly
+      $27$ lines.
+    \item A general smooth hypersurface
+      of degree $d > 3$ in $\PP^3$
+      contains no lines.
+  \end{enumerate}
+\end{theorem}
+
+\begin{remark}
+  Let $N = \binom{3 + d}{d} - 1$ and
+  $\PP = \PP^N$ be the projective
+  space of $k[x_0, x_1, x_2, x_3]_d$.
+  We call this the ``parameter space
+  of hypersurfaces of degree $d$
+  in $\PP^3$.''
+  Define the \emph{incidence correspondence}
+  \[
+    \Gamma
+    = \{([F], L) \in \PP \times G(2, 4) : L \in V(F)\}
+    \subseteq \PP \times G(2, 4).
+  \]
+  Let $p : \Gamma \to \PP$ and
+  $q : \Gamma \to G(2, 4)$
+  be the projections. Then observe that:
+  \begin{enumerate}
+    \item $p^{-1}([F])$ is the
+      set of lines contained in $V(F)$.
+    \item $p(\Gamma)$ is the set of
+      hypersurfaces containing a line.
+  \end{enumerate}
+\end{remark}
+
+\begin{lemma}
+  $\Gamma$ is closed in $\PP \times G(2, 4)$.
+\end{lemma}
+
+\begin{proof}
+  On the chart $\Affine^4 \cong U_{1, 2} \subseteq G(2, 4)$,
+  the points of $U_{1, 2}$ correspond to
+  \[
+    L =
+    \begin{pmatrix}
+      1 & 0 & a_2 & a_3 \\
+      0 & 1 & b_2 & b_3
+    \end{pmatrix}.
+  \]
+  Now $L \subseteq V(F)$ if and only if
+  $F(s, t, s a_2 + t b_2, s a_3 + t b_3) = 0$
+  for all $s, t \in k$. As before,
+  this corresponds to the condition
+  that the coefficients of
+  $F(s, t, s a_2 + t b_2, s a_3 + t b_3)$
+  as a polynomial in $s, t$ vanish.
+  Write $F = \sum c_I x^I$, then
+  this is the vanishing locus of a
+  polynomial in $a_i, b_i, c_I$.
+  So $\Gamma \cap (\PP \times U_{1, 2})$
+  is closed in $\PP \times U_{1, 2}$.
+  So $\Gamma$ is closed in
+  $\PP \times G(2, 4)$ as it is
+  closed in every chart.
+\end{proof}
+
+\begin{remark}
+  Which of the maps
+  $p : \Gamma \to \PP$ and
+  $q : \Gamma \to G(2, 4)$
+  is easier to analyze? Note
+  that $\PGL_4$ acts on
+  all three of these spaces, and
+  the action of $\PGL_4$ is transitive
+  on $G(2, 4)$ but not on $\PP$.
+\end{remark}
+
+\begin{lemma}
+  For any $L \in G(2, 4)$, we have
+  $q^{-1}(L) \cong \PP^\nu$
+  where $\nu = \dim \PP - (d + 1)$.
+\end{lemma}
+
+\begin{proof}
+  After a linear change of
+  coordinates, we may assume
+  \[
+    L =
+    \begin{pmatrix}
+      1 & 0 & 0 & 0 \\
+      0 & 1 & 0 & 0
+    \end{pmatrix}
+    \in G(2, 4),
+  \]
+  i.e. $L = \{[s : t : 0 : 0] : [s : t] \in \PP^1\}$.
+  Now if we write $F = \sum c_I x^I$,
+  we have
+  $([F], L) \in q^{-1}(L)$
+  if and only if $L \subseteq V(F)$,
+  which happens if and only if
+  the coefficients of $F$ corresponding
+  to the monomials $x_0^j x_1^{d - j}$
+  all vanish, i.e. that
+  \[
+    c_{d, 0, 0, 0}
+    = c_{d - 1, 1, 0, 0}
+    = \dots
+    = c_{0, d, 0, 0} = 0.
+  \]
+  So $q^{-1}(L) \cong \PP^\nu$
+  with $\nu = \dim \PP - (d + 1)$
+  (where $(d + 1)$ is the number of
+  zero coefficients above).
+\end{proof}
+
+\begin{remark}
+  The next steps are the following,
+  which will follow from dimension
+  theory:
+  \begin{enumerate}
+    \item $\dim \Gamma = \dim q^{-1}(L) + \dim G(2, 4) = \dim \PP - (d + 1) + 4$.
+    \item $\dim p(\Gamma) \le \dim \Gamma = \dim \PP - (d + 1) + 4$.
+  \end{enumerate}
+  So once we show this,
+  we get that
+  $p(\Gamma) \subsetneq \PP$
+  for $d > 3$
+  (i.e. when $(d + 1) - 4 > 0$).
+\end{remark}
+
+\section{More Dimension Theory}
+
+\begin{theorem}
+  Let $f : X \to Y$ be a surjective
+  morphism between irreducible
+  varieties with $n = \dim X$ and
+  $m = \dim Y$. Then
+  \begin{enumerate}
+    \item $n \ge m$.
+    \item $\dim f^{-1}(y) \ge n - m$ for $y \in Y$.
+    \item There is an open set
+      $\varnothing \ne U \subseteq Y$
+      such that equality holds in
+      (2) for all $y \in U$.
+  \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+  (1) Since $f : X \to Y$ is surjective,
+  there is an inclusion
+  $f^* : K(Y) \to K(X)$. Now
+  \[
+    \dim Y = \trdeg_k K(Y)
+    \le \trdeg_k K(X) = \dim X.
+  \]
+  We will prove the rest next class.
+\end{proof}
