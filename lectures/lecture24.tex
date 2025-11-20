@@ -1,0 +1,323 @@
+\chapter{Hilbert Functions}
+
+\section{Lines on Hypersurfaces in \texorpdfstring{$\PP^3$}{P3}, Continued}
+
+\begin{proof}[Proof of Theorem \ref{thm:lines-on-cubic-surface}]
+  Recall that we let
+  $\PP = \PP^N$ be the projective
+  space of $k[x_0, x_1, x_2, x_3]_d$,
+  which is the ``parameter space of
+  degree $d$ hypersurfaces in $\PP^3$.''
+  Here $N = \binom{3 + d}{d}$.
+  We defined the incidence
+  correspondence
+  \[
+    \Gamma = \{([F], L) \in \PP \times G(2, 4) : L \subseteq V(F)\}
+  \]
+  and the projections
+  $p : \Gamma \to \PP$ and
+  $q : \Gamma \to G(2, 4)$.
+  Then we want to show:
+  \begin{enumerate}
+    \item For $d = 3$, that
+      $p : \Gamma \to \PP$ is surjective
+      and has finite fibers
+      over a dense open subset of
+      $\PP$.
+    \item For $d > 3$, $p(\Gamma)$
+      is closed with
+      $p(\Gamma) \subsetneq \PP$
+      (this is the locus of $\PP$ which
+      parametrizes hypersurfaces with
+      lines).
+  \end{enumerate}
+  Last time we showed
+  $q^{-1}(L) \cong \PP^\nu$ with
+  $\nu = \dim \PP - (d + 1)$ for all
+  $\Gamma \in G(2, 4)$.
+  So $\Gamma$ is irreducible and
+  \[
+    \dim \Gamma = \dim \PP - (d + 1)
+    + \dim G(2, 4)
+    = \dim \PP - (d + 1) + 4.
+  \]
+  Thus if $d > 3$, then
+  $\dim \Gamma < \dim \PP$. Thus
+  $p : \Gamma \to \PP$ is
+  \emph{not} surjective. So
+  $p(\Gamma) \subsetneq \PP$
+  is a strict closed subset.
+  If $d = 3$, then
+  $\dim \Gamma = \dim \PP$.
+  We have already computed that
+  \[
+    \# p^{-1}(\text{Fermat cubic})
+    = 27,
+  \]
+  so $\dim p^{-1}(\text{Fermat cubic}) = 0$.
+  So we must have $p : \Gamma \to \PP$
+  surjective (otherwise $\dim p(\Gamma) < \dim \PP = \dim \Gamma$, so
+  $\Gamma \to p(\Gamma)$ has all fibers of
+  positive dimension). Now there exists an
+  open $\varnothing \ne U \subseteq \PP$
+  with $\dim p^{-1}(y) = \dim \Gamma - \dim \PP = 0$
+  for all $y \in U$. This completes
+  the proof.
+\end{proof}
+
+\begin{remark}
+  The above proves that a general
+  smooth cubic surface contains
+  exactly $27$ lines. To conclude that
+  \emph{all} smooth cubic surfaces
+  contain $27$ lines, one can take the
+  following approaches:
+  \begin{enumerate}
+    \item Show that $p : \Gamma \to \PP$
+      is ``smooth'' over the locus of
+      smooth cubics, which implies
+      that all fibers have the same
+      dimension. This is done in
+      Gathmann.
+    \item Show that any smooth
+      cubic surface is isomorphic to
+      \[
+        X = B_{p_1, \dots, p_6}
+        \PP^2
+      \]
+      with $p_1, \dots, p_6 \in \PP^2$
+      in general position (i.e. no
+      $3$ points lie on a line and no
+      $6$ points lie on a conic). Then
+      we obtain
+      $27$ lines as follows:
+      \begin{itemize}
+        \item $6$ from
+          $\pi^{-1}(p_i)$ for $i = 1, \dots, 6$.
+        \item $15 = \binom{6}{2}$
+          from $\widetilde{L}_{i, j}$
+          (the strict transform of $L_{i, j}$),
+          where $L_{i, j}$
+          is the line through $p_i$ and
+          $p_j$.
+        \item $6 = \binom{6}{5}$
+          from $\widetilde{Q}_i$,
+          where $Q_i$ is the (unique)
+          conic through
+          $\{p_1, \dots, p_6\} \setminus \{p_i\}$.
+      \end{itemize}
+  \end{enumerate}
+\end{remark}
+
+\section{Hilbert Functions}
+
+\begin{definition}
+  For a hypersurface $X \subseteq \PP^n$ 
+  with $I(X) = (f)$, we define
+  the \emph{degree} of $X$ to be
+  \[
+    \deg X = \deg f.
+  \]
+\end{definition}
+
+\begin{theorem}[Bezout's theorem]
+  If $C, D \subseteq \PP^2$ are
+  distinct irreducible curves, then
+  \[
+    \#(C \cap D)
+    \le (\deg C)(\deg D),
+  \]
+  and equality holds when we count
+  multiplicity.
+\end{theorem}
+
+\begin{remark}
+  We want a version of degree for
+  any projective variety.
+\end{remark}
+
+\begin{definition}
+  Let $I \le k[x_0, \dots, x_n]$ be a
+  homogeneous ideal. Then the
+  \emph{Hilbert function} of
+  $I$ is
+  \begin{align*}
+    h_I : \N
+    &\longrightarrow \N \\
+    d &\longmapsto
+    \dim [k[x_0, \dots, x_n] / I]_d
+    = \dim k[x_0, \dots, x_n]_d - \dim I_d.
+  \end{align*}
+  Similarly, if $X \subseteq \PP^n$
+  is a projective variety, we define
+  its \emph{Hilbert function} to be
+  \begin{align*}
+    h_X : \N
+    &\longrightarrow \N \\
+    d &\longmapsto
+    \dim S(X)_d.
+  \end{align*}
+\end{definition}
+
+\begin{remark}
+  Since $S(X) = k[x_0, \dots, x_n] / I(X)$,
+  we have $h_X = h_{I(X)}$.
+\end{remark}
+
+\begin{example}
+  For $\PP^n$, we can compute that
+  \begin{align*}
+    h_{\PP^n}(d)
+    = \dim k[x_0, \dots, x_n]_d
+    &= \binom{n + d}{d}
+    = \frac{(n + d)!}{n! d!} \\
+    &= \frac{(d + 1) \dots (d + n)}{n!}
+    = \frac{1}{n!} d^n
+    + \text{lower order terms}.
+  \end{align*}
+\end{example}
+
+\begin{example}
+  For $X = \{[1 : 0 : \dots : 0]\} \subseteq \PP^n$, we have
+  $I(X) = (x_1, \dots, x_n)$, so
+  $S(X) \cong k[x_0]$ and
+  \[
+    h_X(d) = \dim k[x_0]_d
+    = \dim k x_0^d
+    = 1.
+  \]
+\end{example}
+
+\begin{example}
+  Let $I = (x^2) \subseteq k[x, y]$.
+  View $I$ as cutting out
+  $[0 : 1]$ with multiplicity $2$.
+  For $d \ge 1$,
+  \[
+    [k[x, y] / I]_d
+    = k \overline{y^d}
+    \oplus k \overline{x y^{d - 1}}
+  \]
+  since $\overline{x^2} = 0$
+  in the quotient.
+  Thus we see that
+  \[
+    h_I(d) =
+    \begin{cases}
+      1 & \text{if } d = 0, \\
+      2 & \text{if } d \ge 1.
+    \end{cases}
+  \]
+\end{example}
+
+\begin{example}
+  Let $X \subseteq \PP^n$ be a
+  hypersurface of degree $e$, i.e.
+  $I(X) = (f)$ with $\deg f = e$. Then
+  \[
+    I(X)_d =
+    \begin{cases}
+      0 & \text{if } d < e, \\
+      f \cdot k[x_0, \dots, x_n]_{d - e} & \text{if } d \ge e.
+    \end{cases}
+  \]
+  So for $d \ge e$, we have
+  \begin{align*}
+    h_X(d)
+    &= \dim k[x_0, \dots, x_n]_d
+    - \dim I(X)_d
+    = \dim k[x_0, \dots, x_n]_d
+    - \dim k[x_0, \dots, x_n]_{d - e} \\
+    &= \binom{n + d}{d}
+    - \binom{n + d - e}{d - e}
+    = \frac{d^n}{n!} - \frac{(d - e)^n}{n!}
+    + O(d^{n - 2})
+    = \frac{ed^{n - 1}}{(n - 1)!}
+    + \text{lower order terms}.
+  \end{align*}
+  Note that $e = \deg X$ and
+  $n - 1 = \dim X$.
+\end{example}
+
+\begin{remark}
+  We have seen the following:
+  \begin{enumerate}
+    \item $\displaystyle h_{\PP^n}(d) = \frac{1}{n!} d^n + \text{lower order terms}$.
+    \item $\displaystyle h_{\text{hyp.~of deg.~$e$}}(d) = \frac{e}{(n - 1)!} d^{n - 1} + \text{lower order terms}$.
+    \item $h_{\mathrm{pt}}(d) = 1$
+      for all $d \ge 1$.
+  \end{enumerate}
+  In these cases, $h_X$ agrees
+  with a polynomial for $d \gg 0$, and
+  the degree of the polynomial is
+  $\dim X$.
+\end{remark}
+
+\begin{prop}\label{prop:hilbert-function-additivity}
+  For two homogeneous ideals
+  $I, J \le k[x_0, \dots, x_n]$, we have
+  \[
+    h_{I \cap J} + h_{I + J}
+    = h_I + h_J.
+  \]
+\end{prop}
+
+\begin{proof}
+  Use that $R = k[x_0, \dots, x_n]$
+  satisfies the following
+  short exact sequence of $R$-modules:
+  \begin{center}
+    \begin{tikzcd}[row sep=0pt]
+      0 \ar[r] & R / (I \cap J) \ar[r] & R / I \times R / J \ar[r] & R / (I + J) \ar[r] & 0 \\
+               & \overline{f} \ar[r, mapsto] & (\overline{f}, \overline{f}) \\
+               & & (\overline{g}, \overline{h}) \ar[r, mapsto] & \overline{g - h}
+    \end{tikzcd}
+  \end{center}
+  Check this as an exercise. Then
+  restricting to degree $d$
+  components gives the result.
+\end{proof}
+
+\begin{remark}
+  If $X, Y \subseteq \PP^n$ are
+  distinct projective varieties, then
+  \[I(X \cup Y) = I(X) \cap I(Y)
+  \quad \text{and} \quad \sqrt{I(X) + I(Y)} \supseteq (x_0, \dots, x_n)\]
+  So by Proposition \ref{prop:hilbert-function-additivity},
+  \[
+    h_{X \cup Y}(d)
+    = h_{I(X) \cap I(Y)}(d)
+    = h_{I(X)}(d) + h_{I(Y)}(d)
+    - h_{I(X) + I(Y)}(d)
+    = h_X(d) + h_Y(d)
+  \]
+  for $d \gg 0$, since
+  $h_{I(X) + I(Y)}(d) = 0$ for
+  $d \gg 0$ by Lemma \ref{lem:hilbert-function-vanishing}.
+\end{remark}
+
+\begin{example}
+  Let $X = \{p_1, \dots, p_r\} \subseteq \PP^n$.
+  Then
+  \[
+    h_X(d) = \sum_{i = 1}^r h_{\{p_i\}}(d)
+    = r, \quad \text{for } d \gg 0.
+  \]
+\end{example}
+
+\begin{lemma}\label{lem:hilbert-function-vanishing}
+  If $I \le k[x_0, \dots, x_n]$ is a
+  homogeneous ideal with
+  $\sqrt{I} \supseteq (x_0, \dots, x_n)$,
+  then $h_I(d) = 0$ for $d \gg 0$.
+\end{lemma}
+
+\begin{proof}
+  Since $\sqrt{I} \supseteq (x_0, \dots, x_n)$,
+  there exists $k > 0$ such that
+  $x_i^k \in I$ for every $i$.
+  So if $d \ge k(n + 1)$, then
+  $I_d = k[x_0, \dots, x_n]_d$.
+  So $h_I(d) = \dim k[x_0, \dots, x_n]_d - \dim I_d = 0$
+  for $d \ge k(n + 1)$.
+\end{proof}
