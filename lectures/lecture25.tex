@@ -1,0 +1,301 @@
+\chapter{Nov.~25 --- Hilbert Polynomials}
+
+\section{Hilbert Polynomials}
+
+\begin{remark}
+  Let $R = k[x_0, \ldots, x_n]$.
+  Geometrically, the functions
+  $0 \ne f \in I(X)_d$ correspond to
+  degree $d$ hypersurfaces
+  $X \subseteq V(f) \subseteq \PP^n$
+  vanishing on $X$.
+\end{remark}
+
+\begin{theorem}\label{thm:hilbert-polynomial}
+  Let $I \le R$ be a homogeneous ideal.
+  Then there exists a unique polynomial
+  $p_I(d) \in \Q[d]$ such that
+  \begin{enumerate}
+    \item $h_I(d) = p_I(d)$ for $d \gg 0$;
+    \item $m := \deg(p_I) = \dim V_p(I)$;
+    \item $p_I(d) = \frac{\mathrm{integer}}{m!} d^{m - 1} + \mathrm{lower\ order\ terms}$.
+  \end{enumerate}
+\end{theorem}
+
+\begin{definition}
+  For $X \subseteq \PP^n$ projective, set
+  $p_X = p_{I(X)}$. Call
+  $p_X$ the \emph{Hilbert polynomial} of $X$.
+\end{definition}
+
+\begin{definition}
+  A \emph{numerical polynomial} is a
+  polynomial $P \in \Q[d]$ such that
+  $P(d) \in \Z$ for all
+  $d \gg 0$. (We will see that it is
+  equivalent to ask $P(d) \in \Z$
+  for all $d \in \Z$.)
+\end{definition}
+
+\begin{example}
+  The following are numerical polynomials:
+  \begin{itemize}
+    \item A constant polynomial which
+      is integer-valued.
+    \item $P(d) \in \Z[d]$.
+    \item $P_n(d) = \binom{d}{n} = \frac{1}{n!} d(d - 1) \dots (d - n + 1)$.
+      Also observe that
+      \[
+        P_n(d + 1)  - P_n(d)
+        = \binom{d + 1}{n} - \binom{d}{n}
+        = \binom{d}{n - 1}
+        = P_{n - 1}(d).
+      \]
+  \end{itemize}
+\end{example}
+
+\begin{lemma}
+  We have the following:
+  \begin{enumerate}
+    \item If $P$ is a numerical polynomial,
+      then there exist $c_i \in \Z$ such
+      that
+      \[
+        P(d)
+        = c_0 \binom{d}{n}
+        + c_1 \binom{d}{n - 1}
+        + \dots + c_n.
+      \]
+    \item If $f : \N \to \N$ is a
+      function such that
+      $\Delta f(d) = f(d + 1) - f(d)$
+      agrees with a numerical polynomial
+      for $d \gg 0$, then $f$ agrees with
+      a numerical polynomial for
+      $d \gg 0$.
+  \end{enumerate}
+\end{lemma}
+
+\begin{proof}
+  (a) We induct on $\deg P $. The result is
+  trivial when $\deg P = 0$. Thus assume
+  by induction there exist $c_i \in \Z$
+  such that
+  \pagebreak
+  \[
+    \Delta P(d)
+    = P(d + 1) - P(d)
+    = c_0 \binom{d}{n - 1}
+    + c_1 \binom{d}{n - 2}
+    + \dots + c_{n - 1}.
+  \]
+  Set $Q(d) = c_0 \binom{d}{n} + c_1 \binom{d}{n - 1} + \dots + c_{n - 1} \binom{d}{1}$.
+  As $\Delta \binom{d}{i} = \binom{d}{i - 1}$, we have
+  $\Delta P = \Delta Q$, so
+  $\Delta(P - Q) = 0$.
+  So $P - Q$ is constant.
+  As $P - Q$ is numerical, we have
+  $c_n = P - Q \in \Z$. So
+  $P = Q + c_n$.
+
+  (2) See Hartshorne.
+\end{proof}
+
+\begin{remark}
+  Now to prove Theorem \ref{thm:hilbert-polynomial},
+  we want to show that
+  $\Delta h_I(d) = h_I(d + 1) - h_I(d)$
+  agrees with a numerical polynomial
+  for $d \gg 0$.
+\end{remark}
+
+\begin{lemma}\label{lem:key-lemma}
+  Let $I \le R$ be a homogeneous ideal
+  and $0 \ne f \in R_e$. Assume there exists
+  $d_0$ such that
+  \begin{enumerate}
+    \item[$\mathrm{(*)}$] If $g \in R_d$ with
+      $d \ge d_0$
+      and $fg \in I$, then $g \in I$,
+  \end{enumerate}
+  then $h_{I + (f)}(d) = h_I(d) - h_I(d - e)$
+  for $d \gg 0$.
+\end{lemma}
+
+\begin{proof}
+  Consider the short exact sequence
+  \begin{center}
+    \begin{tikzcd}
+      R / I \arrow[r, " \cdot f "] &
+      R / I \arrow[r] &
+      R / (I + (f)) \arrow[r] & 0
+    \end{tikzcd}
+  \end{center}
+  For $d - e \ge d_0$,
+  taking degree $d$ parts, we get that
+  \begin{center}
+    \begin{tikzcd}
+      0 \ar[r] &
+      {[R / I]_{d - e}} \arrow[r, " \cdot f "] &
+      {[R / I]_d} \arrow[r] &
+      {[R / (I + (f))]_d} \arrow[r] & 0
+    \end{tikzcd}
+  \end{center}
+  This gives the equality for the Hilbert
+  functions when $d - e \ge d_0$.
+\end{proof}
+
+\begin{remark}
+  When does $(*)$ hold? There are
+  essentially two cases:
+  \begin{enumerate}
+    \item $X \subseteq \PP^n$ a
+      projective variety with $I = I(X)$.
+
+      We can write $X = X_1 \cup \dots \cup X_r$
+      for the irreducible decomposition of
+      $X$. So
+      \[
+        I = I(X) = I(X_1) \cap \dots \cap I(X_r).
+      \]
+      If $f$ does not vanish on any $X_i$,
+      then $fg \in I$ implies that
+      $fg$ vanishes on each $X_i$, so
+      $g$ vanishes on each $X_i$. So in 
+      particular, $g \in I$.
+    \item $I \le R$ an arbitrary homogeneous
+      ideal.
+
+      By commutative algebra there exists a
+      \emph{primary decomposition}
+      \[
+        I = I_1 \cap \dots \cap I_r,
+      \]
+      which each $I_j$ is \emph{primary}
+      (i.e. $gh \in I_j$ implies
+      $g \in I_j$ or  $h \in \sqrt{I_j}$).
+      If we choose
+      $V_p(I_j) \subsetneq V_p(f)$, then
+      $(*)$ holds: If $gf \in I$,
+      then $gf \in I_j$ for each $j$.
+      By assumption $f \notin \sqrt{I_j}$
+      (by the Nullstellensatz), so
+      $g \in I_j$ for every $j$.
+  \end{enumerate}
+  In conclusion, we can always find $f \in R_1$
+  such that $(*)$ holds.
+\end{remark}
+
+\begin{proof}[Proof of Theorem \ref{thm:hilbert-polynomial}]
+  Fix $I \le R$ a homogeneous ideal.
+  We want to show that $h_I(d)$ agrees
+  with the monomial polynomial of
+  $\deg \dim V_p(I)$ for $d \gg 0$.
+  We induct
+  on $\dim V_p(I)$. If $V_p(I) \ne \varnothing$,
+  then
+  \pagebreak
+  \[
+    \sqrt{I} \supseteq (x_0, \ldots, x_n),
+  \]
+  so $h_{I}(d) = 0$ for
+  $d \gg 0$, which gives the result.
+  Now assume $\dim V_p(I) \ge 0$.
+  Choose $f \in R_1$ such that $(*)$ holds.
+  Then Lemma \ref{lem:key-lemma} gives
+  \[
+    h_I(d) - h_I(d - 1)
+    = h_{I + (f)}(d).
+  \]
+  As $\dim V_p(I + (f)) < \dim V_p(I)$,
+  by induction we get that $h_{I + (f)}(d)$
+  agrees with the numerical polynomial of
+  degree $\dim V_p - 1$, so
+  $h_I(d)$ agrees with a numerical polynomial
+  of dimension $\deg \dim V_p(I)$.
+\end{proof}
+
+\section{Degree}
+\begin{definition}
+  For $I \le R$ a homogeneous ideal
+  with $m = \dim V_p(I)$, the \emph{degree}
+  of $I$ is the integer $\deg I \in \Z$
+  such that
+  \[
+    h_I(d)
+    = \frac{\deg I}{m!} d^m + \mathrm{lower\ order\ terms}.
+  \]
+  For a projective variety $X \subseteq \PP^n$,
+  set $\deg X = \deg I(X)$, i.e.
+  $h_X(d) = \frac{\deg X}{m!} d^m + \dots$,
+  where $m = \dim X$.
+\end{definition}
+
+\begin{example}
+  Consider the following:
+  \begin{enumerate}
+    \item $X = \PP^n$. Then
+      $\deg \PP^n = 1$
+      as $h_{\PP^n}(d) = \frac{1}{n!} d^n + \dots$.
+    \item If $X \subseteq \PP^n$ is a
+      hypersurface of degree $e$, then
+      $\deg X = e$.
+    \item If $X = \{p_1, \dots, p_r\} \subseteq \PP^n$, then
+      $\deg X = r$.
+
+      Also, if $\dim V_p(I) = 0$, then
+      $P_I \ge P_{\sqrt{I}}
+      = \# V_p(I)$.
+      In particular, $\deg I \ge \# V_p(I)$.\footnote{For an example where these are
+  consider $I = (x^2) \le k[x, y]$.
+  But $\deg I = 2 > 1 = \#V_p(I)$.}
+  \item Let $X \subseteq \PP^n$ be a linear
+    space. After a linear change of
+    coordinates, we may assume
+    \[
+      X = V(x_{r + 1}, \dots, x_n)
+    \]
+    for some $0 \le r \le n$. So
+    $S(X) = k[x_0, \dots, x_n] / (x_{r + 1}, \dots, x_n) = k[x_0, \dots, x_r]
+    = S(\PP^r)$.
+  \end{enumerate}
+  Now we have that
+  \[
+    h_X(d) = \binom{r + d}{r}
+    + \frac{1}{r!} d^r + \mathrm{lower\ order\ terms},
+  \]
+  so we see that $\deg X = 1$.
+\end{example}
+
+\begin{exercise}
+  If a projective variety $X \subseteq \PP^n$ 
+  has $\deg X = 1$, then $X$ is a linear
+  variety.
+\end{exercise}
+
+\begin{prop}
+  If $X, Y \subseteq \PP^n$ are projective
+  varieties of dimension $m$ with no
+  common irreducible components, then
+  \[
+    \deg(X \cup Y) = \deg X + \deg Y.
+  \]
+\end{prop}
+
+\begin{proof}
+  We know $h_{X \cup Y}(d) = h_{I(X)}(d) + h_{I(Y)} - h_{I(X) + I(Y)}(d)$., so
+  \[
+    P_{X \cup Y}
+    = P_X + P_Y - p_{I(X) + I(Y)}.
+  \]
+  Now $\deg P_X = \deg P_Y = m$
+  and $\deg P_{I(X) + I(Y)} = \dim V_P(I(X) + I(Y)) = \dim (X \cap Y) < m$, so
+  \[
+    p_{X \cup Y}
+    = \frac{\deg X}{m!} d^m
+    + \frac{\deg Y}{m!} d^m
+    + \mathrm{lower\ order\ terms}.
+  \]
+  Thus we get that
+  $\deg(X \cup Y) = \deg X + \deg Y$.
+\end{proof}
