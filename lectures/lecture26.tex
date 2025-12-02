@@ -1,0 +1,341 @@
+\chapter{Dec.~2 --- B\'ezout's Theorem}
+
+TODO: Fill in notes from beginning of class.
+
+\section{B\'ezout's Theorem}
+
+\begin{prop}
+  If $X \subseteq \PP^n$ is a projective
+  variety and $f \in k[x_0, \dots, x_n]$ 
+  is a homogeneous polynomial not
+  vanishing on any irreducible component
+  of $X$, then
+  \[
+    \deg(I(X) + (f))
+    = (\deg X)(\deg f).
+  \]
+\end{prop}
+
+\begin{proof}
+  Set $e = \deg f$. We first show the
+  $(*)$ condition from last lecture holds:
+  If $g \in k[x_0, \dots, x_n]$ is
+  homogeneous with $fg \in I(X)$, then
+  we want to show that  $g \in I(X)$.
+  As $f$ does not vanish on any irreducible
+  component of $X$, $g$ must vanish
+  on every irreducible component.
+  So $g \in I(X)$ as desired.
+  
+  Now we analyze the Hilbert functions.
+  Write
+  \[
+    h_X(d) = \frac{\deg X}{m!} d^m + ad^{m - 1} + \text{lower order terms}
+  \]
+  for some $a \in \Q$. As
+  $(*)$ holds, for $d \gg 0$ we have
+  \begin{align*}
+    h_{I(X) + (f)}(d)
+    &= h_X(d) - h_X(d - e) \\
+    &= \left(\frac{\deg X}{m!} d^m + a d^{m - 1}\right)
+    - \left(\frac{\deg X}{m!} (d - e)^m + a (d - e)^{m - 1}\right)
+    + \text{lower order terms} \\
+    &= \frac{e \deg X}{(m - 1)!} d^{m - 1}
+    + \text{lower order terms}.
+  \end{align*}
+  Thus we see that
+  $\deg(I(X) + (f)) = e(\deg X) = (\deg f)(\deg X)$.
+\end{proof}
+
+\begin{example}
+  If $X = \PP^n$ and
+  $f \in k[x_0, \dots, x_n]_e$ is
+  irreducible, then
+  \[
+    \deg V_p(f)
+    = \deg((f))
+    = \deg(I(X) + (f))
+    = (\deg X)(\deg f)
+    = 1 \cdot \deg f
+    = \deg f,
+  \]
+  which reproves that the degree of a
+  degree $d$ hypersurface is $d$.
+\end{example}
+
+\begin{theorem}[B\'ezout's theorem]
+  For any two plane curves $X, Y \in \PP^2$
+  (i.e. a closed projective variety
+  in $\PP^2$ of pure dimension $1$) without
+  common irreducible components,
+  \[
+    \#(X \cap Y)
+    \le (\deg X)(\deg Y).
+  \]
+\end{theorem}
+
+\begin{proof}
+  Let $e = \deg Y$. As $Y \subseteq \PP^2$ 
+  is a hypersurface, there exists
+  $f \in k[x_0, \dots, x_n]_e$ with
+  $I(Y) = (f)$. So
+  \[
+    (\deg X)(\deg Y)
+    = (\deg X)(\deg f)
+    = \deg(I(X) + (f))
+    = \deg(I(X) + I(Y)).
+  \]
+  Note that $I(X \cap Y) = \sqrt{I(X) + I(Y)} \supseteq I(X) + I(Y)$, so we get
+  \[
+    (\deg X)(\deg Y)
+    = \deg(I(X) + I(Y))
+    \ge \deg(I(X \cap Y)).
+  \]
+  Since $I(X \cap Y)$ is zero-dimensional,
+  we have $\deg(I(X \cap Y)) = \deg(X \cap Y) = \#(X \cap Y)$.
+\end{proof}
+
+\begin{remark}
+  We can make the following
+  extensions to B\'ezout's theorem:
+  \begin{enumerate}
+    \item Multiplicities:
+      We can define $\mult_a(X, Y) \in \Z_{> 0}$
+      for $a \in X \cap Y$. Then
+      \[
+        \sum_{a \in X \cap Y} \mult_a(X, Y)
+        = (\deg X)(\deg Y).
+      \]
+    \item For a general $Y \subseteq \PP^2$
+      (relative to $X$), we have
+      equality
+      $(\deg X)(\deg Y) = \#(X \cap Y)$.
+    \item One can also get a similar
+      statement in higher dimensions.
+  \end{enumerate}
+\end{remark}
+
+\section{Divisors on Curves}
+
+\begin{remark}
+  Let $C$ be a smooth projective curve,
+  e.g. $C \cong \PP^1$ or $C \subseteq \PP^2$
+  a general degree $d$ hypersurface.
+\end{remark}
+
+\begin{definition}
+  A \emph{divisor} on $C$ is a formal
+  $\Z$-linear combination of distinct points,
+  i.e.
+  \[
+    D = a_1 p_1 + \dots + a_r p_r,
+    \quad a_i \in \Z,\, p_i \in C.
+  \]
+  Let $\Div C = \bigoplus_{p \in C} \Z p = \{D : \text{$D$ is a divisor on $C$}\}$,
+  which is a free abelian group.
+  For
+  $D = \sum a_i p_i \in \Div C$,
+  its \emph{degree} is
+  $\deg D = \sum a_i$ (think of this as the
+  number of points, counting multiplicity).
+\end{definition}
+
+\begin{example}
+  Given $f \in K(C)$, we want to
+  get a divisor
+  $\divv f \in \Div(C)$, called the
+  \emph{divisor of zeros and poles}.
+  For example, if
+  \[
+    f = \frac{x_0 x_1}{(x_0 - x_1)^2}
+    \in K(\PP^1),
+  \]
+  then we want $\divv f = [1 : 0] + [0 : 1] - 2[1 : 1]$.
+
+  To define this precisely, for
+  $p \in C$ recall
+  $\OO_{C, p}$ is a regular local
+  Noetherian ring of dimension $1$. Thus
+  commutative algebra implies that
+  $\OO_{C, p}$ is a discrete valuation
+  ring (DVR).
+\end{example}
+
+\begin{definition}
+  A \emph{discrete valuation ring (DVR)}
+  is a UFD with unique irreducible
+  element (up to multiplication by units).
+\end{definition}
+
+\begin{remark}
+  Assume $R$ is a DVR with $\pi \in R$
+  irreducible (such an element
+  $\pi$ is called a
+  \emph{uniformizer}). Then for $0 \ne r \in R$,
+  we can write
+  \[
+    r = u \pi^m, \quad
+    u \in R^\times,\, m \ge \N.
+  \]
+\end{remark}
+
+\begin{example}
+  Consider $0 \in \Affine^1$, so
+  $\OO_{\Affine^1, 0} = k[x]_{(x)}$.
+  For $f \in \OO_{\Affine^1, 0}$, we can
+  write
+  \[
+    f = x^m \frac{q(x)}{r(x)}
+  \]
+  with $m \in \N$ and
+  $q, r \in k[x]$ such that
+  $q(0), r(0) \ne 0$.
+\end{example}
+
+\begin{definition}
+  For $p \in C$, we get a function
+  (in fact a \emph{valuation})
+  \[
+    \ord_p : K(C)^\times \longrightarrow \Z
+  \]
+  where $\ord_p(f)$ is the unique
+  integer such that $f = u \pi^{\ord_p(f)}$
+  with $u \in \OO_{C, p}^\times$ and
+  $\pi \in \OO_{C, p}$ a uniformizer.
+\end{definition}
+
+\begin{definition}
+  For $0 \ne f \in K(C)$, the
+  \emph{divisor of zeros and poles} of $f$
+  is
+  \[
+    \divv(f) := \sum_{p \in C} \ord_p(f) p.
+  \]
+  Divisors of this form are called
+  \emph{principal}.
+\end{definition}
+
+\begin{exercise}
+  Show that $\divv f$ is a finite sum, so
+  $\divv f$ is well-defined.
+\end{exercise}
+
+\begin{example}
+  For $C = \PP^1$ and
+  $f = x_0 x_1 / (x_0 - x_1)^2$ as before,
+  $\divv f = [1 : 0] + [0 : 1] - 2[1 : 1]$.
+\end{example}
+
+\begin{remark}
+  One can check that
+  $\divv(fg) = \divv(f) + \divv(g)$, i.e.
+  $\divv$
+  is a group homomorphism. So
+  \[
+    \PDiv(C)
+    = \{\divv f : f \in K(C)^\times\}
+  \]
+  is a subgroup of $\Div C$.
+\end{remark}
+
+\begin{definition}
+  We say $D, D' \in \Div C$ are \emph{linearly equivalent}
+  if $D = D' + \divv f$
+  for some $f \in K(C)^\times$, and
+  write $D \sim D'$. The \emph{Picard group}
+  of $C$ is
+  \[
+    \Pic := (\Div C) / (\PDiv C)
+    = \text{divisors on $C$ up to linear equivalence}.
+  \]
+\end{definition}
+
+\begin{example}
+  We have $\Pic \PP^1 \cong \Z$.
+
+  We give a sketch of the proof. There
+  is a surjective group homomorphism
+  \begin{align*}
+    \varphi : \Div \PP^1 &\longrightarrow \Z \\
+    D &\longmapsto \deg D.
+  \end{align*}
+  Then we want to show that
+  $\ker \varphi = \PDiv(\PP^1)$.
+  First fix $D \in \ker \varphi$, so
+  $D = \sum_{i = 1}^r a_i p_i$ with $\sum_{i = 1}^r a_i = 0$.
+  Write $p_i = [s_i : t_i]$,
+  and consider $f = \prod_{i = 1}^r (x_0 t_i - x_1 s_i)^{a_i}$.
+  Since $\sum_{i = 1}^r a_i = 0$,
+  we have $f \in K(\PP^1)$ and
+  $\divv f = D$, so
+  $D \in \PDiv(\PP^1)$.
+  The reverse inclusion is similar.
+
+  Note that we always have
+  $\PDiv(\PP^1) \subseteq \ker \varphi$,
+  but the other inclusion may
+  fail for other curves.
+\end{example}
+
+\begin{remark}
+  Using B\'ezout's theorem (the one which
+  counts multiplicities),
+  one can show that
+  \[
+    \deg(\divv f) = 0
+  \]
+  for any $f \in K(C)^\times$.
+\end{remark}
+
+\begin{example}
+  Let $C \subseteq \PP^2$ be a smooth
+  cubic plane curve (i.e. an \emph{elliptic curve}), and fix a point
+  $p_0 \in C$.
+  Up to a change of coordinates, we may
+  assume that $p_0 = [1 : 0 : 0]$. Then
+  \begin{enumerate}
+    \item $\Pic C$ is \emph{not}
+      finitely generated.
+    \item The map
+      $C \to \Pic^0(C)$ by
+      $p \mapsto p - p_0$ is a bijection,
+      where $\Pic^0(C) = \{D \in \Pic C : \deg D = 0\}$.
+      As $\Pic^0(C)$ is a group, this
+      bijection
+      gives a group structure on $C$
+      with identity $p_0$.
+  \end{enumerate}
+  One can also describe this more
+  geometrically. If $p = [1 : 0 : 0]$, then
+  up to a change of coordinates, one can
+  assume $C$ is given by
+  \[
+    y^2 = x^3 + ax + b
+  \]
+  on a chart $\Affine_{x, y}^2 \subseteq \PP^2_{x : y : z}$.
+  The usual group law on $C$ is given as
+  follows: For $p, q \in C$, let
+  $r$ be the unique third intersection
+  point of the line through $p, q$ with
+  $C$. Then we define $p + q$ to be the
+  reflection $s$ of $r$ across the $x$-axis.
+
+  To see this agrees with the
+  group structure defined from
+  $\Pic^0(C)$, we need to check
+  \[(p - p_0) + (q - p_0) \sim s - p_0\]
+  Let the line through $p, q$ be
+  $\ell = V(L(x, y, z))$ and the line
+  through $r, s$ be
+  $\ell' = V(L'(x, y, z))$.
+  Then
+  \[
+    0 \sim \divv \frac{L(x, y, z)}{z}
+    = p + q + r -3p_0
+    \quad \text{and} \quad
+    0 \sim \divv \frac{L'(x, y, z)}{z}
+    = r + s + p_0 - 3p_0,
+  \]
+  which shows that the two definitions
+  for the group law agree.
+\end{example}
