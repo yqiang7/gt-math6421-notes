@@ -300,8 +300,20 @@
     \dim Y = \trdeg_k K(Y)
     \le \trdeg_k K(X) = \dim X.
   \]
-  (2) TODO: Fill in proof (from
-  Lecture 24).
+  (2) Fix $y \in Y$. By replacing $Y$
+  with a neighborhood of $y$, we may assume
+  that $Y$ is affine. Using Krull's
+  principal ideal theorem, we can argue that
+  there exist $g_1, \dots, g_r \in A(Y)$
+  such that $r = \dim Y$ and
+  $\{y\}$ is an irreducible
+  component of $V(g_1, \dots, g_r)$.
+  By shrinking $Y$ we may assume that
+  \[
+    \{y\} = V(g_1, \dots, g_r).
+  \]
+  Now $f^{-1}(y) = V(f^* g_1, \dots, f^* g_r)$,
+  so $\dim f^{-1}(y) \ge \dim X - r = \dim X - \dim Y$.
 
   (3) See Milne.
 \end{proof}

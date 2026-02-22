@@ -2,7 +2,38 @@
 
 \section{Rational Varieties}
 
-TODO: fill in notes from beginning of class.
+\begin{exercise}
+  Show that two irreducible varieties
+  $X$ and $Y$
+  are birational if and only if
+  $K(X) \cong K(Y)$ as $k$-algebras.
+\end{exercise}
+
+\begin{example}
+  Let $C = V(x^2 - y^3)$, and define
+  rational maps
+  \[
+    f : \Affine^1 \dashrightarrow C,\
+    t \longmapsto (t^3, t^2)
+    \quad \text{and} \quad
+    g : C \dashrightarrow \Affine^1,\
+    (x, y) \longmapsto x / y.
+  \]
+  For $t \ne 0$, we have
+  $g(f(t)) = t^3 / t^2$, so
+  $g \circ f = \id_{\Affine^1}$. For
+  $(a, b) \in C$,
+  \[
+    (f \circ g)(a, b)
+    = (a^3 / b^3, a^2 / b^2)
+    = (a^3 / a^2, b^3 / b^2)
+    = (a, b),
+  \]
+  where the second equality follows
+  since $a^2 = b^3$ on $C$. Thus
+  $f \circ g = \id_C$, so
+  $f$ is birational.
+\end{example}
 
 \begin{theorem}
   Any irreducible algebraic variety
@@ -119,7 +150,8 @@ TODO: fill in notes from beginning of class.
     \item $B_0 \Affine^n = \{(x, y) \in \Affine^n \times \PP^{n - 1} : x_i y_i - x_j y_j = 0 \text{ for all } 1 \le i, j \le n\}$.
     \item $\pi^{-1}(\Affine^n \setminus \{0\}) \to \Affine^n \setminus \{0\}$
       is an isomorphism.
-    \item $\pi^{-1}(\{0\}) = \{0\} \times \PP^{n - 1} \cong \PP^{n - 1}$.
+    \item $\pi^{-1}(\{0\}) = \{0\} \times \PP^{n - 1} \cong \PP^{n - 1}$. This
+      is called the \emph{exceptional locus}.
   \end{enumerate}
 \end{example}
 
@@ -144,8 +176,6 @@ TODO: fill in notes from beginning of class.
   $C := V(y^2 - x^3) \subseteq \Affine^2$
   under the blow-up?
   We have $\pi^{-1}(C) = (\{0\} \times \PP^1) \cup \overline{\pi^{-1}(C \setminus \{0\})}$.
-  We call $\{0\} \times \PP^1$
-  the \emph{exceptional locus} of $\pi$.
   We can compute this explicitly
   on charts. Write
   \begin{center}
@@ -190,6 +220,8 @@ TODO: fill in notes from beginning of class.
     \item[0.] When $X = \Affine^n$ and
       $f_1, \dots, f_r = x_1, \dots, x_n$,
       then $B_{x_1, \dots, x_n} \Affine^n = B_0 \Affine^n$.
+    \item $B_{f_1, \dots, f_r} X \subseteq \{(x, y) \in X \times \PP^{n - 1} : f_i(x) y_j - f_j(x) y_i = 0\}$.
+      Equality does not necessarily hold.
     \item $\pi$ is an isomorphism
       over $U$.
 

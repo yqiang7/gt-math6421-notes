@@ -1,1 +1,154 @@
 \chapter{Oct.~30 --- The Blow-Up, Part 2}
+
+\section{The Blow-Up, Continued}
+
+\begin{example}
+  Let $\pi : B_{[1 : 0 : 0]} \Affine^2 \to \Affine^2$
+  be the blow-up. Then
+  $\pi^{-1}(U_0) \cong B_0 \Affine^2$ and
+  $\pi^{-1}(U_i) \cong U_i$ for $i = 1, 2$.
+  Note that $\pi$ is an isomorphism
+  over $\Affine^2 \setminus \{[1 : 0 : 0]\}$
+  and $\pi^{-1}([1 : 0 : 0]) = \PP^1$.
+\end{example}
+
+\begin{definition}[Blow-up for projective varieties]
+  Let $X \subseteq \PP^n$ be a projective
+  variety and $f_1, \dots, f_r \in S(X)$
+  homogeneous of the same degree.
+  Let $U = X \setminus V(f_1, \dots, f_r)$
+  and define
+  \begin{align*}
+    f : U &\longrightarrow \PP^{r - 1} \\
+    x &\longmapsto [f_1(x) : \dots : f_r(x)].
+  \end{align*}
+  Then the \emph{blow-up} of
+  $X$ along $f_1, \dots, f_r$ is
+  \[
+    B_{f_1, \dots, f_r} X
+    = \text{closure of } \Gamma_f \text{ in } X \times \PP^{r - 1}.
+  \]
+\end{definition}
+
+\begin{example}
+  We can compute the blow-up locally, e.g.
+  for $U_0 = \{[x] \in X : x_0 \ne 0\}$,
+  we have
+  \[
+    B_{f_1, \dots, f_r} X|_{\pi^{-1}(U_0)}
+    \cong B_{f_1^i, \dots, f_r^i} U_0.
+  \]
+\end{example}
+
+\begin{example}
+  Consider the projection
+  $\PP^2 \dashrightarrow \PP^1$
+  given by $[x, y] \mapsto x$. We have
+  \[
+    \begin{tikzcd}
+      & {B_{x, y} \PP^2 \subseteq \PP^2 \times \PP^1} \ar[dl, "\pi", swap] \ar[dr] \\
+      \PP^2 \ar[rr, dashed, mapsto, "{[x, y, z] \mapsto [x : y]}", swap] & & \PP^1
+    \end{tikzcd}
+  \]
+  Note that this resolves the indeterminacy.
+
+  What is $B_{x, y} \PP^2$ isomorphic to?
+  The answer is $B_{[0 : 0 : 1]} \PP^2$.
+  For example, on charts:
+  \begin{enumerate}
+    \item on $\Affine^2_{x, y} \hookrightarrow \PP^2$
+      given by $(x, y) \mapsto [x : y : z]$,
+      we have $(x^i, y^i) = (x, y) = I(0)$;
+    \item on $\Affine^2_{x, z} \hookrightarrow \PP^2$,
+      we have $(x^i, y^i) = (x, 1) = (1)$;
+    \item on $\Affine^2_{y, z} \hookrightarrow \PP^2$,
+      we have $(x^i, y^i) = (1, y) = (1)$.
+  \end{enumerate}
+\end{example}
+
+\begin{theorem}[Castelnuovo]
+  If $X \dashrightarrow X'$ is a birational
+  map between two smooth complex surfaces,
+  then there exists a factorization
+  \pagebreak
+  \[
+    \begin{tikzcd}[column sep=small]
+      & Y \ar[dl, "f_1", swap] \ar[dr, "g_1"] \\
+      \cdots \ar[d, "f_m", swap] & & \cdots \ar[d, "g_n"] \\
+      X & & X'
+    \end{tikzcd}
+  \]
+  with $f_i, g_i$ point blow-ups.
+\end{theorem}
+
+\section{Applications to Singularities}
+
+\begin{example}
+  Let $C = V(x^2 - y^3)$. Then we have
+  $B_0 C \subseteq B_0 \Affine^2$ and
+  \[
+    \begin{tikzcd}
+      B_0 C \ar[r, hook] \ar[d] & B_0 \Affine^2 \ar[d] \\
+      C \ar[r, hook] & \Affine^2
+    \end{tikzcd}
+  \]
+  We claim that there is an isomorphism
+  \begin{align*}
+    g : \Affine^1 &\overset{\cong}{\longrightarrow}
+    B_0 C \\
+    t &\longmapsto ((t^3, t^2), [t : 1]).
+  \end{align*}
+  To see this, note that
+  $\im f = B_0 C$ (check this locally
+  on charts), and $g$ has inverse given by
+  \begin{align*}
+    B_0 C &\longrightarrow \Affine^1 \\
+    ((x, y), [s : t]) &\longmapsto t / s.
+  \end{align*}
+\end{example}
+
+\begin{theorem}[Hironaka, Fields Medal result]
+  If $X$ is an irreducible variety over
+  a characteristic zero field, then
+  there exists a sequence of blow-ups
+  \[
+    X_r \longrightarrow \cdots \longrightarrow X_1 \longrightarrow X
+  \]
+  along subvarieties such that
+  $X_r$ is smooth.
+\end{theorem}
+
+\begin{definition}
+  The \emph{tangent cone} of a variety
+  $X$ at a point $a$ is
+  \[
+    C_a X = \text{cone over } \pi^{-1}(a) \subseteq \PP^{n - 1}
+  \]
+  with $\pi : B_a X \to X$ the blow-up.
+\end{definition}
+
+\begin{example}
+  For $0 \in \Affine^n$, we have
+  $\pi^{-1}(0) = \PP^{n - 1}$, so
+  $C_0 \Affine^n = \Affine^n$.
+\end{example}
+
+\begin{example}
+  The tangent cones for
+  $X_1 = V(y - x^2)$ and $X_2 = V(y^2 - x^3)$
+  are both the $x$-axis, whereas the
+  tangent cone for
+  $X_3 = V(y^2 - x^2 - x^3)$ is a union
+  of two lines $V(y - x)$ and $V(y + x)$.
+\end{example}
+
+\begin{exercise}
+  If $0 \in X \subseteq \Affine^n$ is a
+  variety and $I(X) = (f)$, then show that
+  $C_0(f) = V(f^{\mathrm{init}})$,
+  where $f^{\mathrm{init}} := f_d$
+  if we write
+  $f = f_d + f_{d + 1} + \cdots$ with
+  $f_i$ homogeneous of degree $i$ and
+  $f_d \ne 0$.
+\end{exercise}
